@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\Admin\GeneralRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class GeneralController extends Controller
 {
@@ -14,12 +16,12 @@ class GeneralController extends Controller
         $this->user = $user;
     }
 
-    public function getNotification()
+    public function getNotification(): JsonResponse
     {
         return $this->user->getNotification();
     }
 
-    public function getAllNotification()
+    public function getAllNotification(): View
     {
         $notifications = $this->user->getAllNotification();
         return view('admin.notification.index', compact('notifications'));

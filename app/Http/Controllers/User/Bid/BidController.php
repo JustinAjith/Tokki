@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Bid;
 use App\Bid;
 use App\Http\Requests\User\Bid\BidRequest;
 use App\Repositories\User\BidRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class BidController extends Controller
         return view('user.bid.create');
     }
 
-    public function store(BidRequest $request)
+    public function store(BidRequest $request): RedirectResponse
     {
         $this->bid->store($request);
         return redirect()->back()->with('success', 'success');

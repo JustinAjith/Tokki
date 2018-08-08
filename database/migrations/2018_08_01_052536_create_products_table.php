@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->enum('discount_type', ['%', 'LKR'])->default('LKR');
             $table->decimal('discount', 10,2)->default(0);
             $table->decimal('price', 10,2);
-            $table->integer('stock');
+            $table->smallInteger('stock');
             $table->text('details');
             $table->enum('status', ['Accept', 'Pending', 'Reject'])->default('Pending');
             $table->smallInteger('bid_rand');

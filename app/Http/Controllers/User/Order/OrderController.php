@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Order;
 use App\Repositories\User\OrderRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
@@ -14,12 +15,12 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function index()
+    public function index(): View
     {
         return view('user.order.index');
     }
 
-    public function status()
+    public function status(): View
     {
         return view('user.order.status');
     }

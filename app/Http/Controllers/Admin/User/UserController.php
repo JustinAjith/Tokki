@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Repositories\Admin\UserRepository;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -24,23 +26,23 @@ class UserController extends Controller
         return view('admin.user.index');
     }
 
-    public function create()
+    public function create(): View
     {
         return view('admin.user.create');
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request): RedirectResponse
     {
         $this->user->store($request);
         return redirect()->back()->with('success', 'success');
     }
 
-    public function show(User $user)
+    public function show(User $user): View
     {
         return view('admin.user.show', compact('user'));
     }
 
-    public function resetPassword(Request $request)
+    public function resetPassword(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'password'=>'required|string|min:6|confirmed'

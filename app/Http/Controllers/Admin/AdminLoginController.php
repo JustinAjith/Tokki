@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AdminLoginController extends Controller
 {
@@ -13,7 +14,7 @@ class AdminLoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
 
-    public function showLoginForm()
+    public function showLoginForm(): View
     {
         return view('admin.layouts.login');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Setting;
 use App\Http\Requests\User\Setting\PasswordRequest;
 use App\Http\Requests\User\Setting\ProfileRequest;
 use App\Repositories\User\SettingRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class SettingController extends Controller
         return view('user.settings.edit_profile');
     }
 
-    public function editProfileSubmit(ProfileRequest $request)
+    public function editProfileSubmit(ProfileRequest $request): RedirectResponse
     {
         $this->setting->editProfile($request);
         return redirect()->back()->with('success', 'success');
@@ -35,7 +36,7 @@ class SettingController extends Controller
         return view('user.settings.upload_logo');
     }
 
-    public function uploadLogoSubmit(Request $request)
+    public function uploadLogoSubmit(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'profile'=>'required'
@@ -49,7 +50,7 @@ class SettingController extends Controller
         return view('user.settings.edit_about_us');
     }
 
-    public function editAboutUsSubmit(Request $request)
+    public function editAboutUsSubmit(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'about_us' => 'required|string|min: 150'
@@ -63,7 +64,7 @@ class SettingController extends Controller
         return view('user.settings.change_password');
     }
 
-    public function changePasswordSubmit(PasswordRequest $request)
+    public function changePasswordSubmit(PasswordRequest $request): RedirectResponse
     {
         if(!(Hash::check($request->current_password, Auth::user()->password))) {
             $response = 'Your current password does not matches with the password you provided.';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Product;
 use App\Http\Requests\User\Product\DetailCheckRequest;
 use App\Http\Requests\User\Product\GeneralCheckRequest;
 use App\Repositories\User\ProductRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -17,7 +18,7 @@ class ProductController extends Controller
         $this->product = $product;
     }
 
-    public function index()
+    public function index(): View
     {
         return view('user.product.index');
     }
@@ -27,12 +28,12 @@ class ProductController extends Controller
         return view('user.product.create');
     }
 
-    public function generalProductCheck(GeneralCheckRequest $request)
+    public function generalProductCheck(GeneralCheckRequest $request): JsonResponse
     {
         return ['success'=>true];
     }
 
-    public function productDetailCheck(DetailCheckRequest $request)
+    public function productDetailCheck(DetailCheckRequest $request): JsonResponse
     {
         return ['success'=>true];
     }
