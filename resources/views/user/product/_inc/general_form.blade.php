@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-md-12">
+        <div class="float-right"><button type="button" class="btn btn-sm btn-warning" ng-click="specialFeaturesAdd()" ng-disabled="addSpecialFeaturesDisabled">Special features</button></div>
         <h4>General Details</h4>
         <hr>
     </div>
@@ -59,20 +60,28 @@
         </div>
     </div>
 </div>
-<div class="row mt-3">
-    <div class="col-md-12">
-        <h4>General Details</h4>
-        <hr>
+<div ng-show="specialFeatures" ng-cloak>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="float-right"><button type="button" class="btn btn-sm btn-danger" ng-click="removeSpecialFeatures()" ng-disabled="removeSpecialFeaturesDisabled"><i class="fa fa-times"></i></button></div>
+            <h4>General Details</h4>
+            <input type="hidden" name="add_special_features" ng-value="specialFeaturesValue">
+            <hr>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-1"><a>asdsa</a></div>
-            <div class="col-md-1"><a>asdsa</a></div>
-            <div class="col-md-1"><a>asdsa</a></div>
-            <div class="col-md-1"><a>asdsa</a></div>
-            <div class="col-md-1"><a>asdsa</a></div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Title</label>
+                <input type="text" name="special_features_title" class="form-control" placeholder="enter product size" ng-disabled="specialFeaturesTitleInput">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Features</label>
+                <input type="text" name="special_features" class="form-control" placeholder="enter product wattage" ng-disabled="specialFeaturesInput">
+            </div>
         </div>
     </div>
 </div>

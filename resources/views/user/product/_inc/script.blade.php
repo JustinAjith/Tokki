@@ -4,6 +4,7 @@
         $scope.productGeneralDetails = false;
         $scope.productDetails = false;
         $scope.productImages = false;
+        $scope.specialCategoryValue = [];
         var errorClass = 'is-invalid';
         $scope.selectCategory = function(c, s) {
             $scope.createCategorySelect = false;
@@ -81,6 +82,37 @@
             $scope.productImages = false;
         };
 
+        $scope.specialFeatures = false;
+        $scope.addSpecialFeaturesDisabled = false;
+        $scope.specialFeaturesValue = 'no';
+        $scope.wattageInput = true;
+        $scope.sizeInput = true;
+        $scope.specialFeaturesTitleInput = true;
+        $scope.specialFeaturesInput = true;
+        $scope.specialFeaturesAdd = function() {
+            $scope.specialFeatures = true;
+            $scope.addSpecialFeaturesDisabled = true;
+            $scope.removeSpecialFeaturesDisabled = false;
+            $scope.specialFeaturesValue = 'yes';
+            $scope.wattageInput = true;
+            $scope.sizeInput = true;
+            $scope.specialCategoryValue = [];
+            $scope.specialFeaturesTitleInput = false;
+            $scope.specialFeaturesInput = false;
+        };
+
+        $scope.removeSpecialFeatures = function() {
+            $scope.specialFeatures = false;
+            $scope.addSpecialFeaturesDisabled = false;
+            $scope.removeSpecialFeaturesDisabled = true;
+            $scope.specialFeaturesValue = 'no';
+            $scope.wattageInput = true;
+            $scope.sizeInput = true;
+            $scope.specialCategoryValue = [];
+            $scope.specialFeaturesTitleInput = true;
+            $scope.specialFeaturesInput = true;
+        };
+
         $scope.productDetailCheck = function() {
             var productDetailCheck = "{{ route('user.product.detail.check') }}";
             $http({
@@ -106,8 +138,7 @@
             $scope.productGeneralDetails = false;
             $scope.productDetails = true;
             $scope.productImages = false;
-        }
-
+        };
 
     });
 </script>
