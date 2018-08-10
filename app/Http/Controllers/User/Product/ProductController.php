@@ -28,12 +28,12 @@ class ProductController extends Controller
         return view('user.product.create');
     }
 
-    public function generalProductCheck(GeneralCheckRequest $request): JsonResponse
+    public function generalProductCheck(GeneralCheckRequest $request)
     {
         return ['success'=>true];
     }
 
-    public function productDetailCheck(DetailCheckRequest $request): JsonResponse
+    public function productDetailCheck(DetailCheckRequest $request)
     {
         return ['success'=>true];
     }

@@ -3,17 +3,22 @@
         $scope.createCategorySelect = true;
         $scope.productGeneralDetails = false;
         $scope.productDetails = false;
+        $scope.productSpecialFeature = false;
         $scope.productImages = false;
-        $scope.specialCategoryValue = [];
+
+        $scope.select_special_features = 'no';
         var errorClass = 'is-invalid';
         $scope.selectCategory = function(c, s) {
             $scope.createCategorySelect = false;
             $scope.productGeneralDetails = true;
             $scope.productDetails = false;
+            $scope.productSpecialFeature = false;
             $scope.productImages = false;
             $scope.category = c;
             $scope.subCategory = s;
         };
+
+        $scope.specialFeaturesInput = true;
 
         $scope.generalProductDetailCheck = function() {
             var generalProductDetailCheck = "{{ route('user.general.product.check') }}";
@@ -26,6 +31,7 @@
                 $scope.createCategorySelect = false;
                 $scope.productGeneralDetails = false;
                 $scope.productDetails = true;
+                $scope.productSpecialFeature = false;
                 $scope.productImages = false;
                 $scope.categoryInput = '';
                 $scope.subCategoryInput = '';
@@ -38,18 +44,38 @@
                 var error = errors.data.errors;
                 if(error.category){
                     $scope.categoryInput = errorClass;
-                } if(error.sub_category) {
+                } else {
+                    $scope.categoryInput = '';
+                }
+                if(error.sub_category) {
                     $scope.subCategoryInput = errorClass;
-                } if(error.heading) {
+                } else {
+                    $scope.subCategoryInput = '';
+                }
+                if(error.heading) {
                     $scope.headingInput = errorClass;
-                } if(error.key_word) {
+                } else {
+                    $scope.headingInput = '';
+                }
+                if(error.key_word) {
                     $scope.keywordInput = errorClass;
-                } if(error.price) {
+                } else {
+                    $scope.keywordInput = ''
+                }
+                if(error.price) {
                     $scope.priceInput = errorClass;
-                } if(error.discount) {
+                } else {
+                    $scope.priceInput = '';
+                }
+                if(error.discount) {
                     $scope.discountInput = errorClass;
-                } if(error.discount_type) {
+                } else {
+                    $scope.discountInput = '';
+                }
+                if(error.discount_type) {
                     $scope.discountTypeInput = errorClass;
+                } else {
+                    $scope.discountTypeInput = '';
                 }
             });
         };
@@ -58,7 +84,70 @@
             $scope.createCategorySelect = true;
             $scope.productGeneralDetails = false;
             $scope.productDetails = false;
+            $scope.productSpecialFeature = false;
             $scope.productImages = false;
+        };
+
+        $scope.generalProductDetailCheckAndGoSpecialFeatures = function() {
+            var generalProductDetailCheck = "{{ route('user.general.product.check') }}";
+            $http({
+                method: 'POST',
+                url: generalProductDetailCheck,
+                data: $('#userProductDetails').serialize(),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function(response) {
+                $scope.createCategorySelect = false;
+                $scope.productGeneralDetails = false;
+                $scope.productDetails = false;
+                $scope.productSpecialFeature = true;
+                $scope.productImages = false;
+                $scope.specialFeaturesInput = false;
+                $scope.select_special_features = 'yes';
+                $scope.categoryInput = '';
+                $scope.subCategoryInput = '';
+                $scope.headingInput = '';
+                $scope.keywordInput = '';
+                $scope.priceInput = '';
+                $scope.discountInput = '';
+                $scope.discountTypeInput = '';
+            },function(errors){
+                var error = errors.data.errors;
+                if(error.category){
+                    $scope.categoryInput = errorClass;
+                } else {
+                    $scope.categoryInput = '';
+                }
+                if(error.sub_category) {
+                    $scope.subCategoryInput = errorClass;
+                } else {
+                    $scope.subCategoryInput = '';
+                }
+                if(error.heading) {
+                    $scope.headingInput = errorClass;
+                } else {
+                    $scope.headingInput = '';
+                }
+                if(error.key_word) {
+                    $scope.keywordInput = errorClass;
+                } else {
+                    $scope.keywordInput = ''
+                }
+                if(error.price) {
+                    $scope.priceInput = errorClass;
+                } else {
+                    $scope.priceInput = '';
+                }
+                if(error.discount) {
+                    $scope.discountInput = errorClass;
+                } else {
+                    $scope.discountInput = '';
+                }
+                if(error.discount_type) {
+                    $scope.discountTypeInput = errorClass;
+                } else {
+                    $scope.discountTypeInput = '';
+                }
+            });
         };
 
         $scope.details = [{}];
@@ -75,44 +164,6 @@
             }
         };
 
-        $scope.goBackToGeneralForm = function() {
-            $scope.createCategorySelect = false;
-            $scope.productGeneralDetails = true;
-            $scope.productDetails = false;
-            $scope.productImages = false;
-        };
-
-        $scope.specialFeatures = false;
-        $scope.addSpecialFeaturesDisabled = false;
-        $scope.specialFeaturesValue = 'no';
-        $scope.wattageInput = true;
-        $scope.sizeInput = true;
-        $scope.specialFeaturesTitleInput = true;
-        $scope.specialFeaturesInput = true;
-        $scope.specialFeaturesAdd = function() {
-            $scope.specialFeatures = true;
-            $scope.addSpecialFeaturesDisabled = true;
-            $scope.removeSpecialFeaturesDisabled = false;
-            $scope.specialFeaturesValue = 'yes';
-            $scope.wattageInput = true;
-            $scope.sizeInput = true;
-            $scope.specialCategoryValue = [];
-            $scope.specialFeaturesTitleInput = false;
-            $scope.specialFeaturesInput = false;
-        };
-
-        $scope.removeSpecialFeatures = function() {
-            $scope.specialFeatures = false;
-            $scope.addSpecialFeaturesDisabled = false;
-            $scope.removeSpecialFeaturesDisabled = true;
-            $scope.specialFeaturesValue = 'no';
-            $scope.wattageInput = true;
-            $scope.sizeInput = true;
-            $scope.specialCategoryValue = [];
-            $scope.specialFeaturesTitleInput = true;
-            $scope.specialFeaturesInput = true;
-        };
-
         $scope.productDetailCheck = function() {
             var productDetailCheck = "{{ route('user.product.detail.check') }}";
             $http({
@@ -126,6 +177,7 @@
                 $scope.createCategorySelect = false;
                 $scope.productGeneralDetails = false;
                 $scope.productDetails = false;
+                $scope.productSpecialFeature = false;
                 $scope.productImages = true;
             },function(errors) {
                 $scope.productDetailTitleError = 'The title field is required';
@@ -133,12 +185,38 @@
             });
         };
 
+        $scope.goBackToGeneralForm = function() {
+            $scope.createCategorySelect = false;
+            $scope.productGeneralDetails = true;
+            $scope.productDetails = false;
+            $scope.productSpecialFeature = false;
+            $scope.productImages = false;
+            $scope.specialFeaturesInput = false;
+            $scope.select_special_features = 'no';
+        };
+
         $scope.goBackToProductDetailForm = function() {
             $scope.createCategorySelect = false;
             $scope.productGeneralDetails = false;
             $scope.productDetails = true;
+            $scope.productSpecialFeature = false;
             $scope.productImages = false;
         };
 
+    });
+</script>
+
+<script type="text/javascript">
+    function onAddTag(tag) {
+        alert("Added a tag: " + tag);
+    }
+    function onRemoveTag(tag) {
+        alert("Removed a tag: " + tag);
+    }
+    function onChangeTag(input,tag) {
+        alert("Changed a tag: " + tag);
+    }
+    $(function() {
+        $('#tags_1').tagsInput({width:'auto'});
     });
 </script>

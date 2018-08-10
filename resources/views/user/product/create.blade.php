@@ -1,5 +1,6 @@
 @extends('user.layouts.master')
 @section('style')
+    <link rel="stylesheet" href="{{ asset('css/tokki/auth/tagsinput.css') }}">
     <style>
         ol{padding-left: 1.5rem;}
     </style>
@@ -36,6 +37,9 @@
                                     <div class="productDetails" ng-show="productDetails" ng-cloak>
                                         @include('user.product._inc.product_detail_form')
                                     </div>
+                                    <div class="productSpecialFeature" ng-show="productSpecialFeature" ng-cloak>
+                                        @include('user.product._inc.product_special_feature')
+                                    </div>
                                     <div class="productImages" ng-show="productImages" ng-cloak>
                                         @include('user.product._inc.product_image_form')
                                     </div>
@@ -51,4 +55,5 @@
 
 @section('script')
     @include('user.product._inc.script')
+    <script src="{{ asset('js/tokki/auth/tagsinput.js') }}"></script>
 @endsection
