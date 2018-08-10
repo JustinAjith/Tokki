@@ -20,18 +20,16 @@
 
         $scope.specialFeaturesInput = true;
 
-        $scope.generalProductDetailCheck = function() {
-            var generalProductDetailCheck = "{{ route('user.general.product.check') }}";
+        $scope.generalProductDetail = function(url) {
+            var checkUrl = url;
             $http({
                 method: 'POST',
-                url: generalProductDetailCheck,
+                url: checkUrl,
                 data: $('#userProductDetails').serialize(),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function(response) {
                 $scope.createCategorySelect = false;
                 $scope.productGeneralDetails = false;
-                $scope.productDetails = true;
-                $scope.productSpecialFeature = false;
                 $scope.productImages = false;
                 $scope.categoryInput = '';
                 $scope.subCategoryInput = '';
@@ -40,44 +38,54 @@
                 $scope.priceInput = '';
                 $scope.discountInput = '';
                 $scope.discountTypeInput = '';
+                if(response.data.SpecialFeatures) {
+                    $scope.productSpecialFeature = true;
+                    $scope.productDetails = false;
+                    $scope.select_special_features = 'yes';
+                    $scope.specialFeaturesInput = false;
+                } else {
+                    $scope.productSpecialFeature = false;
+                    $scope.productDetails = true;
+                    $scope.select_special_features = 'no';
+                    $scope.specialFeaturesInput = true;
+                }
             },function(errors){
                 var error = errors.data.errors;
                 if(error.category){
                     $scope.categoryInput = errorClass;
                 } else {
                     $scope.categoryInput = '';
-                }
-                if(error.sub_category) {
+                } if(error.sub_category) {
                     $scope.subCategoryInput = errorClass;
                 } else {
                     $scope.subCategoryInput = '';
-                }
-                if(error.heading) {
+                } if(error.heading) {
                     $scope.headingInput = errorClass;
                 } else {
                     $scope.headingInput = '';
-                }
-                if(error.key_word) {
+                } if(error.key_word) {
                     $scope.keywordInput = errorClass;
                 } else {
                     $scope.keywordInput = ''
-                }
-                if(error.price) {
+                } if(error.price) {
                     $scope.priceInput = errorClass;
                 } else {
                     $scope.priceInput = '';
-                }
-                if(error.discount) {
+                } if(error.discount) {
                     $scope.discountInput = errorClass;
                 } else {
                     $scope.discountInput = '';
-                }
-                if(error.discount_type) {
+                } if(error.discount_type) {
                     $scope.discountTypeInput = errorClass;
                 } else {
                     $scope.discountTypeInput = '';
                 }
             });
+        };
+
+        $scope.generalProductDetailCheck = function() {
+            var generalProductDetailCheck = "{{ route('user.general.product.check') }}";
+            $scope.generalProductDetail(generalProductDetailCheck);
         };
 
         $scope.goBackToSelectCategory = function() {
@@ -89,65 +97,12 @@
         };
 
         $scope.generalProductDetailCheckAndGoSpecialFeatures = function() {
-            var generalProductDetailCheck = "{{ route('user.general.product.check') }}";
-            $http({
-                method: 'POST',
-                url: generalProductDetailCheck,
-                data: $('#userProductDetails').serialize(),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).then(function(response) {
-                $scope.createCategorySelect = false;
-                $scope.productGeneralDetails = false;
-                $scope.productDetails = false;
-                $scope.productSpecialFeature = true;
-                $scope.productImages = false;
-                $scope.specialFeaturesInput = false;
-                $scope.select_special_features = 'yes';
-                $scope.categoryInput = '';
-                $scope.subCategoryInput = '';
-                $scope.headingInput = '';
-                $scope.keywordInput = '';
-                $scope.priceInput = '';
-                $scope.discountInput = '';
-                $scope.discountTypeInput = '';
-            },function(errors){
-                var error = errors.data.errors;
-                if(error.category){
-                    $scope.categoryInput = errorClass;
-                } else {
-                    $scope.categoryInput = '';
-                }
-                if(error.sub_category) {
-                    $scope.subCategoryInput = errorClass;
-                } else {
-                    $scope.subCategoryInput = '';
-                }
-                if(error.heading) {
-                    $scope.headingInput = errorClass;
-                } else {
-                    $scope.headingInput = '';
-                }
-                if(error.key_word) {
-                    $scope.keywordInput = errorClass;
-                } else {
-                    $scope.keywordInput = ''
-                }
-                if(error.price) {
-                    $scope.priceInput = errorClass;
-                } else {
-                    $scope.priceInput = '';
-                }
-                if(error.discount) {
-                    $scope.discountInput = errorClass;
-                } else {
-                    $scope.discountInput = '';
-                }
-                if(error.discount_type) {
-                    $scope.discountTypeInput = errorClass;
-                } else {
-                    $scope.discountTypeInput = '';
-                }
-            });
+            var generalProductDetailCheck = "{{ route('user.general.product.check.special.features') }}";
+            $scope.generalProductDetail(generalProductDetailCheck);
+        };
+
+        $scope.specialFeaturesCheck = function() {
+            console.log('ad');
         };
 
         $scope.details = [{}];
@@ -191,7 +146,7 @@
             $scope.productDetails = false;
             $scope.productSpecialFeature = false;
             $scope.productImages = false;
-            $scope.specialFeaturesInput = false;
+            $scope.specialFeaturesInput = true;
             $scope.select_special_features = 'no';
         };
 

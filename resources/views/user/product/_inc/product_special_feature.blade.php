@@ -10,7 +10,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label class="control-label">Category</label>
-            <input type="text" name="features[]" class="form-control" ng-disabled="specialFeaturesInput()">
+            <input type="text" name="features[]" class="form-control" ng-disabled="specialFeaturesInput">
         </div>
     </div>
 </div>
@@ -19,7 +19,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="control-label">Category</label>
-            <input type="text" name="features_description[]" class="form-control tags" id="tags_1" ng-disabled="specialFeaturesInput()">
+            <input type="text" name="features_description[]" class="form-control tags" id="tags_1" ng-disabled="specialFeaturesInput">
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
     <div class="col-md-12">
         <div class="float-right">
             <button type="button" class="btn btn-sm btn-dark" ng-click="goBackToGeneralForm()">Back</button>
-            <button type="button" class="btn btn-sm btn-primary">Next</button>
+            <button type="button" class="btn btn-sm btn-primary" ng-click="specialFeaturesCheck()">Next</button>
         </div>
     </div>
 </div>

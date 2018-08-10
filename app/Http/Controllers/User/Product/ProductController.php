@@ -33,6 +33,11 @@ class ProductController extends Controller
         return ['success'=>true];
     }
 
+    public function generalProductCheckSpecialFeatures(GeneralCheckRequest $request): JsonResponse
+    {
+        return response()->json(['SpecialFeatures'=>'SpecialFeatures']);
+    }
+
     public function productDetailCheck(DetailCheckRequest $request)
     {
         return ['success'=>true];

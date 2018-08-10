@@ -30,6 +30,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->post('/store', 'ProductController@store')->name('user.product.store');
 
         $routes->post('/general-product-check', 'ProductController@generalProductCheck')->name('user.general.product.check');
+        $routes->post('/general-product-check-special-features', 'ProductController@generalProductCheckSpecialFeatures')->name('user.general.product.check.special.features');
         $routes->post('/product-detail-check', 'ProductController@productDetailCheck')->name('user.product.detail.check');
     });
     // User Order Related Routes
