@@ -1,10 +1,10 @@
-@extends('admin.layouts.master')
+@extends('user.layouts.master')
 
 @section('content')
     <!-- Breadcrumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Bid Rang <small><a href="{{ route('admin.bid.rang.create') }}" class="btn btn-sm btn-primary">Create</a></small></h3> </div>
+            <h3 class="text-primary">Bid Rang</h3> </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -24,7 +24,6 @@
                                 <tr>
                                     <th>Rang</th>
                                     <th>Bid</th>
-                                    <th>Action</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -43,15 +42,14 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ route('admin.bid.rang.data') }}",
+                "url": "{{ route('user.bid.rang.data') }}",
                 "dataType": "json",
                 "type": "POST",
                 "data": {_token: "{{csrf_token()}}"}
             },
             "columns": [
                 {"data": "rang"},
-                {"data": "bid"},
-                {"data": "action"},
+                {"data": "bid"}
             ]
         } );
     </script>

@@ -42,6 +42,8 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->get('/buy-bid', 'BidController@create')->name('user.bid.create');
         $routes->post('/bid/store', 'BidController@store')->name('user.bid.store');
         $routes->get('/bid/show/{bid}', 'BidController@show')->name('user.bid.show');
+        $routes->get('/bid/bid-rang', 'BidController@bidRang')->name('user.bid.rang');
+        $routes->post('/bid/bid-rang/data', 'BidController@bidRang')->name('user.bid.rang.data');
     });
     // User Settings Related Routes
     $routes->group(['namespace'=>'Setting'], function($routes){
@@ -79,8 +81,10 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->patch('/reject/{bid}', 'BidController@bidReject')->name('admin.bid.reject');
 
         $routes->get('/bid-rang', 'BidController@bidRang')->name('admin.bid.rang');
+        $routes->post('/bid-rang/data', 'BidController@bidRang')->name('admin.bid.rang.data');
         $routes->get('/bid-rang/create', 'BidController@create')->name('admin.bid.rang.create');
         $routes->post('/bid-rang/store', 'BidController@store')->name('admin.bid.rang.store');
+        $routes->get('/edit/{bid}', 'BidController@edit')->name('admin.bid.edit');
     });
     // Admin Users Related Routes
     $routes->group(['prefix'=>'/users', 'namespace'=>'User'], function($routes){

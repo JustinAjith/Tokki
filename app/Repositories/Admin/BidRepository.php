@@ -4,6 +4,7 @@ namespace App\Repositories\Admin;
 
 use App\Bid;
 use App\BidRang;
+use App\Http\Requests\Admin\Bid\BidRangRequest;
 use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
@@ -131,10 +132,63 @@ class BidRepository
         }
     }
 
-    public function store(Request $request)
+    public function store(BidRangRequest $request)
     {
         $bid = $this->bidRang->fill($request->toArray());
         $bid->save();
         return ['success'=>true];
+    }
+
+    public function bidRang(Request $request)
+    {
+        $columns = array(
+            0 => 'from',
+            1 => 'to',
+            2 => 'bid',
+            3 => 'action',
+        );
+        $totalDatas = $this->bidRang->count();
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        if(empty($request->input('search.value'))) {
+            $posts = $this->bidRang->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = $totalDatas;
+        } else {
+            $search = $request->input('search.value');
+
+            $filteredData = $this->bidRang::where('from', 'like', "%{$search}%")
+                ->orWhere('to', 'like', "%{$search}%")
+                ->orWhere('bid', 'like', "%{$search}%");
+
+            $posts = $filteredData->offset($start)->limit($limit)->orderBy($order, $dir)->get();
+            $totalFiltered = $filteredData->count();
+        }
+
+        $data = array();
+
+        if($posts){
+            foreach($posts as $r) {
+                $nestedData['rang'] = $r->from.' - '.$r->to;
+                $nestedData['bid'] = $r->bid;
+                $nestedData['action'] = '
+                    <a href="/admin/bid/edit/'.$r->id.'" class="btn btn-sm btn-info" value="'.$r->id.'"><i class="fa fa-pencil"></i> Edit</a>
+                ';
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalDatas),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data
+        );
+        echo json_encode($json_data);
     }
 }

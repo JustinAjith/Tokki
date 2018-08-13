@@ -38,7 +38,7 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('user.bid') }}">Bid List</a></li>
                         <li><a href="{{ route('user.bid.create') }}">Buy Bid</a></li>
-                        <li><a href="#">Bid Rang</a></li>
+                        <li><a href="{{ route('user.bid.rang') }}">Bid Rang</a></li>
                     </ul>
                 </li>
 

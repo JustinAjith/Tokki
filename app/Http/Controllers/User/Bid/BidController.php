@@ -46,4 +46,12 @@ class BidController extends Controller
             return redirect()->back()->with('autherror', 'autherror');
         }
     }
+
+    public function bidRang(Request $request)
+    {
+        if(\request()->ajax()) {
+            return $this->bid->bidRang($request);
+        }
+        return view('user.bid.bid_rang');
+    }
 }

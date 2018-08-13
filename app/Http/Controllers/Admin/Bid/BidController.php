@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Bid;
 
 use App\Bid;
+use App\BidRang;
+use App\Http\Requests\Admin\Bid\BidRangRequest;
 use App\Repositories\Admin\BidRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -41,8 +43,11 @@ class BidController extends Controller
         return $this->bid->bidReject($bid);
     }
 
-    public function bidRang()
+    public function bidRang(Request $request)
     {
+        if(\request()->ajax()) {
+            return $this->bid->bidRang($request);
+        }
         return view('admin.bid.bid_rang');
     }
 
@@ -51,9 +56,14 @@ class BidController extends Controller
         return view('admin.bid.bid_rang_create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(BidRangRequest $request): RedirectResponse
     {
         $this->bid->store($request);
         return redirect()->back()->with('success', 'success');
+    }
+
+    public function edit(BidRang $bid)
+    {
+        return $bid;
     }
 }
