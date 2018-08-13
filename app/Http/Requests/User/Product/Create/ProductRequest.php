@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User\Product;
+namespace App\Http\Requests\User\Product\Create;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GeneralCheckRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,9 +28,14 @@ class GeneralCheckRequest extends FormRequest
             'sub_category' => 'required',
             'heading' => 'required',
             'key_word' => 'required',
-            'price' => 'required',
-            'discount' => 'required',
-            'discount_type' => 'required'
+            'price' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'discount_type' => 'required',
+            'qty' => 'required|numeric',
+            'delivery_places.*' => 'required',
+            'image.*' => 'required',
+            'title.*' => 'required',
+            'description.*' => 'required'
         ];
     }
 }

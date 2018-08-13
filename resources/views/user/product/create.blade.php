@@ -1,8 +1,8 @@
 @extends('user.layouts.master')
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/tokki/auth/tagsinput.css') }}">
     <style>
         ol{padding-left: 1.5rem;}
+        .dropdown-menu li{padding: 0px 12px;}
     </style>
 @endsection
 @section('content')
@@ -25,23 +25,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="createCategorySelect" ng-show="createCategorySelect" ng-cloak>
-                            @include('user.product._inc.categories')
+                            @include('user.product._inc.create.categories')
                         </div>
                         <div class="createForm">
                             <div class="horizontal-form">
                                 <form class="form-horizontal" method="POST" action="{{ route('user.product.store') }}" enctype="multipart/form-data" id="userProductDetails">
                                     @csrf
-                                    <div class="productGeneralDetails" ng-show="productGeneralDetails" ng-cloak>
-                                        @include('user.product._inc.general_form')
-                                    </div>
-                                    <div class="productDetails" ng-show="productDetails" ng-cloak>
-                                        @include('user.product._inc.product_detail_form')
-                                    </div>
-                                    <div class="productSpecialFeature" ng-show="productSpecialFeature" ng-cloak>
-                                        @include('user.product._inc.product_special_feature')
-                                    </div>
-                                    <div class="productImages" ng-show="productImages" ng-cloak>
-                                        @include('user.product._inc.product_image_form')
+                                    <div class="productCreateForm" ng-show="productCreateForm" ng-cloak>
+                                        @include('user.product._inc.create.product_create_form')
                                     </div>
                                 </form>
                             </div>
@@ -55,5 +46,4 @@
 
 @section('script')
     @include('user.product._inc.script')
-    <script src="{{ asset('js/tokki/auth/tagsinput.js') }}"></script>
 @endsection

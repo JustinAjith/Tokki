@@ -4,11 +4,13 @@ const nodePath = 'node_modules/';
 
 mix.styles([
     sourceAssets + 'css/bootstrap.min.css',
+    nodePath + 'bootstrap-select/dist/css/bootstrap-select.min.css',
     sourceAssets + 'css/helper.css',
     sourceAssets + 'css/spinners.css',
     sourceAssets + 'css/animate.css',
     sourceAssets + 'css/style.css',
-    sourceAssets + 'css/notification.css'
+    sourceAssets + 'css/notification.css',
+    sourceAssets + 'css/tagsinput.css'
 ], 'public/css/tokki/auth/style.css');
 
 mix.styles([
@@ -25,13 +27,15 @@ mix.scripts([
     sourceAssets + 'js/jquery.min.js',
     sourceAssets + 'js/popper.min.js',
     sourceAssets + 'js/bootstrap.min.js',
+    nodePath + 'bootstrap-select/dist/js/bootstrap-select.min.js',
     nodePath + 'angular/angular.js',
     sourceAssets + 'js/jquery.slimscroll.js',
     sourceAssets + 'js/sidebarmenu.js',
     sourceAssets + 'js/sticky-kit.min.js',
     sourceAssets + 'js/scripts.js',
     sourceAssets + 'js/notification.js',
-    nodePath + 'sweetalert/dist/sweetalert.min.js'
+    nodePath + 'sweetalert/dist/sweetalert.min.js',
+    sourceAssets + 'js/tagsinput.js',
 ], 'public/js/tokki/auth/script.js');
 
 // CK Editor Lib

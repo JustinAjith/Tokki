@@ -1,1 +1,8 @@
-{}
+{
+    "/css/tokki/auth/style.css": "/css/tokki/auth/style.css",
+    "/css/tokki/auth/icons/icons.css": "/css/tokki/auth/icons/icons.css",
+    "/js/tokki/auth/script.js": "/js/tokki/auth/script.js",
+    "/js/tokki/auth/editor.js": "/js/tokki/auth/editor.js",
+    "/css/tokki/auth/datepicker.css": "/css/tokki/auth/datepicker.css",
+    "/js/tokki/auth/datepicker.js": "/js/tokki/auth/datepicker.js"
+}

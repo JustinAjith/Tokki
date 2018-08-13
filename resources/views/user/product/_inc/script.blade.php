@@ -1,108 +1,18 @@
 <script>
     app.controller('productController', function($scope, $http, $timeout) {
         $scope.createCategorySelect = true;
-        $scope.productGeneralDetails = false;
-        $scope.productDetails = false;
-        $scope.productSpecialFeature = false;
-        $scope.productImages = false;
+        $scope.productCreateForm = false;
 
-        $scope.select_special_features = 'no';
-        var errorClass = 'is-invalid';
         $scope.selectCategory = function(c, s) {
             $scope.createCategorySelect = false;
-            $scope.productGeneralDetails = true;
-            $scope.productDetails = false;
-            $scope.productSpecialFeature = false;
-            $scope.productImages = false;
+            $scope.productCreateForm = true;
             $scope.category = c;
             $scope.subCategory = s;
         };
 
-        $scope.specialFeaturesInput = true;
-
-        $scope.generalProductDetail = function(url) {
-            var checkUrl = url;
-            $http({
-                method: 'POST',
-                url: checkUrl,
-                data: $('#userProductDetails').serialize(),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).then(function(response) {
-                $scope.createCategorySelect = false;
-                $scope.productGeneralDetails = false;
-                $scope.productImages = false;
-                $scope.categoryInput = '';
-                $scope.subCategoryInput = '';
-                $scope.headingInput = '';
-                $scope.keywordInput = '';
-                $scope.priceInput = '';
-                $scope.discountInput = '';
-                $scope.discountTypeInput = '';
-                if(response.data.SpecialFeatures) {
-                    $scope.productSpecialFeature = true;
-                    $scope.productDetails = false;
-                    $scope.select_special_features = 'yes';
-                    $scope.specialFeaturesInput = false;
-                } else {
-                    $scope.productSpecialFeature = false;
-                    $scope.productDetails = true;
-                    $scope.select_special_features = 'no';
-                    $scope.specialFeaturesInput = true;
-                }
-            },function(errors){
-                var error = errors.data.errors;
-                if(error.category){
-                    $scope.categoryInput = errorClass;
-                } else {
-                    $scope.categoryInput = '';
-                } if(error.sub_category) {
-                    $scope.subCategoryInput = errorClass;
-                } else {
-                    $scope.subCategoryInput = '';
-                } if(error.heading) {
-                    $scope.headingInput = errorClass;
-                } else {
-                    $scope.headingInput = '';
-                } if(error.key_word) {
-                    $scope.keywordInput = errorClass;
-                } else {
-                    $scope.keywordInput = ''
-                } if(error.price) {
-                    $scope.priceInput = errorClass;
-                } else {
-                    $scope.priceInput = '';
-                } if(error.discount) {
-                    $scope.discountInput = errorClass;
-                } else {
-                    $scope.discountInput = '';
-                } if(error.discount_type) {
-                    $scope.discountTypeInput = errorClass;
-                } else {
-                    $scope.discountTypeInput = '';
-                }
-            });
-        };
-
-        $scope.generalProductDetailCheck = function() {
-            var generalProductDetailCheck = "{{ route('user.general.product.check') }}";
-            $scope.generalProductDetail(generalProductDetailCheck);
-        };
-
         $scope.goBackToSelectCategory = function() {
             $scope.createCategorySelect = true;
-            $scope.productGeneralDetails = false;
-            $scope.productDetails = false;
-            $scope.productSpecialFeature = false;
-            $scope.productImages = false;
-        };
-
-        $scope.generalProductDetailCheckAndGoSpecialFeatures = function() {
-            var generalProductDetailCheck = "{{ route('user.general.product.check.special.features') }}";
-            $scope.generalProductDetail(generalProductDetailCheck);
-        };
-
-        $scope.specialFeaturesCheck = function() {
-            console.log('ad');
+            $scope.productCreateForm = false;
         };
 
         $scope.details = [{}];
@@ -119,45 +29,6 @@
             }
         };
 
-        $scope.productDetailCheck = function() {
-            var productDetailCheck = "{{ route('user.product.detail.check') }}";
-            $http({
-                method: 'POST',
-                url : productDetailCheck,
-                data: $('#userProductDetails').serialize(),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).then(function(response){
-                $scope.productDetailTitleError = '';
-                $scope.productDetailDescriptionError = '';
-                $scope.createCategorySelect = false;
-                $scope.productGeneralDetails = false;
-                $scope.productDetails = false;
-                $scope.productSpecialFeature = false;
-                $scope.productImages = true;
-            },function(errors) {
-                $scope.productDetailTitleError = 'The title field is required';
-                $scope.productDetailDescriptionError = 'The description field is required';
-            });
-        };
-
-        $scope.goBackToGeneralForm = function() {
-            $scope.createCategorySelect = false;
-            $scope.productGeneralDetails = true;
-            $scope.productDetails = false;
-            $scope.productSpecialFeature = false;
-            $scope.productImages = false;
-            $scope.specialFeaturesInput = true;
-            $scope.select_special_features = 'no';
-        };
-
-        $scope.goBackToProductDetailForm = function() {
-            $scope.createCategorySelect = false;
-            $scope.productGeneralDetails = false;
-            $scope.productDetails = true;
-            $scope.productSpecialFeature = false;
-            $scope.productImages = false;
-        };
-
     });
 </script>
 
@@ -172,6 +43,6 @@
         alert("Changed a tag: " + tag);
     }
     $(function() {
-        $('#tags_1').tagsInput({width:'auto'});
+        $('.special_feature_tags').tagsInput({width:'auto'});
     });
 </script>

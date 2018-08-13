@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\User\Product;
 
-use App\Http\Requests\User\Product\DetailCheckRequest;
-use App\Http\Requests\User\Product\GeneralCheckRequest;
+use App\Http\Requests\User\Product\Create\ProductRequest;
 use App\Repositories\User\ProductRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,22 +27,7 @@ class ProductController extends Controller
         return view('user.product.create');
     }
 
-    public function generalProductCheck(GeneralCheckRequest $request)
-    {
-        return ['success'=>true];
-    }
-
-    public function generalProductCheckSpecialFeatures(GeneralCheckRequest $request): JsonResponse
-    {
-        return response()->json(['SpecialFeatures'=>'SpecialFeatures']);
-    }
-
-    public function productDetailCheck(DetailCheckRequest $request)
-    {
-        return ['success'=>true];
-    }
-
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         return $request->all();
     }
