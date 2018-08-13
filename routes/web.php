@@ -28,10 +28,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->get('/', 'ProductController@index')->name('user.product');
         $routes->get('/create', 'ProductController@create')->name('user.product.create');
         $routes->post('/store', 'ProductController@store')->name('user.product.store');
-
-        $routes->post('/general-product-check', 'ProductController@generalProductCheck')->name('user.general.product.check');
-        $routes->post('/general-product-check-special-features', 'ProductController@generalProductCheckSpecialFeatures')->name('user.general.product.check.special.features');
-        $routes->post('/product-detail-check', 'ProductController@productDetailCheck')->name('user.product.detail.check');
+        $routes->get('/show/{product}', 'ProductController@show')->name('user.product.show');
     });
     // User Order Related Routes
     $routes->group(['prefix'=>'/order', 'namespace'=>'Order'], function($routes){
@@ -80,6 +77,10 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/show/{bid}', 'BidController@show')->name('admin.bid.show');
         $routes->patch('/accept/{bid}', 'BidController@bidAccept')->name('admin.bid.accept');
         $routes->patch('/reject/{bid}', 'BidController@bidReject')->name('admin.bid.reject');
+
+        $routes->get('/bid-rang', 'BidController@bidRang')->name('admin.bid.rang');
+        $routes->get('/bid-rang/create', 'BidController@create')->name('admin.bid.rang.create');
+        $routes->post('/bid-rang/store', 'BidController@store')->name('admin.bid.rang.store');
     });
     // Admin Users Related Routes
     $routes->group(['prefix'=>'/users', 'namespace'=>'User'], function($routes){

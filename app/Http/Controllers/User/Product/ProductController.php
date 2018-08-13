@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User\Product;
 
 use App\Http\Requests\User\Product\Create\ProductRequest;
+use App\Product;
 use App\Repositories\User\ProductRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -19,7 +21,8 @@ class ProductController extends Controller
 
     public function index(): View
     {
-        return view('user.product.index');
+        $products = $this->product->getProducts();
+        return view('user.product.index', compact('products'));
     }
 
     public function create(): View
@@ -27,8 +30,14 @@ class ProductController extends Controller
         return view('user.product.create');
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
-        return $request->all();
+        $this->product->store($request);
+        return redirect()->back()->with('success', 'success');
+    }
+
+    public function show(Product $product): View
+    {
+        return view('user.product.show', compact('product'));
     }
 }

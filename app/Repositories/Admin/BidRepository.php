@@ -3,6 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Bid;
+use App\BidRang;
 use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,12 +14,14 @@ class BidRepository
     protected $bid;
     protected $user;
     protected $notification;
+    protected $bidRang;
 
-    public function __construct(Bid $bid = null, User $user = null, Notification $notification = null)
+    public function __construct(Bid $bid = null, User $user = null, Notification $notification = null, BidRang $bidRang = null)
     {
         $this->bid = $bid ?? new Bid();
         $this->user = $user ?? new User();
         $this->notification = $notification ?? new Notification();
+        $this->bidRang = $bidRang ?? new BidRang();
     }
 
     public function bidDataTable(Request $request)
@@ -126,5 +129,12 @@ class BidRepository
         } else {
             return ['error'=>'error'];
         }
+    }
+
+    public function store(Request $request)
+    {
+        $bid = $this->bidRang->fill($request->toArray());
+        $bid->save();
+        return ['success'=>true];
     }
 }
