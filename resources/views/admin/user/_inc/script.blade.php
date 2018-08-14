@@ -27,7 +27,7 @@
             $timeout(function() {
                 $scope.userPasswordReset = true;
                 $scope.aboutCompany = false;
-            }, 500);
+            }, 300);
         }
     });
 </script>

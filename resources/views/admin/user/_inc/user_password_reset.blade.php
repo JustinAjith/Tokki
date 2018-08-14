@@ -16,7 +16,7 @@
         <input type="hidden" value="{{ $user->id }}" name="user_id">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-info btn-sm">Sign in</button>
+                <button type="submit" class="btn btn-success btn-sm">Submit</button>
             </div>
         </div>
     </form>

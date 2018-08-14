@@ -2,6 +2,7 @@
 @section('style')
     <style>
         .singleProductDetails ul li{margin-bottom: 10px;}
+        .singleProductImage{width: 70%;}
     </style>
 @endsection
 @section('content')
@@ -28,10 +29,10 @@
                                 <?php
                                     $productImage = json_decode($product->image);
                                 ?>
-                                <img src="{{ asset('storage/product') }}/{{ $productImage[0] }}" alt="">
+                                <img src="{{ asset('storage/product') }}/{{ $productImage[0] }}" alt="" class="singleProductImage">
                             </div>
                             <div class="col-md-7">
-                                <small class="float-right" style="margin-top: 12px;">{{ $product->status }}</small>
+                                <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif" style="margin-top: 12px;">{{ $product->status }}</small>
                                 <h2><small>{{ $product->heading }}</small></h2>
                                 <hr>
                                 <ul>
@@ -63,6 +64,39 @@
                                     ?>
                                     <li>Delivery Places : @foreach($places as $place) {{ $place }} , @endforeach</li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="row singleProductDetails">
+                            <div class="col-md-12">
+
+                                <ul class="nav nav-tabs customtab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#productDetailsTab" role="tab">Product Details</a></li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#feedBackTab" role="tab">Feedback</a></li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#chartTab" role="tab">Chart</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active p-20" id="productDetailsTab" role="tabpanel">
+                                        <div class="row">
+                                            <?php
+                                            $productDetailsTitle = json_decode($product->title);
+                                            $productDetailsDescription= json_decode($product->description);
+                                            ?>
+                                            @foreach($productDetailsTitle as $key => $title)
+                                                <div class="col-md-6">
+                                                    {{ $title }} : {{ array_get($productDetailsDescription, $key) }}
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane  p-20" id="feedBackTab" role="tabpanel">
+                                        Feed Back
+                                    </div>
+                                    <div class="tab-pane p-20" id="chartTab" role="tabpanel">
+                                        Chart
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

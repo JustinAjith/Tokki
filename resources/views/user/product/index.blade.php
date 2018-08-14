@@ -32,7 +32,7 @@
                                             <img src="{{ asset('storage/product') }}/{{ array_get($image, 0) }}" class="productListImage">
                                         </div>
                                         <div class="row justify-content-center mt-2 mb-2">
-                                            <small>{{ $product->status }}</small>
+                                            <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">{{ $product->status }}</small>
                                         </div>
                                         <div class="row justify-content-center">
                                             <a href="{{ route('user.product.show', $product->id) }}" class="btn btn-sm btn-primary">Show</a>
