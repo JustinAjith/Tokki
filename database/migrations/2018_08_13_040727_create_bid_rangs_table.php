@@ -19,6 +19,7 @@ class CreateBidRangsTable extends Migration
             $table->smallInteger('to');
             $table->smallInteger('bid');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

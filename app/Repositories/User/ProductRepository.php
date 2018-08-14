@@ -58,11 +58,11 @@ class ProductRepository
         $name = array();
         foreach($images as $key => $image) {
             $ext = $image->getClientOriginalExtension();
-            $img = Image::make($image)->resize(400, 600, function ($c) {
+            $img = Image::make($image)->resize(400, 500, function ($c) {
                 $c->aspectRatio();
                 $c->upsize();
             });
-            $img->resizeCanvas(400, 600, 'center', false, array(255, 255, 255, 0));
+            $img->resizeCanvas(400, 500, 'center', false, array(255, 255, 255, 0));
             $rend = rand(00000000, 99999999).'-'.Auth::user()->id;
             $productName = $rend.'.'.$ext;
             $img->save(public_path('storage/product/'.$productName));
