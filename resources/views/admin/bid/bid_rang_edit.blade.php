@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-body">
                         <div class="horizontal-form">
-                            <form class="form-horizontal" method="POST" action="">
+                            <form class="form-horizontal" method="POST" action="{{ route('admin.bid.rang.update', $id) }}">
                                 @csrf
                                 @include('admin.bid._inc.bid_rang_form')
                                 <div class="form-group">

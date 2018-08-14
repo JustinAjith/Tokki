@@ -86,6 +86,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/bid-rang/create', 'BidController@create')->name('admin.bid.rang.create');
         $routes->post('/bid-rang/store', 'BidController@store')->name('admin.bid.rang.store');
         $routes->get('/edit/{bid}', 'BidController@edit')->name('admin.bid.edit');
+        $routes->post('update/{bid}', 'BidController@update')->name('admin.bid.rang.update');
     });
     // Admin Users Related Routes
     $routes->group(['prefix'=>'/users', 'namespace'=>'User'], function($routes){
