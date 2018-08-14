@@ -44,6 +44,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->get('/bid/show/{bid}', 'BidController@show')->name('user.bid.show');
         $routes->get('/bid/bid-rang', 'BidController@bidRang')->name('user.bid.rang');
         $routes->post('/bid/bid-rang/data', 'BidController@bidRang')->name('user.bid.rang.data');
+        $routes->patch('/bid/update/{bid}', 'BidController@update')->name('user.bid.update');
     });
     // User Settings Related Routes
     $routes->group(['namespace'=>'Setting'], function($routes){

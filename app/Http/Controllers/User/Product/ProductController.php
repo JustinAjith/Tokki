@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -36,8 +37,12 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'success');
     }
 
-    public function show(Product $product): View
+    public function show(Product $product)
     {
-        return view('user.product.show', compact('product'));
+        if(Auth::user()->id == $product->user_id) {
+            return view('user.product.show', compact('product'));
+        } else {
+            return redirect()->back()->with('autherror', 'autherror');
+        }
     }
 }

@@ -51,3 +51,9 @@ mix.styles([
 mix.scripts([
     nodePath + '@chenfengyuan/datepicker/dist/datepicker.min.js'
 ], 'public/js/tokki/auth/datepicker.js');
+
+// WEB RELATED STYLES and SCRIPT
+
+mix.style([
+
+]);

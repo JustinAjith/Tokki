@@ -64,6 +64,12 @@ class BidController extends Controller
 
     public function edit(BidRang $bid)
     {
-        return $bid;
+        return view('admin.bid.bid_rang_edit', $bid);
+    }
+
+    public function update(BidRangRequest $request, BidRang $bid): RedirectResponse
+    {
+        $this->bid->update($request, $bid);
+        return redirect()->back()->with('success', 'success');
     }
 }

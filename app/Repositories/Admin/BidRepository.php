@@ -191,4 +191,11 @@ class BidRepository
         );
         echo json_encode($json_data);
     }
+
+    public function update(BidRangRequest $request, BidRang $bid)
+    {
+        $bidRang = $this->bidRang->find($bid->id);
+        $bidRang->update($request->toArray());
+        return ['success'=>true];
+    }
 }

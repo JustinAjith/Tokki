@@ -3,11 +3,11 @@
         $scope.createCategorySelect = true;
         $scope.productCreateForm = false;
 
-        $scope.selectCategory = function(c, s) {
+        $scope.selectCategory = function(category, subCategory) {
             $scope.createCategorySelect = false;
             $scope.productCreateForm = true;
-            $scope.category = c;
-            $scope.subCategory = s;
+            $scope.category = category;
+            $scope.subCategory = subCategory;
         };
 
         $scope.goBackToSelectCategory = function() {
