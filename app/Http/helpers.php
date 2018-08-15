@@ -12,6 +12,7 @@ if(!function_exists('discountType')) {
 if(!function_exists('city')) {
     function city() {
         return [
+            'All Srilanka' => 'All Srilanka',
             'Jaffna' => 'Jaffna',
             'Kilinochchi' => 'Kilinochchi',
             'Mannar' => 'Mannar',

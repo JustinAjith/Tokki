@@ -29,6 +29,10 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->get('/create', 'ProductController@create')->name('user.product.create');
         $routes->post('/store', 'ProductController@store')->name('user.product.store');
         $routes->get('/show/{product}', 'ProductController@show')->name('user.product.show');
+        $routes->delete('/delete/{product}', 'ProductController@delete')->name('user.product.delete');
+        $routes->get('/edit/{type}/{product}', 'ProductController@edit')->name('user.product.edit');
+        $routes->post('edit/general-details/{product}', 'ProductController@generalDetails')->name('user.product.edit.general.details');
+        $routes->post('edit/product-details/{product}', 'ProductController@productDetails')->name('user.product.edit.product.details');
     });
     // User Order Related Routes
     $routes->group(['prefix'=>'/order', 'namespace'=>'Order'], function($routes){

@@ -45,4 +45,29 @@ class ProductController extends Controller
             return redirect()->back()->with('autherror', 'autherror');
         }
     }
+
+    public function delete(Product $product)
+    {
+        if(Auth::user()->id == $product->user_id) {
+            $this->product->delete($product);
+            return ['success'=>true];
+        }
+    }
+
+    public function edit($type, Product $product)
+    {
+        return view('user.product.edit', compact('type', 'product'));
+    }
+
+    public function generalDetails(Request $request, Product $product)
+    {
+        $this->product->generalDetails($request, $product);
+        return redirect()->route('user.product.show', $product)->with('success', 'success');
+    }
+
+    public function productDetails(Request $request, Product $product)
+    {
+        $this->product->productDetails($request, $product);
+        return redirect()->route('user.product.show', $product)->with('success', 'success');
+    }
 }

@@ -28,8 +28,8 @@ class CreateProductsTable extends Migration
             $table->smallInteger('qty');
             $table->string('delivery_places');
             $table->string('image');
-            $table->string('title');
-            $table->string('description');
+            $table->text('title');
+            $table->text('description');
             $table->string('features')->nullable();
             $table->string('features_description')->nullable();
             $table->enum('status', ['Accept', 'Pending', 'Reject'])->default('Pending');

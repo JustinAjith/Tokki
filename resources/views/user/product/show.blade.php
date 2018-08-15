@@ -64,6 +64,21 @@
                                     ?>
                                     <li>Delivery Places : @foreach($places as $place) {{ $place }} , @endforeach</li>
                                 </ul>
+                                <hr>
+                                <div class="row ml-0">
+                                    <div class="dropdown mr-2">
+                                        <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"><i class="fa fa-pencil"></i> Edit</button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ route('user.product.edit', ['general-details', $product]) }}">General Details</a>
+                                            <a class="dropdown-item" href="{{ route('user.product.edit', ['product-details', $product]) }}">Product Details</a>
+                                            @if($product->features != null)
+                                                <a class="dropdown-item" href="{{ route('user.product.edit', ['special-features', $product]) }}">Special Features</a>
+                                            @endif
+                                            <a class="dropdown-item" href="{{ route('user.product.edit', ['images', $product]) }}">Images</a>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-sm btn-danger removeProduct"><i class="fa fa-trash-o" aria-hidden="true"></i> Remove</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row singleProductDetails">
@@ -83,7 +98,7 @@
                                             $productDetailsDescription= json_decode($product->description);
                                             ?>
                                             @foreach($productDetailsTitle as $key => $title)
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-2">
                                                     {{ $title }} : {{ array_get($productDetailsDescription, $key) }}
                                                 </div>
                                             @endforeach
@@ -104,4 +119,34 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.removeProduct').on('click', function(){
+                var id = '{{ $product->id }}';
+                var routeUrl = '{{ route('user.product.delete', ['id'=>'ID']) }}';
+                routeUrl = routeUrl.replace('ID', id);
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to remove this product?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: routeUrl,
+                            type: 'DELETE',
+                            data: {'_token': '{{ csrf_token() }}'},
+                            success: function(response) {
+                                swal("Your action was successfully completed!", {icon: "success",});
+                                window.location.href = '{{ route('user.product') }}';
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -75,7 +75,6 @@
         <div class="form-group">
             <label class="control-label">Delivery Places</label>
             <select name="delivery_places[]" class="form-control selectpicker" multiple>
-                <option value="All Srilanka">All Srilanka</option>
                 @foreach(city() as $key => $value)
                     <option value="{{ $value }}">{{ $value }}</option>
                 @endforeach

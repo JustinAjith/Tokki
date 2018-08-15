@@ -82,4 +82,34 @@ class ProductRepository
         }
         return $bid;
     }
+
+    // Remove Product
+    public function delete(Product $product)
+    {
+        $product->delete();
+        return ['success'=>true];
+    }
+
+    public function generalDetails(Request $request, Product $product)
+    {
+        $product = $this->product->find($product->id);
+        $product->code = $request->code;
+        $product->heading = $request->heading;
+        $product->key_word = $request->key_word;
+        $product->qty = $request->qty;
+        $product->delivery_places = json_encode($request->delivery_places);
+        $product->status = 'Pending';
+        $product->save();
+        return ['success'=> true];
+    }
+
+    public function productDetails(Request $request, Product $product)
+    {
+        $product = $this->product->find($product->id);
+        $product->title = json_encode($request->title);
+        $product->description = json_encode($request->description);
+        $product->status = 'Pending';
+        $product->save();
+        return ['success'=> true];
+    }
 }
