@@ -73,6 +73,12 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
     $routes->group(['namespace'=>'Dashboard'], function($routes){
         $routes->get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
     });
+    // Admin Product Related Routes
+    $routes->group(['prefix'=>'/product', 'namespace'=>'Product'], function($routes){
+        $routes->get('/', 'ProductController@index')->name('admin.product');
+        $routes->get('/show/{product}', 'ProductController@show')->name('admin.product.show');
+        $routes->patch('/status/{status}/{product}', 'ProductController@status')->name('admin.product.status');
+    });
     // Admin Bid Related Routes
     $routes->group(['prefix'=>'/bid', 'namespace'=>'Bid'], function($routes){
         $routes->get('/', 'BidController@index')->name('admin.bid');
