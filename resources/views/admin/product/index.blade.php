@@ -36,9 +36,9 @@
                                             <span><small>{{ $product->qty }} Pieces Available</small></span>
                                         </div>
                                         <div class="row">
-                                            <dic class="col-12">
+                                            <div class="col-12">
                                                 <span class="productListHeading">{{ $product->heading }}</span>
-                                            </dic>
+                                            </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-12">

@@ -22,7 +22,7 @@
     @include('user.layouts._inc.top_header')
     @include('user.layouts._inc.left_sidebar')
 
-    <div class="page-wrapper">
+    <div class="page-wrapper" ng-cloak>
         @yield('content')
 
         <footer class="footer"> © {{ date("Y") }} All rights reserved by <a href="{{ route('welcome') }}">Tokki</a></footer>

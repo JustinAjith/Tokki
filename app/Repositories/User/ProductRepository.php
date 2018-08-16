@@ -152,4 +152,16 @@ class ProductRepository
         $product->save();
         return ['success'=> true];
     }
+
+    public function productPrice(Request $request, Product $product)
+    {
+        $bid = $this->bid($request->price);
+        $product = $this->product->find($product->id);
+        $product->discount_type = $request->discount_type;
+        $product->discount = $request->discount;
+        $product->price = $request->price;
+        $product->bid_rand = $bid;
+        $product->save();
+        return ['success'=> true];
+    }
 }

@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('heading');
             $table->string('key_word');
             $table->enum('discount_type', ['LKR', '%'])->default('LKR');
-            $table->smallInteger('discount')->default(0);
+            $table->smallInteger('discount')->nullable()->default(0);
             $table->decimal('price', 10,2);
             $table->smallInteger('qty');
             $table->string('delivery_places');

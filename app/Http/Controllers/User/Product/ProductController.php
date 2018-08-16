@@ -88,4 +88,10 @@ class ProductController extends Controller
         $this->product->productSpecialFeatures($request, $product);
         return redirect()->route('user.product.show', $product)->with('success', 'success');
     }
+
+    public function productPrice(Request $request, Product $product)
+    {
+        $this->product->productPrice($request, $product);
+        return redirect()->back()->with('success', 'success');
+    }
 }
