@@ -3,6 +3,7 @@
     <style>
         .singleProductDetails ul li{margin-bottom: 10px;}
         .singleProductImage{width: 70%;}
+        .singleProductImageList{width: 10%; height: 10%;cursor: pointer;}
     </style>
 @endsection
 @section('content')
@@ -19,24 +20,35 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="singleProductView">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row singleProductDetails">
                             <div class="col-md-5">
-                                <?php
-                                $productImage = json_decode($product->image);
-                                ?>
-                                <img src="{{ asset('storage/product') }}/{{ $productImage[0] }}" alt="" class="singleProductImage">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <?php
+                                            $productImage = json_decode($product->image);
+                                        ?>
+                                        <center><img ng-src="{{ asset('storage/product') }}/@{{ viewBigImage }}" alt="" class="singleProductImage"></center>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-12">
+                                        <div class="row justify-content-center">
+                                            <img ng-repeat="image in images | limitTo : 6" ng-src="{{ asset('storage/product') }}/@{{ image }}" class="singleProductImageList m-1" ng-click="showImage(image)">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-7">
                                 <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif" style="margin-top: 12px;">{{ $product->status }}</small>
                                 <h2><small>{{ $product->heading }}</small></h2>
                                 <hr>
                                 <ul>
-                                    <li>Price : LRK @if($product->discount > 0) <strike>{{ $product->price }}</strike> @else {{ $product->price }} @endif <small> / piece</small></li>
+                                    <li>Price : LRK @if($product->discount > 0) <strike>{{ number_format($product->price, 2) }}</strike> @else {{ number_format($product->price, 2) }} @endif <small> / piece</small></li>
                                     @if($product->discount > 0)
                                         @if($product->discount_type == 'LKR')
                                             <li>Discount Price : LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ number_format($product->discount, 2) }} LKR</span></li>
@@ -115,4 +127,13 @@
 @endsection
 @section('script')
     @include('admin.product._inc.script')
+    <script>
+        app.controller('singleProductView', function($scope){
+            $scope.images = @json($productImage);
+            $scope.viewBigImage = $scope.images[0];
+            $scope.showImage = function($image) {
+                $scope.viewBigImage = $image;
+            }
+        });
+    </script>
 @endsection
