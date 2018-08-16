@@ -70,4 +70,22 @@ class ProductController extends Controller
         $this->product->productDetails($request, $product);
         return redirect()->route('user.product.show', $product)->with('success', 'success');
     }
+
+    public function productImageDelete($image, Product $product)
+    {
+        $this->product->productImageDelete($image, $product);
+        return ['success'=>true];
+    }
+
+    public function productImage(Request $request, Product $product)
+    {
+        $this->product->productImage($request, $product);
+        return redirect()->route('user.product.show', $product)->with('success', 'success');
+    }
+
+    public function productSpecialFeatures(Request $request, Product $product)
+    {
+        $this->product->productSpecialFeatures($request, $product);
+        return redirect()->route('user.product.show', $product)->with('success', 'success');
+    }
 }

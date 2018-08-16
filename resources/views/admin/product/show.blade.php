@@ -44,7 +44,7 @@
                                             <?php
                                             $discountPrice = (1 - $product->discount/100) * $product->price;
                                             ?>
-                                            <li>Discount Price : LRK {{ number_format($discountPrice, 2) }} / <small> / piece</small> <span class="badge badge-danger">{{ $product->discount }} %</span></li>
+                                            <li>Discount Price : LRK {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ $product->discount }} %</span></li>
                                         @endif
                                     @endif
                                     @if($product->features != null)

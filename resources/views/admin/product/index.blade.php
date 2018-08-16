@@ -3,6 +3,7 @@
     <style>
         .productListImage {width: 65%;height: 65%;}
         .productListCard:hover{box-shadow: 0px 5px 25px rgba(0,0,0,0.1);z-index: 10;}
+        .productListHeading {font-size: 14px;display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
     </style>
 @endsection
 @section('content')
@@ -31,7 +32,27 @@
                                         <div class="row justify-content-center">
                                             <img src="{{ asset('storage/product') }}/{{ array_get($image, 0) }}" class="productListImage">
                                         </div>
-                                        <div class="row justify-content-center mt-2 mb-2">
+                                        <div class="row justify-content-center">
+                                            <span><small>{{ $product->qty }} Pieces Available</small></span>
+                                        </div>
+                                        <div class="row">
+                                            <dic class="col-12">
+                                                <span class="productListHeading">{{ $product->heading }}</span>
+                                            </dic>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                @if($product->discount_type == 'LKR')
+                                                    <span>LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small></span>
+                                                @else
+                                                    <?php
+                                                    $discountPrice = (1 - $product->discount/100) * $product->price;
+                                                    ?>
+                                                    <span>LRK {{ number_format($discountPrice, 2) }} <small> / piece</small></span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center mb-2">
                                             <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">{{ $product->status }}</small>
                                         </div>
                                         <div class="row justify-content-center">

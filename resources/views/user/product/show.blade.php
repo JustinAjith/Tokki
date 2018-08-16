@@ -29,7 +29,7 @@
                                 <?php
                                     $productImage = json_decode($product->image);
                                 ?>
-                                <img src="{{ asset('storage/product') }}/{{ $productImage[0] }}" alt="" class="singleProductImage">
+                                <img src="{{ asset('storage/product') }}/{{ array_get($productImage, 0) }}" alt="" class="singleProductImage">
                             </div>
                             <div class="col-md-7">
                                 <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif" style="margin-top: 12px;">{{ $product->status }}</small>
@@ -44,7 +44,7 @@
                                             <?php
                                                 $discountPrice = (1 - $product->discount/100) * $product->price;
                                             ?>
-                                            <li>Discount Price : LRK {{ number_format($discountPrice, 2) }} / <small> / piece</small> <span class="badge badge-danger">{{ $product->discount }} %</span></li>
+                                            <li>Discount Price : LRK {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ $product->discount }} %</span></li>
                                         @endif
                                     @endif
                                     @if($product->features != null)

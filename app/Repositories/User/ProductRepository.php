@@ -112,4 +112,44 @@ class ProductRepository
         $product->save();
         return ['success'=> true];
     }
+
+    public function productImageDelete($image, Product $product)
+    {
+        $images = json_decode($product->image);
+        $nwImages = array();
+        foreach($images as $oldImage) {
+            if($oldImage !== $image) {
+                array_push($nwImages, $oldImage);
+            }
+        }
+        $product = $this->product->find($product->id);
+        $product->image = json_encode($nwImages);
+        $product->status = 'Pending';
+        $product->save();
+        return ['success'=> true];
+    }
+
+    public function productImage(Request $request, Product $product)
+    {
+        $images = json_decode($product->image);
+        $requestImages = $this->image($request->image);
+        foreach($requestImages as $requestImage) {
+            array_push($images, $requestImage);
+        }
+        $product = $this->product->find($product->id);
+        $product->image = json_encode($images);
+        $product->status = 'Pending';
+        $product->save();
+        return ['success'=> true];
+    }
+
+    public function productSpecialFeatures(Request $request, Product $product)
+    {
+        $product = $this->product->find($product->id);
+        $product->features = json_encode($request->features);
+        $product->features_description = json_encode($request->features_description);
+        $product->status = 'Pending';
+        $product->save();
+        return ['success'=> true];
+    }
 }
