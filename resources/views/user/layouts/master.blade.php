@@ -10,7 +10,6 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     @include('user.layouts._inc.style')
-    <link rel="stylesheet" href="{{ asset('css/tokki/auth/icons/icons.css') }}">
     @yield('style')
 </head>
 <body class="fix-header fix-sidebar" ng-app="appModule" ng-cloak>

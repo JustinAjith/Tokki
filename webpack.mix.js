@@ -21,7 +21,7 @@ mix.styles([
     sourceAssets + 'icons/themify-icons/themify-icons.css',
     sourceAssets + 'icons/flag-icon-css/flag-icon.min.css',
     sourceAssets + 'icons/material-design-iconic-font/css/materialdesignicons.min.css'
-], 'public/css/tokki/auth/icons/icons.css');
+], 'public/css/tokki/font-icons/icons/icons.css');
 
 mix.scripts([
     sourceAssets + 'js/jquery.min.js',
@@ -54,6 +54,13 @@ mix.scripts([
 
 // WEB RELATED STYLES and SCRIPT
 
-mix.style([
+mix.styles([
+    nodePath + 'bootstrap/dist/css/bootstrap.min.css',
+], 'public/css/tokki/web/style.css');
 
-]);
+mix.scripts([
+    nodePath + 'jquery/dist/jquery.min.js',
+    sourceAssets + 'js/popper.min.js',
+    nodePath + 'bootstrap/dist/js/bootstrap.min.js',
+    nodePath + 'angular/angular.js',
+], 'public/js/tokki/web/script.js');

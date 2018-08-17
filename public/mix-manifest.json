@@ -1,8 +1,9 @@
 {
     "/css/tokki/auth/style.css": "/css/tokki/auth/style.css",
-    "/css/tokki/auth/icons/icons.css": "/css/tokki/auth/icons/icons.css",
+    "/css/tokki/font-icons/icons/icons.css": "/css/tokki/font-icons/icons/icons.css",
     "/js/tokki/auth/script.js": "/js/tokki/auth/script.js",
-    "/js/tokki/auth/editor.js": "/js/tokki/auth/editor.js",
     "/css/tokki/auth/datepicker.css": "/css/tokki/auth/datepicker.css",
-    "/js/tokki/auth/datepicker.js": "/js/tokki/auth/datepicker.js"
+    "/js/tokki/auth/datepicker.js": "/js/tokki/auth/datepicker.js",
+    "/css/tokki/web/style.css": "/css/tokki/web/style.css",
+    "/js/tokki/web/script.js": "/js/tokki/web/script.js"
 }

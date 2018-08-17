@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/tokki/auth/style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/tokki/font-icons/icons/icons.css') }}">
 <style>
     .error_response {
         color: #ef5350;

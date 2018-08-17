@@ -14,9 +14,9 @@
 </head>
 <body>
 
-
+<i class="fa fa-newspaper-o" aria-hidden="true"></i>
 
 @include('web.layouts._inc.script')
-@yield('style')
+@yield('script')
 </body>
 </html>
