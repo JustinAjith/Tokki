@@ -12,9 +12,13 @@
     @include('web.layouts._inc.style')
     @yield('style')
 </head>
-<body>
+<body ng-app="appModule" ng-cloak>
 
-<i class="fa fa-newspaper-o" aria-hidden="true"></i>
+@include('web.layouts._inc.top_header_bar')
+
+<div class="page-wrapper">
+    @yield('content')
+</div>
 
 @include('web.layouts._inc.script')
 @yield('script')

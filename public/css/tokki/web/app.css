@@ -1,0 +1,68 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-    ng-cloak {
+    display: none !important;
+}
+
+.tokkiBackground {
+    background-color: #ff970c;
+    color: #fff;
+}
+
+.row {
+    width: 100%;
+    margin: 0px;
+}
+
+.topHeaderBar {
+    height: 35px;
+    margin: 0px;
+}
+
+.topHeaderBarContents {
+    line-height: 32px;
+    font-size: 13px;
+}
+
+.topHeaderBarContents .userLink {
+    text-decoration: none;
+    color: #fff;
+}
+
+.topMiddleBar {
+    height: 70px;
+    border-bottom: 1px solid #e9e9e9;
+    background-color: #f8f8f8;
+}
+
+.topMiddleBar .topMiddleBarContents {
+    line-height: 65px;
+}
+
+.topMiddleBar .topMiddleBarContents .logo {
+    width: 70%;
+}
+
+.topMiddleBar .form-control {
+    font-size: 13px;
+    height: 35px;
+}
+
+.topMiddleBar .searchTextInput {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-right: 0px;
+}
+
+.topMiddleBar .searchSelectInput {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.topMiddleBar .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ff970c;
+}
+
+.topMiddleBar .input-group-text {
+    border: 1px solid #ff970c;
+}

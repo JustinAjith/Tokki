@@ -41,3 +41,13 @@ if(!function_exists('city')) {
         ];
     }
 }
+
+if(!function_exists('categories')) {
+    function categories() {
+        return [
+            "All Categories" => "All Categories",
+            "Women's Fashion" => "Women's Fashion",
+            "Men's Fashion" => "Men's Fashion",
+        ];
+    }
+}

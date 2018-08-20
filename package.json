@@ -22,7 +22,6 @@
     "dependencies": {
         "@chenfengyuan/datepicker": "^1.0.0-beta",
         "@ckeditor/ckeditor5-build-classic": "^11.0.1",
-        "@fortawesome/fontawesome-free": "^5.2.0",
         "angular": "^1.7.2",
         "bootstrap-select": "^1.13.1",
         "sweetalert": "^2.1.0"
