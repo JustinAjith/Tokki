@@ -66,3 +66,13 @@
 .topMiddleBar .input-group-text {
     border: 1px solid #ff970c;
 }
+
+#tokkiHomeTopSlider .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+#tokkiHomeTopSlider .tokkiHomeSliderImage {
+    width: 100%;
+}
