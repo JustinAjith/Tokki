@@ -15,7 +15,7 @@ class Product extends Model implements Auditable
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'user_id', 'code', 'category', 'sub_category', 'mini_category', 'heading', 'key_word', 'discount_type', 'discount', 'price', 'qty', 'delivery_places', 'image', 'title', 'description', 'features', 'features_description', 'status', 'bid_rand',
+        'user_id', 'code', 'category', 'sub_category', 'mini_category', 'heading', 'key_word', 'discount_type', 'discount', 'price', 'qty', 'delivery_places', 'image', 'title', 'description', 'features', 'features_description', 'status', 'bid_value',
     ];
 
     public function user()

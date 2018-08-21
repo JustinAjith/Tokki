@@ -47,7 +47,7 @@ class ProductRepository
         $product->description = json_encode($request->description);
         $product->features = json_encode($request->features);
         $product->features_description = json_encode($request->features_description);
-        $product->bid_rand = $bid;
+        $product->bid_value = $bid;
         $product->save();
         return ['success'=>true];
     }
@@ -160,7 +160,7 @@ class ProductRepository
         $product->discount_type = $request->discount_type;
         $product->discount = $request->discount;
         $product->price = $request->price;
-        $product->bid_rand = $bid;
+        $product->bid_value = $bid;
         $product->save();
         return ['success'=> true];
     }

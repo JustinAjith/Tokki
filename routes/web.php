@@ -7,7 +7,9 @@ Route::get('/test', function(){
     WEB ROUTES
 -------------------------------------------------------------------------------------------------*/
 Route::group(['namespace'=>'Web'], function($routes){
-    $routes->get('/', 'HomeController@index')->name('welcome');
+    $routes->group(['namespace'=>'Home'], function($routes){
+        $routes->get('/', 'HomeController@index')->name('welcome');
+    });
 });
 
 /* -----------------------------------------------------------------------------------------------

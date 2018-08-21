@@ -97,8 +97,8 @@ class BidRepository
             $bid->update(['status'=>'Accept']);
             // Update User Bid Value
             $user = $this->user->find($bid->user_id);
-            $finalBid = ($user->total_bid - $user->bid) + $bid->bid;
-            $user->update(['bid'=>0, 'total_bid'=>$finalBid]);
+            $finalBid = $user->bid + $bid->bid;
+            $user->update(['bid'=>$finalBid, 'total_bid'=>$finalBid]);
             // Add New Notification
             $notification = $this->notification;
             $notification->message = 'Your bid request accept by Tokki.';

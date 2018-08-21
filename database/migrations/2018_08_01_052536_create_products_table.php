@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('heading');
             $table->string('key_word');
             $table->enum('discount_type', ['LKR', '%'])->default('LKR');
-            $table->smallInteger('discount')->nullable()->default(0);
+            $table->float('discount')->nullable()->default(0);
             $table->decimal('price', 10,2);
             $table->smallInteger('qty');
             $table->string('delivery_places');
@@ -33,7 +33,7 @@ class CreateProductsTable extends Migration
             $table->string('features')->nullable();
             $table->string('features_description')->nullable();
             $table->enum('status', ['Accept', 'Pending', 'Reject'])->default('Pending');
-            $table->smallInteger('bid_rand');
+            $table->smallInteger('bid_value');
             $table->timestamps();
             $table->softDeletes();
 

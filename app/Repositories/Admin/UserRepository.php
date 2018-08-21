@@ -90,7 +90,7 @@ class UserRepository
         $request->merge(['password'=>Hash::make($request->password)]);
         $user = $this->user->fill($request->toArray());
         $user->setAttribute('code', 'TK'.$code);
-        $user->setAttribute('bid', 0);
+        $user->setAttribute('bid', $request->bid);
         $user->setAttribute('total_bid', $request->bid);
         $user->save();
         Mail::send(new NewAccount($request));

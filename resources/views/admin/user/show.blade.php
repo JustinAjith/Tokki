@@ -41,8 +41,11 @@
                                     <li>Mobile : {{ $user->mobile }}</li>
                                     <li>Land Line : {{ $user->land_line }}</li>
                                 </ul>
-                                <?php $availableBid = (100/$user->total_bid) * $user->bid; ?>
-                                <p class="m-t-20 f-w-600">Bid ({{ $user->bid }}/{{ $user->total_bid }}) &nbsp; <a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a> <span class="pull-right">{{ $availableBid }}%</span></p>
+                                <?php
+                                    $usedBid = $user->total_bid - $user->bid;
+                                    $availableBid = (100/$user->total_bid) * $usedBid;
+                                ?>
+                                <p class="m-t-20 f-w-600">Bid ({{ $usedBid }}/{{ $user->total_bid }}) &nbsp; <a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a> <span class="pull-right">{{ round($availableBid, 2) }}%</span></p>
                                 <div class="progress">
                                     <div role="progressbar" style="width: {{ $availableBid }}%; height:8px;" class="progress-bar bg-success wow animated progress-animated"> <span class="sr-only">{{ $availableBid }}% Complete</span> </div>
                                 </div>
