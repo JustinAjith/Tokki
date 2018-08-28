@@ -14,6 +14,12 @@
                     <input type="file" name="image[]" class="form-control" multiple>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Display image</label>
+                    <input type="file" name="display_image" class="form-control">
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">

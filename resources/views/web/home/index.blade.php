@@ -4,8 +4,11 @@
 @endsection
 @section('content')
     <div ng-controller="homeController" ng-cloak>
-        @include('web.home._inc.menu_bar')
-        @include('web.home._inc.top_slider')
+        @include('web.home._inc.header.menu_bar')
+        @include('web.home._inc.header.top_slider')
+        <div class="productCollectionList">
+            @include('web.home._inc.product.new_product')
+        </div>
     </div>
 @endsection
 

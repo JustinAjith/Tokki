@@ -34,6 +34,7 @@ class ProductRequest extends FormRequest
             'qty' => 'required|numeric',
             'delivery_places.*' => 'required',
             'image.*' => 'required',
+            'display_image' => 'required',
             'title.*' => 'required',
             'description.*' => 'required'
         ];

@@ -87,6 +87,12 @@
             <input type="file" name="image[]" class="form-control" multiple>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Display Images</label>
+            <input type="file" name="display_image" class="form-control">
+        </div>
+    </div>
 </div>
 
 {{--    Product Infomation     --}}

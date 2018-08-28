@@ -19,7 +19,7 @@ class HomeRepository
 
     public function selectProducts()
     {
-        $products = DB::table('products')->join('users', 'users.bid', '>=', 'products.bid_value')->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC');
+        $products = DB::table('products')->select('products.*')->join('users', 'users.bid', '>=', 'products.bid_value')->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC');
         return $products;
     }
 

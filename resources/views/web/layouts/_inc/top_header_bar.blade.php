@@ -1,24 +1,26 @@
 <div class="row topHeaderBar tokkiBackground">
-    <div class="col-12">
-        <div class="container topHeaderBarContents">
-            <div class="float-left">
-                <ul class="list-unstyled list-inline d-none d-sm-block">
-                    <li class="list-inline-item">v1.0</li>
-                    <li class="list-inline-item"><i class="fa fa-phone" aria-hidden="true"></i> 077-5932985</li>
-                    <li class="list-inline-item">|</li>
-                    <li class="list-inline-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> justinajith94@gmail.com</li>
-                </ul>
-            </div>
-            <div class="float-right">
-                <ul class="list-unstyled list-inline">
-                    @if(Auth::user())
-                        <li class="list-inline-item"><a href="{{ route('home') }}" class="userLink"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->name }}</a></li>
-                    @else
-                        <li class="list-inline-item"><a href="{{ route('login') }}" class="userLink">Sell</a></li>
-                    @endif
-                    <li class="list-inline-item">|</li>
-                    <li class="list-inline-item"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</li>
-                </ul>
+    <div class="container">
+        <div class="row topHeaderBarContents">
+            <div class="col-12">
+                <div class="float-left">
+                    <ul class="list-unstyled list-inline d-none d-sm-block">
+                        <li class="list-inline-item">v1.0</li>
+                        <li class="list-inline-item"><i class="fa fa-phone" aria-hidden="true"></i> 077-5932985</li>
+                        <li class="list-inline-item">|</li>
+                        <li class="list-inline-item"><i class="fa fa-envelope-o" aria-hidden="true"></i> justinajith94@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="float-right">
+                    <ul class="list-unstyled list-inline">
+                        @if(Auth::user())
+                            <li class="list-inline-item"><a href="{{ route('home') }}" class="userLink"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->name }}</a></li>
+                        @else
+                            <li class="list-inline-item"><a href="{{ route('login') }}" class="userLink">Sell</a></li>
+                        @endif
+                        <li class="list-inline-item">|</li>
+                        <li class="list-inline-item"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

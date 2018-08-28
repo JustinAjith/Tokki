@@ -10,6 +10,10 @@ Route::group(['namespace'=>'Web'], function($routes){
     $routes->group(['namespace'=>'Home'], function($routes){
         $routes->get('/', 'HomeController@index')->name('welcome');
     });
+
+    $routes->group(['namespace'=>'Order'], function($routes){
+        $routes->get('/item/{category}/{product}', 'OrderController@show')->name('single.product.show');
+    });
 });
 
 /* -----------------------------------------------------------------------------------------------

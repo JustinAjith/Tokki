@@ -20,7 +20,8 @@ class ProductResourceCollection extends JsonResource
             'discount' => $this->discount,
             'price' => $this->discount_type == '%' ? number_format((1 - $this->discount/100) * $this->price, 2) : number_format($this->price - $this->discount, 2),
             'qty' => $this->qty,
-            'image' => array_get(json_decode($this->image), 0)
+            'image' => $this->display_image,
+            'link' => 'item/'.str_replace(' ', '-', $this->heading).'/'.$this->id,
         ];
     }
 }
