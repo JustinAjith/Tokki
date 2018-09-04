@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('style')
     <style>
-        .productListImage {width: 65%;height: 65%;}
+        .productListImage {width: 100%;height: 100%;}
         .productListCard:hover{box-shadow: 0px 5px 25px rgba(0,0,0,0.1);z-index: 10;}
         .productListHeading {font-size: 14px;display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
     </style>
@@ -26,11 +26,10 @@
                     <div class="card-body">
                         <div class="row">
                             @foreach($products as $product)
-                                <?php $image = json_decode($product->image); ?>
                                 <div class="col-3 mb-3">
                                     <div class="productListCard p-3">
-                                        <div class="row justify-content-center">
-                                            <img src="{{ asset('storage/product') }}/{{ array_get($image, 0) }}" class="productListImage">
+                                        <div class="row justify-content-center" style="padding: 0 20px;">
+                                            <img src="{{ asset('storage/display_image') }}/{{ $product->display_image }}" class="productListImage">
                                         </div>
                                         <div class="row justify-content-center">
                                             <span><small>{{ $product->qty }} Pieces Available</small></span>

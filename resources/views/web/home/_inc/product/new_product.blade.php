@@ -10,9 +10,9 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-md-3 productListCardMain" ng-repeat="newProduct in newProducts">
-                        <a ng-href="@{{ newProduct.link }}">
+                        <a ng-href="@{{ newProduct.link }}" ng-if="newProduct.name !== null">
                             <div class="productListCard">
-                                <div class="row justify-content-center" style="padding: 25px 30px 0 30px">
+                                <div class="row justify-content-center" style="padding: 1rem 1rem 0 1rem">
                                     <img ng-src="{{ asset('storage/display_image') }}/@{{ newProduct.image }}" class="productListImage">
                                 </div>
                                 <div class="row justify-content-center">
@@ -20,16 +20,23 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="productListHeading">@{{ newProduct.name }}</span>
+                                        <h2 class="productListHeading"><small>@{{ newProduct.name }}</small></h2>
                                     </div>
                                 </div>
-                                <div class="row mt-2">
+                                <div class="row">
                                     <div class="col-12">
-
+                                        <span class="productListPrice">LKR @{{ newProduct.price }} </span> <small>/ piece</small>
+                                        <span class="productListDiscountPrice" ng-if="newProduct.discount !== 0"> |
+                                            <span ng-if="newProduct.discount_type === 'LKR'" class="badge badge-danger">@{{ newProduct.discount | currency : "" }} @{{ newProduct.discount_type }}</span>
+                                            <span ng-if="newProduct.discount_type === '%'" class="badge badge-danger">@{{ newProduct.discount }} @{{ newProduct.discount_type }}</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </a>
+                        <div class="text-center">
+                            <span ng-if="newProduct.name === null" class="productListEmptyProduct">No product to show</span>
+                        </div>
                     </div>
                 </div>
             </div>

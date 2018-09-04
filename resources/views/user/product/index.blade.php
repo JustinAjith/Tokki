@@ -26,7 +26,6 @@
                     <div class="card-body">
                         <div class="row">
                             @foreach($products as $product)
-                                <?php $image = json_decode($product->image); ?>
                                 <div class="col-3 mb-3">
                                     <div class="productListCard p-3">
                                         <div class="row justify-content-center" style="padding: 0 20px;">

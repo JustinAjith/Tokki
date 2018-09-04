@@ -27,8 +27,8 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 10,2);
             $table->smallInteger('qty');
             $table->string('delivery_places');
-            $table->string('image', 40);
-            $table->string('display_image', 40);
+            $table->string('image');
+            $table->string('display_image', 30);
             $table->text('title');
             $table->text('description');
             $table->string('features')->nullable();

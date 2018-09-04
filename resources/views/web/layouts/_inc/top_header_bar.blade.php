@@ -29,7 +29,7 @@
 <div class="row topMiddleBar">
     <div class="container">
         <div class="row topMiddleBarContents">
-            <div class="col-md-3 col-sm-2 d-none d-md-block">
+            <div class="col-md-3 col-sm-2 d-none d-md-block pl-0">
                 <a href="{{ route('welcome') }}"><img src="{{ asset('images/tokki/logo-text.png') }}" class="logo"></a>
             </div>
             <div class="col-md-7 col-sm-10 col-xs-12">
@@ -53,7 +53,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-2 col-sm-2 d-none d-sm-block">AADASSFSDS</div>
+            <div class="col-md-2 col-sm-2 d-none d-sm-block pr-0">AADASSFSDS</div>
         </div>
     </div>
 </div>

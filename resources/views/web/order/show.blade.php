@@ -21,10 +21,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7" ng-cloak>
                         <h2 class="singleProductHeading"><small>{{ $product->heading }}</small></h2>
                         <hr>
-                        <div class="singleProductDetailsList">
+                        <div class="singleProductDetailsList" ng-show="singleProductDetailsList">
                             <ul class="list-unstyled">
                                 <li>Price : LRK @if($product->discount > 0) <strike>{{ number_format($product->price, 2) }}</strike> @else {{ number_format($product->price, 2) }} @endif <small> / piece</small>
                                 @if($product->discount > 0)
@@ -43,8 +43,9 @@
                                     $features_description = json_decode($product->features_description);
                                     ?>
                                     @foreach($features as $key => $feature)
+                                            <?php $feature_descriptions = explode(",", array_get($features_description, $key)); ?>
                                         <li>
-                                            {{ $feature }} : {{ array_get($features_description, $key) }}
+                                            {{ $feature }} : @foreach($feature_descriptions as $feature_description)<span class="singleProductFeatures">{{ $feature_description }}</span>@endforeach
                                         </li>
                                     @endforeach
                                 @endif
@@ -52,15 +53,26 @@
                                 <?php
                                 $places = json_decode($product->delivery_places);
                                 ?>
-                                <li>Delivery Places : @foreach($places as $place) {{ $place }} , @endforeach</li>
+                                <li>Delivery Places : @foreach($places as $place)<span class="singleProductFeatures">{{ $place }}</span>@endforeach</li>
                             </ul>
                             <hr>
-
+                            <button class="btn btn-sm tokkiAccessButton" ng-click="showProductOrderForm()">Buy Now</button>
+                        </div>
+                        <div class="singleProductOrderForm" ng-show="singleProductOrderForm">
+                            <form>
+                                @include('web.order._inc.form')
+                                <div class="row">
+                                    <div class="col-12 p-0 mt-1">
+                                        <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Submit</button>
+                                        <button type="submit" class="btn btn-sm tokkiAccessButton">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
 
-                <div class="row singleProductDetails">
+                <div class="row singleProductDetails mt-2">
                     <div class="col-md-12">
 
                         <ul class="nav nav-tabs customtab" role="tablist">
@@ -71,13 +83,13 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active p-20" id="productDetailsTab" role="tabpanel">
-                                <div class="row">
+                                <div class="row mt-2">
                                     <?php
                                     $productDetailsTitle = json_decode($product->title);
                                     $productDetailsDescription= json_decode($product->description);
                                     ?>
                                     @foreach($productDetailsTitle as $key => $title)
-                                        <div class="col-md-6 mb-2">
+                                        <div class="col-md-6 mb-2 p-0">
                                             {{ $title }} : {{ array_get($productDetailsDescription, $key) }}
                                         </div>
                                     @endforeach
@@ -99,13 +111,5 @@
 @endsection
 
 @section('script')
-    <script>
-        app.controller('singleProductView', function($scope){
-            $scope.images = @json($productImage);
-            $scope.viewBigImage = $scope.images[0];
-            $scope.showImage = function($image) {
-                $scope.viewBigImage = $image;
-            }
-        });
-    </script>
+    @include('web.order._inc.script')
 @endsection
