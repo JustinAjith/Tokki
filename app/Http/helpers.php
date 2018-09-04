@@ -46,8 +46,31 @@ if(!function_exists('categories')) {
     function categories() {
         return [
             "All Categories" => "All Categories",
-            "Women's Fashion" => "Women's Fashion",
-            "Men's Fashion" => "Men's Fashion",
+            "Women's Clothing" => "Women's Clothing",
+            "Men's Clothing" => "Men's Clothing",
+            "Kids and Baby" => "Kids and Baby",
+            "Bags and Shoes" => "Bags and Shoes",
+            "Jewelries" => "Jewelries",
+            "Watches" => "Watches",
+            "Fashion Accessories" => "Fashion Accessories",
+            "Phones and Accessories" => "Phones and Accessories",
+            "Computer and Office" => "Computer and Office",
+            "Home and Furniture" => "Home and Furniture",
+            "Services" => "Services",
+        ];
+    }
+}
+
+if(!function_exists('deliveryDuration')) {
+    function deliveryDuration() {
+        return [
+            "1 Day" => "1 Day",
+            "1 to 3 Days" => "1 to Days",
+            "1 Week" => "1 Week",
+            "10 to 20 Days" => "10 to 20 Days",
+            "1 Month" => "1 Month",
+            "1 to 3 Month" => "1 to 3 Month",
+            "1 Month to 45 Days" => "1 Month to 45 Days",
         ];
     }
 }

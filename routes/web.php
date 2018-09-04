@@ -13,6 +13,7 @@ Route::group(['namespace'=>'Web'], function($routes){
 
     $routes->group(['namespace'=>'Order'], function($routes){
         $routes->get('/item/{category}/{product}', 'OrderController@show')->name('single.product.show');
+        $routes->post('/item/order/{product}', 'OrderController@store')->name('new.product.order');
     });
 });
 

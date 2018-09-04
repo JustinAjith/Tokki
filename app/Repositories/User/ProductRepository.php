@@ -43,6 +43,7 @@ class ProductRepository
         $product->price = $request->price;
         $product->qty = $request->qty;
         $product->delivery_places = json_encode($request->delivery_places);
+        $product->delivery_duration = $request->delivery_duration;
         $product->image = json_encode($imageName);
         $product->display_image = $displayImage;
         $product->title = json_encode($request->title);
@@ -118,6 +119,7 @@ class ProductRepository
         $product->key_word = $request->key_word;
         $product->qty = $request->qty;
         $product->delivery_places = json_encode($request->delivery_places);
+        $product->delivery_duration = $request->delivery_duration;
         $product->status = 'Pending';
         $product->save();
         return ['success'=> true];

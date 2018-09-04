@@ -59,7 +59,7 @@
                             <button class="btn btn-sm tokkiAccessButton" ng-click="showProductOrderForm()">Buy Now</button>
                         </div>
                         <div class="singleProductOrderForm" ng-show="singleProductOrderForm">
-                            <form>
+                            <form id="newProductOrder" ng-submit="newProductOrderSubmit()">
                                 @include('web.order._inc.form')
                                 <div class="row">
                                     <div class="col-12 p-0 mt-1">

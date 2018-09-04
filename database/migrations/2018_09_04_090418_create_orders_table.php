@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,33 +13,29 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->string('code', 30)->nullable();
-            $table->string('category');
-            $table->string('sub_category');
-            $table->string('mini_category')->nullable();
-            $table->string('heading');
-            $table->string('key_word');
-            $table->enum('discount_type', ['LKR', '%'])->default('LKR');
+            $table->unsignedInteger('product_id')->index();
+            $table->string('name');
+            $table->string('street');
+            $table->string('city');
+            $table->string('mobile', 15);
+            $table->string('telephone', 15);
+            $table->enum('discount_type', ['LKR', '%']);
             $table->float('discount')->nullable()->default(0);
             $table->decimal('price', 10,2);
             $table->smallInteger('qty');
             $table->string('delivery_places');
-            $table->string('delivery_duration', 30);
-            $table->string('image');
-            $table->string('display_image', 30);
-            $table->text('title');
-            $table->text('description');
             $table->string('features')->nullable();
             $table->string('features_description')->nullable();
-            $table->enum('status', ['Accept', 'Pending', 'Reject'])->default('Pending');
             $table->smallInteger('bid_value');
+            $table->enum('status', ['Complete', 'Accept', 'Pending', 'Reject'])->default('Pending');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
@@ -50,6 +46,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('orders');
     }
 }

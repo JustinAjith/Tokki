@@ -16,5 +16,19 @@
             $scope.singleProductDetailsList = true;
             $scope.singleProductOrderForm = false;
         };
+
+        $scope.newProductOrderSubmit = function() {
+            var routeUrl = "{{ route('new.product.order', ['product'=>'ID']) }}";
+            routeUrl = routeUrl.repeat('ID', {{ $product->id }});
+            $http({
+                method: 'POST',
+                url: routeUrl,
+                data: $('#newProductOrder').serialize()
+            }).then(function(response){
+
+            },error(function(response){
+
+            });
+        }
     });
 </script>
