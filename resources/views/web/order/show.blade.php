@@ -63,7 +63,7 @@
                                 @include('web.order._inc.form')
                                 <div class="row">
                                     <div class="col-12 p-0 mt-1">
-                                        <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Submit</button>
+                                        <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Close</button>
                                         <button type="submit" class="btn btn-sm tokkiAccessButton">Submit</button>
                                     </div>
                                 </div>

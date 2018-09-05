@@ -36,7 +36,28 @@
             @endforeach
         </select>
     </div>
+    <div class="form-group col-md-6 col-sm-6 pr-0 mb-2">
+        <label class="mb-1">Qty</label>
+        <div class="row m-0 p-0">
+            <div class="col-1 input-group-prepend m-0 p-0">
+                <button type="button" class="btn btn-dark btn-sm" id="minus-btn"><i class="fa fa-minus"></i></button>
+            </div>
+            <div class="col-10 m-0 p-0">
+                <input type="number" name="qty" id="qty_input" class="form-control form-control-sm" value="1" min="1">
+            </div>
+            <div class="col-1 input-group-prepend m-0 p-0">
+                <button type="button" class="btn btn-dark btn-sm" id="plus-btn"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row">
+    <div class="form-group col-md-6 col-sm-6 pl-0 mb-2">
+        <label class="mb-1">Full name</label>
+        <input type="text" name="name" class="form-control" placeholder="enter your full name">
+    </div>
+</div>
+
 <div class="row">
     <div class="form-group col-md-6 col-sm-6 pl-0 mb-2">
         <label class="mb-1">Mobile Number</label>

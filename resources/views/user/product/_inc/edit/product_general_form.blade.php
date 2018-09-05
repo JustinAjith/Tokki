@@ -53,7 +53,7 @@
                 <label class="control-label">Delivery Duration</label>
                 <select name="delivery_duration" class="form-control">
                     @foreach(deliveryDuration() as $key => $value)
-                        <option value="{{ $value }}" selected="{{ $product->delivery_duration == $value ? 'true' : 'false' }}">{{ $value }}</option>
+                        <option value="{{ $value }}" @if($product->delivery_duration == $value) selected @endif>{{ $value }}</option>
                     @endforeach
                 </select>
             </div>

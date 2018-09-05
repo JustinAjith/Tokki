@@ -65,7 +65,7 @@ if(!function_exists('deliveryDuration')) {
     function deliveryDuration() {
         return [
             "1 Day" => "1 Day",
-            "1 to 3 Days" => "1 to Days",
+            "1 to 3 Days" => "1 to 3 Days",
             "1 Week" => "1 Week",
             "10 to 20 Days" => "10 to 20 Days",
             "1 Month" => "1 Month",

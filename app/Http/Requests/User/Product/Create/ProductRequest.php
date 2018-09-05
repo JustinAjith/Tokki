@@ -33,6 +33,7 @@ class ProductRequest extends FormRequest
             'discount_type' => 'required',
             'qty' => 'required|numeric',
             'delivery_places.*' => 'required',
+            'delivery_duration' => 'required',
             'image.*' => 'required',
             'display_image' => 'required',
             'title.*' => 'required',
