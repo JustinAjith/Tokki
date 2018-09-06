@@ -1,3 +1,7 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
@@ -78,13 +82,14 @@
 }
 
 .productCollectionList {
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 .productCollectionHeading {
     border-bottom: 2px solid #ff970c;
     padding: 5px 0px;
-    font-size: 20px;
+    font-size: 30px;
+    color: #282828;
 }
 
 .productListCardMain {padding: 0px;}

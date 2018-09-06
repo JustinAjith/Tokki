@@ -34,10 +34,8 @@ class OrderRequest extends FormRequest
         ];
 
         if($this->input('features')) {
-            $rule = [
-                'features.*' => 'required',
-                'features_description.*' => 'required'
-            ];
+            $rule['features.*'] = 'required';
+            $rule['features_description.*'] = 'required';
         }
 
         return $rule;

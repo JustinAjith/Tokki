@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Repositories\User;
 
 use App\Order;
 use Illuminate\Support\Facades\Auth;

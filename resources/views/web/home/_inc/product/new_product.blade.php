@@ -1,8 +1,8 @@
 <div class="row">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h4 class="productCollectionHeading">New Products</h4>
+            <div class="col-12 text-center">
+                <h2 class="productCollectionHeading">New Products</h2>
             </div>
         </div>
 

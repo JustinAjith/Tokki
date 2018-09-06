@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User\Dashboard;
 
-use App\Http\Controllers\User\DashboardRepository;
+use App\Repositories\User\DashboardRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
