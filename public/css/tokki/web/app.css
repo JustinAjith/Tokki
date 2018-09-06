@@ -81,13 +81,19 @@ body {
     width: 100%;
 }
 
+#tokkiHomeTopSlider .carousel-inner .carousel-caption {
+    right: auto;
+    bottom: 0;
+    top: 20%;
+}
+
 .productCollectionList {
     margin-top: 40px;
 }
 
 .productCollectionHeading {
     border-bottom: 2px solid #ff970c;
-    padding: 5px 0px;
+    padding: 10px 0 0;
     font-size: 30px;
     color: #282828;
 }

@@ -9,12 +9,24 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="{{ asset('images/slider.jpg') }}" class="tokkiHomeSliderImage">
+                    <div class="carousel-caption">
+                        <h3>Slider 1</h3>
+                        <p>We had such a great time in LA!</p>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('images/slider.jpg') }}" class="tokkiHomeSliderImage">
+                    <div class="carousel-caption">
+                        <h3>Slider 2</h3>
+                        <p>We had such a great time in LA!</p>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('images/slider.jpg') }}" class="tokkiHomeSliderImage">
+                    <div class="carousel-caption">
+                        <h3>Slider 3</h3>
+                        <p>We had such a great time in LA!</p>
+                    </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#tokkiHomeTopSlider" role="button" data-slide="prev">
