@@ -4,6 +4,11 @@ namespace App\Repositories\User;
 use App\Bid;
 use App\BidRang;
 use App\Http\Requests\User\Product\Create\ProductRequest;
+use App\Http\Requests\User\Product\Edit\GeneralDetailRequest;
+use App\Http\Requests\User\Product\Edit\PriceRequest;
+use App\Http\Requests\User\Product\Edit\ProductDetailRequest;
+use App\Http\Requests\User\Product\Edit\ProductImageRequest;
+use App\Http\Requests\User\Product\Edit\SpecialFeaturesRequest;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,7 +116,8 @@ class ProductRepository
         return ['success'=>true];
     }
 
-    public function generalDetails(Request $request, Product $product)
+    // Update Product General Details
+    public function generalDetails(GeneralDetailRequest $request, Product $product)
     {
         $product = $this->product->find($product->id);
         $product->code = $request->code;
@@ -125,7 +131,8 @@ class ProductRepository
         return ['success'=> true];
     }
 
-    public function productDetails(Request $request, Product $product)
+    // Update Product Details
+    public function productDetails(ProductDetailRequest $request, Product $product)
     {
         $product = $this->product->find($product->id);
         $product->title = json_encode($request->title);
@@ -135,6 +142,7 @@ class ProductRepository
         return ['success'=> true];
     }
 
+    // Remove Product Images
     public function productImageDelete($image, Product $product)
     {
         $images = json_decode($product->image);
@@ -151,7 +159,8 @@ class ProductRepository
         return ['success'=> true];
     }
 
-    public function productImage(Request $request, Product $product)
+    // Update Product Images
+    public function productImage(ProductImageRequest $request, Product $product)
     {
         if($request->image != '') {
             $images = json_decode($product->image);
@@ -177,7 +186,8 @@ class ProductRepository
         return ['success'=> true];
     }
 
-    public function productSpecialFeatures(Request $request, Product $product)
+    // Update Product Special Features
+    public function productSpecialFeatures(SpecialFeaturesRequest $request, Product $product)
     {
         $product = $this->product->find($product->id);
         $product->features = json_encode($request->features);
@@ -187,7 +197,8 @@ class ProductRepository
         return ['success'=> true];
     }
 
-    public function productPrice(Request $request, Product $product)
+    // Update Product Price and Discount
+    public function productPrice(PriceRequest $request, Product $product)
     {
         $bid = $this->bid($request->price);
         $product = $this->product->find($product->id);

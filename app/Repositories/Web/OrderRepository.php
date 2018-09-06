@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Web;
 
+use App\Http\Requests\Web\OrderRequest;
 use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class OrderRepository
         $this->order = $order ?? new Order();
     }
 
-    public function store(Request $request, Product $product)
+    public function store(OrderRequest $request, Product $product)
     {
         $order = $this->order;
         $order->user_id = $product->user_id;
@@ -34,6 +35,20 @@ class OrderRepository
         $order->features_description = json_encode($request->features_description);
         $order->bid_value = $product->bid_value;
         $order->save();
+        $this->adminNotification();
+        $this->userNotification();
         return ['success'=>true];
+    }
+
+    // Order Notification to Admin
+    public function adminNotification()
+    {
+        return true;
+    }
+
+    // Order Notification to User
+    public function userNotification()
+    {
+        return true;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Order;
 
+use App\Http\Requests\Web\OrderRequest;
 use App\Product;
 use App\Repositories\Web\OrderRepository;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class OrderController extends Controller
         return view('web.order.show', compact('product'));
     }
 
-    public function store(Request $request, Product $product)
+    public function store(OrderRequest $request, Product $product)
     {
         $this->order->store($request, $product);
         return ['success'=>true];
