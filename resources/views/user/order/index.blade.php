@@ -17,9 +17,48 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body"> This is some text within a card block. </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="appDataTable" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/tokki/auth/datatables.js') }}"></script>
+    <script>
+        $('#appDataTable').DataTable( {
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "{{ route('user.order.all') }}",
+                "dataType": "json",
+                "type": "POST",
+                "data": {_token: "{{csrf_token()}}"}
+            },
+            "columns": [
+                {"data": "price"},
+                {"data": "name"},
+                {"data": "qty"},
+                {"data": "date"},
+                {"data": "status"},
+                {"data": "action"}
+            ]
+        } );
+    </script>
 @endsection

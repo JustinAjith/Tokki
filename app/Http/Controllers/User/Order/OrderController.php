@@ -15,8 +15,11 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function index(): View
+    public function index(Request $request)
     {
+        if(\request()->ajax()) {
+            return $this->order->orderDataTable($request);
+        }
         return view('user.order.index');
     }
 

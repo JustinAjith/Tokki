@@ -25,6 +25,6 @@ class Product extends Model implements Auditable
 
     public function orders()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(Order::class);
     }
 }

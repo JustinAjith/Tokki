@@ -19,7 +19,7 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function show($category, Product $product)
+    public function show($category, Product $product): View
     {
         $product = DB::table('products')->select('products.*')->where('products.id', $product->id)
                     ->join('users', 'users.bid', '>=', 'products.bid_value')
@@ -27,7 +27,7 @@ class OrderController extends Controller
         if($product) {
             return view('web.order.show', compact('product'));
         } else {
-            return redirect()->back();
+            return view('web.order.error');
         }
     }
 

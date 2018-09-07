@@ -48,6 +48,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
     // User Order Related Routes
     $routes->group(['prefix'=>'/order', 'namespace'=>'Order'], function($routes){
         $routes->get('/', 'OrderController@index')->name('user.order');
+        $routes->post('/data', 'OrderController@index')->name('user.order.all');
         $routes->get('/status', 'OrderController@status')->name('user.order.status');
     });
     // user Bid Related Routes
