@@ -14,7 +14,7 @@ class GeneralRepository
 
     public function getNotification()
     {
-        $notification = $this->notification->where('admin_id', null)->limit(3)->orderBy('id', 'DESC')->get();
+        $notification = $this->notification->where('admin_user_id', '!=', null)->limit(3)->orderBy('id', 'DESC')->get();
         $unread = $this->notification->where(['admin_id'=>null, 'admin_status'=>1])->count();
         return response()->json(['notification'=>$notification, 'unread'=>$unread]);
     }
