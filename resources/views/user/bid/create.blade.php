@@ -1,6 +1,12 @@
 @extends('user.layouts.master')
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/tokki/auth/datepicker.css') }}">
+    <style>
+        .datepicker-bottom-left, .datepicker-bottom-right {border-bottom-color: #ff970c;}
+        .datepicker-bottom-left:before, .datepicker-bottom-right:before {border-top-color: #ff970c;}
+        .datepicker-panel>ul>li.picked, .datepicker-panel>ul>li.picked:hover {color: #ff970c;}
+        .datepicker-panel>ul>li.highlighted {background-color: #fff4de;}
+    </style>
 @endsection
 @section('content')
     <!-- Breadcrumb -->

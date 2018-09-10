@@ -46,10 +46,11 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->post('edit/product-price/{product}', 'ProductController@productPrice')->name('user.product.price');
     });
     // User Order Related Routes
-    $routes->group(['prefix'=>'/order', 'namespace'=>'Order'], function($routes){
+    $routes->group(['prefix'=>'/orders', 'namespace'=>'Order'], function($routes){
         $routes->get('/', 'OrderController@index')->name('user.order');
         $routes->post('/data', 'OrderController@index')->name('user.order.all');
         $routes->get('/status', 'OrderController@status')->name('user.order.status');
+        $routes->get('/show/{order}', 'OrderController@show')->name('user.order.show');
     });
     // user Bid Related Routes
     $routes->group(['namespace'=>'Bid'], function($routes){

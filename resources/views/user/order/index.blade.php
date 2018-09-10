@@ -1,5 +1,9 @@
 @extends('user.layouts.master')
-
+@section('style')
+    <style>
+        .orderTableProductImage {width: 45%;}
+    </style>
+@endsection
 @section('content')
     <!-- Breadcrumb -->
     <div class="row page-titles">
@@ -19,7 +23,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="appDataTable" class="table table-bordered table-striped">
+                            <table id="appDataTable" class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th>Image</th>

@@ -23,7 +23,7 @@
                                         <h2 class="productListHeading"><small>@{{ newProduct.name }}</small></h2>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row pb-2">
                                     <div class="col-12">
                                         <span class="productListPrice">LKR @{{ newProduct.price }} </span> <small>/ piece</small>
                                         <span class="productListDiscountPrice" ng-if="newProduct.discount !== 0"> |
