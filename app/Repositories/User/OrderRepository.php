@@ -2,6 +2,8 @@
 namespace App\Repositories\User;
 
 use App\Order;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,73 +15,17 @@ class OrderRepository
         $this->order = $order ?? new Order();
     }
 
-    public function orderDataTable(Request $request)
+    public function orderStatus(Request $request, $status, Order $order)
     {
-        $columns = array(
-            0 => 'price',
-            1 => 'name',
-            2 => 'name',
-            3 => 'date',
-            4 => 'status',
-            5 => 'action',
-        );
-        $userId = Auth::user()->id;
-        $totalDatas = $this->order::where('user_id',$userId)->count();
-        $limit = $request->input('length');
-        $start = $request->input('start');
-        $order = $columns[$request->input('order.0.column')];
-        $dir = $request->input('order.0.dir');
+        $comment = $request->comment ? $request->comment : null;
+        $order->update(['status'=>$status, 'comment'=>$comment]);
+        if($status == 'Reject') {
+            $user = User::find(Auth::user()->id);
+            $user->update(['bid'=>$user->bid + $order->bid_value]);
 
-        if(empty($request->input('search.value'))) {
-            $posts = $this->order::with('product')->where('user_id',$userId)
-                ->offset($start)
-                ->limit($limit)
-                ->orderBy($order, $dir)
-                ->get();
-            $totalFiltered = $totalDatas;
-        } else {
-            $search = $request->input('search.value');
-
-            $filteredData = $this->order::with('product')->where(function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })->whereHas('product', function($query) use ($search) {
-                $query->where('heading', 'like', "%{$search}%");
-            })->orWhere(function ($q) use ($search) {
-                $q->where('qty', 'like', "%{$search}%")
-                    ->orWhere('created_at', 'like', "%{$search}%")
-                    ->orWhere('status', 'like', "%{$search}%");
-            });
-
-            $posts = $filteredData->offset($start)->limit($limit)->orderBy($order, $dir)->get();
-            $totalFiltered = $filteredData->count();
+            $product = Product::find($order->product_id);
+            $product->update(['qty'=>$product->qty + $order->qty]);
         }
-
-        $data = array();
-
-        if($posts){
-            foreach($posts as $r) {
-                $nestedData['price'] = '
-                    <div class="text-center">
-                        <img src="storage/display_image/'.$r->product->display_image.'" class="orderTableProductImage">
-                    </div>
-                ';
-                $nestedData['name'] = $r->product->heading;
-                $nestedData['qty'] = $r->qty;
-                $nestedData['date'] = $r->created_at->toDateString();
-                $nestedData['status'] = $r->status == "Accept" ? "<span class=\"badge badge-success\">Accept</span>" : ($r->status == "Pending" ? "<span class=\"badge badge-secondary\">Pending</span>" : ($r->status == "Reject" ? "<span class=\"badge badge-danger\">Reject</span>" : ""));
-                $nestedData['action'] = '
-                    <a href="/orders/show/'.$r->id.'" class="btn btn-sm btn-outline-success"><i class="fa fa-eye"></i> View</a>
-                    <button type="button" class="btn btn-sm btn-danger delete-bid" value="'.$r->id.'"><i class="fa fa-trash"></i> Remove</button>
-                ';
-                $data[] = $nestedData;
-            }
-        }
-        $json_data = array(
-            "draw" => intval($request->input('draw')),
-            "recordsTotal" => intval($totalDatas),
-            "recordsFiltered" => intval($totalFiltered),
-            "data" => $data
-        );
-        echo json_encode($json_data);
+        return ['success'=>true];
     }
 }

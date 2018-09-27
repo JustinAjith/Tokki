@@ -17,12 +17,10 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        if(\request()->ajax()) {
-            return $this->order->orderDataTable($request);
-        }
-        return view('user.order.index');
+        $orders = Order::with('product')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(20);
+        return view('user.order.index', compact('orders'));
     }
 
     public function show($order)
@@ -38,5 +36,16 @@ class OrderController extends Controller
     public function status(): View
     {
         return view('user.order.status');
+    }
+
+    public function orderStatus(Request $request, $status, Order $order)
+    {
+        return $this->order->orderStatus($request, $status, $order);
+    }
+
+    public function delete(Order $order)
+    {
+        $order->delete();
+        return ['success'=>true];
     }
 }

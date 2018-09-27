@@ -27,37 +27,36 @@
                         <div class="row">
                             @foreach($products as $product)
                                 <div class="col-3 mb-3">
-                                    <div class="productListCard p-3">
-                                        <div class="row justify-content-center" style="padding: 0 20px;">
-                                            <img src="{{ asset('storage/display_image') }}/{{ $product->display_image }}" class="productListImage">
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            <span><small>{{ $product->qty }} Pieces Available</small></span>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <span class="productListHeading">{{ $product->heading }}</span>
+                                    <a href="{{ route('admin.product.show', $product->id) }}">
+                                        <div class="productListCard p-3">
+                                            <div class="row justify-content-center" style="padding: 0 20px;">
+                                                <img src="{{ asset('storage/display_image') }}/{{ $product->display_image }}" class="productListImage">
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <span><small>{{ $product->qty }} Pieces Available</small></span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span class="productListHeading">{{ $product->heading }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    @if($product->discount_type == 'LKR')
+                                                        <span>LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small></span>
+                                                    @else
+                                                        <?php
+                                                        $discountPrice = (1 - $product->discount/100) * $product->price;
+                                                        ?>
+                                                        <span>LRK {{ number_format($discountPrice, 2) }} <small> / piece</small></span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center mb-2">
+                                                <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">{{ $product->status }}</small>
                                             </div>
                                         </div>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                @if($product->discount_type == 'LKR')
-                                                    <span>LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small></span>
-                                                @else
-                                                    <?php
-                                                    $discountPrice = (1 - $product->discount/100) * $product->price;
-                                                    ?>
-                                                    <span>LRK {{ number_format($discountPrice, 2) }} <small> / piece</small></span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-center mb-2">
-                                            <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">{{ $product->status }}</small>
-                                        </div>
-                                        <div class="row justify-content-center">
-                                            <a href="{{ route('admin.product.show', $product->id) }}" class="btn btn-sm btn-primary">Show</a>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>

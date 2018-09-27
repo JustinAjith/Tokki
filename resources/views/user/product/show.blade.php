@@ -109,17 +109,19 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div class="tab-pane active p-20" id="productDetailsTab" role="tabpanel">
-                                        <div class="row">
-                                            <?php
-                                            $productDetailsTitle = json_decode($product->title);
-                                            $productDetailsDescription= json_decode($product->description);
-                                            ?>
-                                            @foreach($productDetailsTitle as $key => $title)
-                                                <div class="col-md-6 mb-2">
-                                                    {{ $title }} : {{ array_get($productDetailsDescription, $key) }}
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                        @if(isset($product->title))
+                                            <div class="row">
+                                                <?php
+                                                $productDetailsTitle = json_decode($product->title);
+                                                $productDetailsDescription= json_decode($product->description);
+                                                ?>
+                                                @foreach($productDetailsTitle as $key => $title)
+                                                    <div class="col-md-6 mb-2">
+                                                        {{ $title }} : {{ array_get($productDetailsDescription, $key) }}
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="tab-pane  p-20" id="feedBackTab" role="tabpanel">
                                         Feed Back

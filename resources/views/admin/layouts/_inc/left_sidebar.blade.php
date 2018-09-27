@@ -19,6 +19,12 @@
                         <li><a href="#">Categories</a></li>
                     </ul>
                 </li>
+                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('admin.order') }}">Order List</a></li>
+                        <li><a href="#">Order Status</a></li>
+                    </ul>
+                </li>
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">User</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('admin.user.index') }}">Users</a></li>

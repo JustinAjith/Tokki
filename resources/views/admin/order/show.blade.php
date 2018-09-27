@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('admin.layouts.master')
 @section('style')
     <style>
         .orderProductDetails ul li{margin-bottom: 10px;}
@@ -14,7 +14,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('user.order') }}">Order List</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.order') }}">Order List</a></li>
                 <li class="breadcrumb-item active">Order</li>
             </ol>
         </div>
@@ -30,7 +30,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <?php
-                                            $productImage = json_decode($order->product->image);
+                                        $productImage = json_decode($order->product->image);
                                         ?>
                                         <center><img ng-src="{{ asset('storage/product') }}/@{{ viewBigImage }}" alt="" class="orderProductImage"></center>
                                     </div>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-7">
                                 <small class="float-right badge @if($order->status == 'Accept') badge-success @elseif($order->status == 'Complete') badge-primary @elseif($order->status == 'Pending') badge-warning @elseif($order->status == 'Reject') badge-danger @endif" style="margin-top: 12px;">{{ $order->status }}</small>
-                                <h2><small><a href="{{ route('user.product.show', $order->product_id) }}">{{ $order->product->heading }}</a></small></h2>
+                                <h2><small><a href="{{ route('admin.product.show', $order->product_id) }}">{{ $order->product->heading }}</a></small></h2>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -55,13 +55,8 @@
                                     <div class="col-md-6 mb-3">
                                         Contact<br>
                                         <div class="row">
-                                            @if($order->status == 'Pending' || $order->status == 'Reject')
-                                                <div class="col"><small>M.</small> **********</div>
-                                                <div class="col"><small>T.</small> **********</div>
-                                            @else
-                                                <div class="col"><small>M.</small> {{ $order->mobile }}</div>
-                                                <div class="col"><small>T.</small> {{ $order->telephone }}</div>
-                                            @endif
+                                            <div class="col"><small>M.</small> {{ $order->mobile }}</div>
+                                            <div class="col"><small>T.</small> {{ $order->telephone }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -69,11 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         Address<br>
-                                        @if($order->status == 'Pending' || $order->status == 'Reject')
-                                            *****************************
-                                        @else
-                                            {{ $order->street }}
-                                        @endif<br>
+                                        {{ $order->street }}<br>
                                         {{ $order->city }}
                                     </div>
                                     <div class="col-md-6">
@@ -123,29 +114,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-12">
-                                        {{--<div class="float-right">--}}
-                                            {{--<button class="btn btn-sm btn-danger" ng-click="deleteOrder()">Delete</button>--}}
-                                        {{--</div>--}}
-                                        @if($order->status == 'Pending')
-                                            <div ng-show="pendingStatus">
-                                                <button type="button" class="btn btn-sm btn-success" ng-click="orderAccept('Accept')">Accept</button>
-                                                <button type="button" class="btn btn-sm btn-danger" ng-click="showRejectForm()">Reject</button>
-                                            </div>
-                                            <div ng-show="rejectForm">
-                                                <form ng-submit="orderRejectSubmit()" id="orderRejectSubmit">
-                                                    <div class="form-group">
-                                                        <label>Reason</label>
-                                                        <textarea class="form-control" rows="4" placeholder="please enter reason for reject" name="comment"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-sm btn-dark" ng-click="closeRejectForm()">Close</button>
-                                                        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        @elseif($order->status == 'Accept')
-                                            <button type="button" class="btn btn-sm btn-success" ng-click="orderAccept('Complete')">Complete</button>
-                                        @elseif($order->status == 'Reject')
+                                        @if($order->status == 'Reject')
                                             <span><small>{{ $order->comment }}</small></span>
                                         @endif
                                     </div>
@@ -161,5 +130,13 @@
 @endsection
 
 @section('script')
-    @include('user.order._inc.script')
+    <script>
+        app.controller('orderController', function($scope) {
+            $scope.images = @json($productImage);
+            $scope.viewBigImage = $scope.images[0];
+            $scope.showImage = function($image) {
+                $scope.viewBigImage = $image;
+            };
+        });
+    </script>
 @endsection

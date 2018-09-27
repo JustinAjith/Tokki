@@ -1,21 +1,20 @@
-@extends('user.layouts.master')
+@extends('admin.layouts.master')
 @section('style')
     <style>
         .productListImage {width: 100%;height: 100%;}
         .productListCard:hover{box-shadow: 0px 5px 25px rgba(0,0,0,0.1);z-index: 10;}
         .productListHeading {font-size: 14px;display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-        .productPrice {font-weight: 700;font-size: 16px;color: #ff970c;}
     </style>
 @endsection
 @section('content')
     <!-- Breadcrumb -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Product List</h3> </div>
+            <h3 class="text-primary">Order List</h3></div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Product List</li>
+                <li class="breadcrumb-item active">Order List</li>
             </ol>
         </div>
     </div>
@@ -26,35 +25,23 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            @foreach($products as $product)
+                            @foreach($orders as $order)
                                 <div class="col-3 mb-3">
-                                    <a href="{{ route('user.product.show', $product->id) }}">
+                                    <a href="{{ route('admin.order.show', $order->id) }}">
                                         <div class="productListCard p-3">
                                             <div class="row justify-content-center" style="padding: 0 20px;">
-                                                <img src="{{ asset('storage/display_image') }}/{{ $product->display_image }}" class="productListImage">
+                                                <img src="{{ asset('storage/display_image') }}/{{ $order->product->display_image }}" class="productListImage">
                                             </div>
                                             <div class="row justify-content-center">
-                                                <span><small>{{ $product->qty }} Pieces Available</small></span>
+                                                <span><small>{{ $order->qty }} Pieces</small></span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <span class="productListHeading">{{ $product->heading }}</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    @if($product->discount_type == 'LKR')
-                                                        <span class="productPrice">LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small></span>
-                                                    @else
-                                                        <?php
-                                                        $discountPrice = (1 - $product->discount/100) * $product->price;
-                                                        ?>
-                                                        <span class="productPrice">LRK {{ number_format($discountPrice, 2) }} <small> / piece</small></span>
-                                                    @endif
+                                                    <span class="productListHeading">{{ $order->product->heading }}</span>
                                                 </div>
                                             </div>
                                             <div class="row justify-content-center mb-2">
-                                                <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">{{ $product->status }}</small>
+                                                <small class="float-right badge @if($order->status == 'Accept') badge-success @elseif($order->status == 'Complete') badge-primary @elseif($order->status == 'Pending') badge-warning @elseif($order->status == 'Reject') badge-danger @endif">{{ $order->status }}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -64,7 +51,7 @@
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div class="float-right">
-                                    {{ $products->links() }}
+                                    {{ $orders->links() }}
                                 </div>
                             </div>
                         </div>

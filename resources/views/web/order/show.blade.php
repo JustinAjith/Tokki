@@ -1,4 +1,10 @@
 @extends('web.layouts.master')
+@section('style')
+    <style>
+        .input-group-prepend{padding: 0;}
+        .singleProductOrderForm form .orderFormHeading{border-bottom: 2px solid #ff970c; }
+    </style>
+@endsection
 @section('content')
     <div class="container mt-4">
         <div class="row" ng-controller="singleProductView">
@@ -24,7 +30,7 @@
                     <div class="col-md-7" ng-cloak>
                         <h2 class="singleProductHeading"><small>{{ $product->heading }}</small></h2>
                         <hr>
-                        <div class="singleProductDetailsList" ng-show="singleProductDetailsList">
+                        <div class="singleProductDetailsList">
                             <ul class="list-unstyled">
                                 <li>Price : LRK @if($product->discount > 0) <strike>{{ number_format($product->price, 2) }}</strike> @else {{ number_format($product->price, 2) }} @endif <small> / piece</small>
                                 @if($product->discount > 0)
@@ -58,21 +64,10 @@
                             <hr>
                             <button class="btn btn-sm tokkiAccessButton" ng-click="showProductOrderForm()">Buy Now</button>
                         </div>
-                        <div class="singleProductOrderForm" ng-show="singleProductOrderForm">
-                            <form id="newProductOrder" ng-submit="newProductOrderSubmit()">
-                                @include('web.order._inc.form')
-                                <div class="row">
-                                    <div class="col-12 p-0 mt-1">
-                                        <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Close</button>
-                                        <button type="submit" class="btn btn-sm tokkiAccessButton">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
 
-                <div class="row singleProductDetails mt-2">
+                <div class="row singleProductDetails mt-2" ng-show="singleProductDetailsTab">
                     <div class="col-md-12">
 
                         <ul class="nav nav-tabs customtab" role="tablist">
@@ -102,9 +97,21 @@
                                 Chart
                             </div>
                         </div>
-
                     </div>
                 </div>
+
+                <div class="singleProductOrderForm mt-2" ng-show="singleProductOrderForm">
+                    <form id="newProductOrder" ng-submit="newProductOrderSubmit()">
+                        @include('web.order._inc.form')
+                        <div class="row">
+                            <div class="col-12 mt-1">
+                                <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Close</button>
+                                <button type="submit" class="btn btn-sm tokkiAccessButton">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>

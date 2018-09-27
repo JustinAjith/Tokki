@@ -13,17 +13,18 @@ body {
 
 .row {
     width: 100%;
-    margin: 0px;
+    margin: 0;
 }
 
 .topHeaderBar {
     height: 35px;
-    margin: 0px;
+    margin: 0;
 }
 
 .topHeaderBarContents {
     line-height: 32px;
     font-size: 13px;
+    width: 100%;
 }
 
 .topHeaderBarContents .userLink {

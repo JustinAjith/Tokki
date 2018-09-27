@@ -39,9 +39,9 @@ mix.scripts([
 ], 'public/js/tokki/auth/script.js');
 
 // CK Editor Lib
-mix.scripts([
-    nodePath + '@ckeditor/ckeditor5-build-classic/build/ckeditor.js'
-], 'public/js/tokki/auth/editor.js');
+// mix.scripts([
+//     nodePath + '@ckeditor/ckeditor5-build-classic/build/ckeditor.js'
+// ], 'public/js/tokki/auth/editor.js');
 
 // Date Picker Lib
 mix.styles([
@@ -57,6 +57,7 @@ mix.scripts([
 // WEB RELATED STYLES and SCRIPT
 mix.styles([
     nodePath + 'bootstrap/dist/css/bootstrap.min.css',
+    sourceAssets + 'css/notification.css',
 ], 'public/css/tokki/web/style.css');
 
 mix.scripts([
@@ -64,4 +65,5 @@ mix.scripts([
     sourceAssets + 'js/popper.min.js',
     nodePath + 'bootstrap/dist/js/bootstrap.min.js',
     nodePath + 'angular/angular.js',
+    sourceAssets + 'js/notification.js',
 ], 'public/js/tokki/web/script.js');

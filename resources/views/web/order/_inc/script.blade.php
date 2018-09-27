@@ -10,6 +10,12 @@
                 $('#qty_input').val(1);
             }
         });
+
+        $(".tokkiAccessButton").click(function() {
+            $('html, body').animate({
+                scrollTop: $(".singleProductOrderForm").offset().top
+            }, 2000);
+        });
     });
 </script>
 <script>
@@ -20,14 +26,14 @@
             $scope.viewBigImage = $image;
         };
 
-        $scope.singleProductDetailsList = true;
+        $scope.singleProductDetailsTab = true;
         $scope.singleProductOrderForm = false;
         $scope.showProductOrderForm = function() {
-            $scope.singleProductDetailsList = false;
+            $scope.singleProductDetailsTab = false;
             $scope.singleProductOrderForm = true;
         };
         $scope.showSingleProductDetailsList = function() {
-            $scope.singleProductDetailsList = true;
+            $scope.singleProductDetailsTab = true;
             $scope.singleProductOrderForm = false;
         };
 
@@ -39,9 +45,17 @@
                 data: $('#newProductOrder').serialize(),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function(response){
-
+                $.jnoty("Your action was successfully completed!", {
+                    header: 'Success',
+                    theme: 'jnoty-success',
+                    icon: 'fa fa-check-circle-o'
+                });
             },function(response){
-
+                $.jnoty("Please try again!", {
+                    header: 'Error',
+                    theme: 'jnoty-danger',
+                    icon: 'fa fa-exclamation-circle'
+                });
             });
         }
     });
