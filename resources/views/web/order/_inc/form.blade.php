@@ -19,6 +19,7 @@
                                 <option value="{{ $feature_description }}">{{ $feature_description }}</option>
                             @endforeach
                         </select>
+                        <small>@{{ errors[0].features_description }}</small>
                     </div>
                 @endforeach
             </div>
@@ -39,9 +40,15 @@
                 <label class="mb-1">Delivery place</label>
                 <select class="form-control" name="delivery_places">
                     <option value="">Choose place</option>
-                    @foreach($places as $place)
-                        <option value="{{ $place }}">{{ $place }}</option>
-                    @endforeach
+                    @if(array_get($places, 0) != 'All Srilanka')
+                        @foreach($places as $place)
+                            <option value="{{ $place }}">{{ $place }}</option>
+                        @endforeach
+                    @else
+                        @foreach(city() as $place)
+                            <option value="{{ $place }}">{{ $place }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div class="form-group col-md-6 col-sm-6">

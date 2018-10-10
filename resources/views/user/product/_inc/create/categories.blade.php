@@ -1,22 +1,14 @@
 <h3>Select your product category</h3>
 <hr>
 <div class="row">
-    <div class="col-md-3">
-        <h5>Women's Clothing</h5>
-        <ol>
-            <li ng-click="selectCategory(category='Women\'s Clothing', subCategory='Jeans')">Jeans</li>
-            <li>asd</li>
-            <li>dfs</li>
-        </ol>
-    </div>
-    <div class="col-md-3" ng-click="selectCategory(category='b1', subCategory='b2')">
-        <h5>Men's Clothing</h5>
-        <ol>
-            <li>asd</li>
-            <li>asd</li>
-            <li>dfs</li>
-            <li>dfs</li>
-            <li>dfs</li>
-        </ol>
-    </div>
+    @foreach($categories as $category)
+        <div class="col-md-3 mb-2">
+            <h3 class="mb-0"><small>{{ $category->name }}</small></h3>
+            <ul>
+                @foreach($category->subCategory as $sub)
+                    <li class="selectCategoryItems"><small ng-click="selectCategory({{$category}}, {{ $sub }})">{{ $sub->name }}</small></li>
+                @endforeach
+            </ul>
+        </div>
+    @endforeach
 </div>

@@ -24,8 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('mobile', 20)->nullable();
             $table->string('land_line', 20)->nullable();
             $table->text('about_us')->nullable();
-            $table->smallInteger('bid');
-            $table->smallInteger('total_bid');
+            $table->unsignedSmallInteger('bid');
+            $table->unsignedSmallInteger('total_bid');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

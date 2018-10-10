@@ -8,95 +8,30 @@
                             <li>
                                 <a href="#">Categories</a>
                                 <ul class="cbp-hssubmenu">
-                                    <li>
-                                        <h6><small>Women's Clothing</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                            <li>sad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Men's Clothing</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Kids and Baby</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Bags and Shoes</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Jewelries</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Watches</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Fashion Accessories</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Phones and Accessories</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Computer and Office</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Home and Furniture</small></h6>
-                                        <ul class="mb-2">
-                                            <li>asd</li>
-                                            <li>ad</li>
-                                            <li>sad</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h6><small>Services</small></h6>
-                                    </li>
-                                    <li>
-                                        <h6><small>Software Development</small></h6>
-                                    </li>
+                                    @foreach($categories as $category)
+                                        <li>
+                                            <h5><small>{{ $category->name }}</small></h5>
+                                            <hr>
+                                            <ul class="mb-2 productCategoryItems">
+                                                @foreach($category->subCategory as $sub)
+                                                    <li><small><a href="{{ route('web.category.product', $sub->ref_id) }}">{{ $sub->name }}</a></small></li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @endforeach
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="{{ route('web.best.sell') }}">Best Sell</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('web.popular.categories') }}">Popular Categories</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('web.special.offers') }}">Special Offers</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('web.contact.us') }}">Contact Us</a>
                             </li>
                         </ul>
                     </div>

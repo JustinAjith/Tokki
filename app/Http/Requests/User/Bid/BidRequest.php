@@ -26,6 +26,7 @@ class BidRequest extends FormRequest
         return [
             'bid' => 'required|numeric',
             'receipt_id' => 'required',
+            'amount' => 'required',
             'receipt_file' => 'required',
             'date' => 'required|date|before:tomorrow',
         ];

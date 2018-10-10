@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Web\Home;
 
+use App\Category;
 use App\Repositories\Web\HomeRepository;
+use App\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,8 +18,9 @@ class HomeController extends Controller
 
     public function index()
     {
-//        return session()->get('_token');
-        return view('web.home.index');
+        $sliders = Slider::where('status', 'yes')->get();
+        $categories = Category::with('subCategory')->get();
+        return view('web.home.index', compact('sliders', 'categories'));
     }
 
     public function newProduct()

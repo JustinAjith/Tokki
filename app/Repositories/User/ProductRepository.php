@@ -38,8 +38,8 @@ class ProductRepository
         $product = $this->product;
         $product->user_id = Auth::user()->id;
         $product->code = $request->code;
-        $product->category = $request->category;
-        $product->sub_category = $request->sub_category;
+        $product->category_id = $request->category_id;
+        $product->sub_category_id = $request->sub_category_id;
         $product->mini_category = $request->mini_category;
         $product->heading = $request->heading;
         $product->key_word = $request->key_word;

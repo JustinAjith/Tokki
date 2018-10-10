@@ -16,8 +16,9 @@ class CreateBidsTable extends Migration
         Schema::create('bids', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
-            $table->smallInteger('bid');
+            $table->unsignedSmallInteger('bid');
             $table->string('receipt_id', 20);
+            $table->decimal('amount', 10,2);
             $table->string('receipt');
             $table->date('date');
             $table->enum('status', ['Accept', 'Pending', 'Reject'])->default('Pending');

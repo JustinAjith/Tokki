@@ -6,8 +6,10 @@
         $scope.selectCategory = function(category, subCategory) {
             $scope.createCategorySelect = false;
             $scope.productCreateForm = true;
-            $scope.category = category;
-            $scope.subCategory = subCategory;
+            $scope.category = category.name;
+            $scope.subCategory = subCategory.name;
+            $scope.category_id = category.id;
+            $scope.subCategory_id = subCategory.id;
         };
 
         $scope.goBackToSelectCategory = function() {

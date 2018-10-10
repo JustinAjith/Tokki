@@ -16,7 +16,7 @@
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-shopping-bag"></i><span class="hide-menu">Products</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('admin.product') }}">Product List</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="{{ route('admin.category') }}">Categories</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>
@@ -44,6 +44,14 @@
                         <li><a href="#">Inbox</a></li>
                     </ul>
                 </li>
+
+                <li class="nav-label">Settings</li>
+                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Sliders and Adds</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('admin.slider.index') }}">Top Slider</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

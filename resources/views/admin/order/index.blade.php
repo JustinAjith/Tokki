@@ -4,6 +4,8 @@
         .productListImage {width: 100%;height: 100%;}
         .productListCard:hover{box-shadow: 0px 5px 25px rgba(0,0,0,0.1);z-index: 10;}
         .productListHeading {font-size: 14px;display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+        .emptyProductList {background: #f1f1f1;}
+        .emptyProductList img{width: 95px;opacity: 0.8;}
     </style>
 @endsection
 @section('content')
@@ -47,6 +49,12 @@
                                     </a>
                                 </div>
                             @endforeach
+                                @if(!count($orders))
+                                    <div class="col-md-12 emptyProductList p-3">
+                                        <img src="{{ asset('images/general/empty_search.png') }}">
+                                        <span>Whooops, no listing match search criteria...</span>
+                                    </div>
+                                @endif
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">

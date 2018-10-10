@@ -27,7 +27,7 @@ class OrderRequest extends FormRequest
             'street' => 'required',
             'city' => 'required',
             'delivery_places' => 'required',
-            'qty' => 'required',
+            'qty' => 'required|numeric|min:1|max:'.$this->product->qty,
             'name' => 'required',
             'mobile' => 'required',
             'telephone' => 'required',

@@ -77,6 +77,7 @@
                                     <li>Delivery Places : @foreach($places as $place) {{ $place }} , @endforeach</li>
                                 </ul>
                                 <hr>
+                                <a href="{{ route('admin.product.order', $product) }}" class="btn btn-sm btn-secondary"><i class="fa fa-shopping-cart"></i> Orders</a>
                                 @if($product->status == 'Accept')
                                     <button class="btn btn-sm btn-danger changeProductStatus" value="Reject">Reject</button>
                                 @elseif($product->status == 'Pending')

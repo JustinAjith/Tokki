@@ -17,15 +17,15 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
             $table->string('code', 30)->nullable();
-            $table->string('category');
-            $table->string('sub_category');
+            $table->unsignedInteger('category_id')->index();
+            $table->unsignedInteger('sub_category_id')->index();
             $table->string('mini_category')->nullable();
             $table->string('heading');
             $table->string('key_word');
             $table->enum('discount_type', ['LKR', '%'])->default('LKR');
             $table->float('discount')->nullable()->default(0);
             $table->decimal('price', 10,2);
-            $table->smallInteger('qty');
+            $table->unsignedSmallInteger('qty');
             $table->string('delivery_places');
             $table->string('delivery_duration', 30);
             $table->string('image');
@@ -35,11 +35,13 @@ class CreateProductsTable extends Migration
             $table->string('features')->nullable();
             $table->string('features_description')->nullable();
             $table->enum('status', ['Accept', 'Pending', 'Reject'])->default('Pending');
-            $table->smallInteger('bid_value');
+            $table->unsignedSmallInteger('bid_value');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Order;
 
 use App\Order;
+use App\Product;
 use App\Repositories\User\OrderRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,7 +36,9 @@ class OrderController extends Controller
 
     public function status(): View
     {
-        return view('user.order.status');
+        $recentOrders = $this->order->recentOrders();
+        $recentBids = $this->order->recentBid();
+        return view('user.order.status', compact('recentOrders', 'recentBids'));
     }
 
     public function orderStatus(Request $request, $status, Order $order)
@@ -47,5 +50,13 @@ class OrderController extends Controller
     {
         $order->delete();
         return ['success'=>true];
+    }
+
+    public function productOrder(Request $request, $product)
+    {
+        if(\request()->ajax()) {
+            return $this->order->userOrder($request, $product);
+        }
+        return view('user.order.order', compact('product'));
     }
 }

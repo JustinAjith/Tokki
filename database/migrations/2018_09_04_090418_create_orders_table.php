@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->enum('discount_type', ['LKR', '%']);
             $table->float('discount')->nullable()->default(0);
             $table->decimal('price', 10,2);
-            $table->smallInteger('qty');
+            $table->unsignedSmallInteger('qty');
             $table->string('delivery_places');
             $table->string('features')->nullable();
             $table->string('features_description')->nullable();

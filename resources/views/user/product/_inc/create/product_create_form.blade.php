@@ -10,12 +10,14 @@
         <div class="form-group">
             <label class="control-label">Category</label>
             <input type="text" name="category" class="form-control" readonly="true" ng-value="category">
+            <input type="hidden" name="category_id" class="form-control" ng-value="category_id">
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
             <label class="control-label">Sub category</label>
             <input type="text" name="sub_category" class="form-control" readonly="true" ng-value="subCategory">
+            <input type="hidden" name="sub_category_id" class="form-control" ng-value="subCategory_id">
         </div>
     </div>
 </div>

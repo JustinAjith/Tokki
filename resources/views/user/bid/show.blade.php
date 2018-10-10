@@ -26,15 +26,19 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 Bid<br>
                                 <span class="text-muted">{{ $bid->bid }}</span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 Receipt Id<br>
                                 <span class="text-muted">{{ $bid->receipt_id }}</span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                Amount<br>
+                                <span class="text-muted">{{ $bid->amount }}</span>
+                            </div>
+                            <div class="col-md-3">
                                 Date<br>
                                 <span class="text-muted">{{ $bid->date }}</span>
                             </div>

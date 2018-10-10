@@ -44,20 +44,8 @@ if(!function_exists('city')) {
 
 if(!function_exists('categories')) {
     function categories() {
-        return [
-            "All Categories" => "All Categories",
-            "Women's Clothing" => "Women's Clothing",
-            "Men's Clothing" => "Men's Clothing",
-            "Kids and Baby" => "Kids and Baby",
-            "Bags and Shoes" => "Bags and Shoes",
-            "Jewelries" => "Jewelries",
-            "Watches" => "Watches",
-            "Fashion Accessories" => "Fashion Accessories",
-            "Phones and Accessories" => "Phones and Accessories",
-            "Computer and Office" => "Computer and Office",
-            "Home and Furniture" => "Home and Furniture",
-            "Services" => "Services",
-        ];
+        $categories = \App\Category::all();
+        return $categories;
     }
 }
 

@@ -43,8 +43,9 @@
                         <div class="col-5 mt-3 p-0">
                             <div class="input-group">
                                 <select class="form-control searchSelectInput" style="height: 35px;">
+                                    <option value="">All Categories</option>
                                     @foreach(categories() as $key=>$value)
-                                        <option value="{{ $value }}">{{ $value }}</option>
+                                        <option value="{{ $value->name }}">{{ $value->name }}</option>
                                     @endforeach
                                 </select>
                                 <div class="input-group-append">

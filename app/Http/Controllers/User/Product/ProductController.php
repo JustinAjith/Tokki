@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Product;
 
+use App\Category;
 use App\Http\Requests\User\Product\Create\ProductRequest;
 use App\Http\Requests\User\Product\Edit\GeneralDetailRequest;
 use App\Http\Requests\User\Product\Edit\PriceRequest;
@@ -33,7 +34,8 @@ class ProductController extends Controller
 
     public function create(): View
     {
-        return view('user.product.create');
+        $categories = Category::with('subCategory')->get();
+        return view('user.product.create', compact('categories'));
     }
 
     public function store(ProductRequest $request): RedirectResponse

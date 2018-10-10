@@ -24,10 +24,11 @@ class BidRepository
     {
         $columns = array(
             0 => 'receipt_id',
-            1 => 'bid',
-            2 => 'date',
-            3 => 'status',
-            4 => 'action',
+            1 => 'amount',
+            2 => 'bid',
+            3 => 'date',
+            4 => 'status',
+            5 => 'action',
         );
         $userId = Auth::user()->id;
         $totalDatas = $this->bid->where('user_id',$userId)->count();
@@ -51,6 +52,7 @@ class BidRepository
                 $query->where('user_id', $userId);
             })->where(function ($query) use ($search) {
                 $query->where('receipt_id', 'like', "%{$search}%")
+                    ->orWhere('amount', 'like', "%{$search}%")
                     ->orWhere('bid', 'like', "%{$search}%")
                     ->orWhere('date', 'like', "%{$search}%")
                     ->orWhere('status', 'like', "%{$search}%");
@@ -65,6 +67,7 @@ class BidRepository
         if($posts){
             foreach($posts as $r) {
                 $nestedData['receipt_id'] = $r->receipt_id;
+                $nestedData['amount'] = $r->amount;
                 $nestedData['bid'] = $r->bid;
                 $nestedData['date'] = $r->date;
                 $nestedData['status'] = $r->status == "Accept" ? "<span class=\"badge badge-success\">Accept</span>" : ($r->status == "Pending" ? "<span class=\"badge badge-secondary\">Pending</span>" : ($r->status == "Reject" ? "<span class=\"badge badge-danger\">Reject</span>" : ""));

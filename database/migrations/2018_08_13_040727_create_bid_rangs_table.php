@@ -15,9 +15,9 @@ class CreateBidRangsTable extends Migration
     {
         Schema::create('bid_rangs', function (Blueprint $table) {
             $table->increments('id');
-            $table->smallInteger('from');
-            $table->smallInteger('to');
-            $table->smallInteger('bid');
+            $table->decimal('from',8,2);
+            $table->decimal('to', 8,2);
+            $table->unsignedSmallInteger('bid');
             $table->timestamps();
             $table->softDeletes();
         });

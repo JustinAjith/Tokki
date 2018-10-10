@@ -20,6 +20,8 @@
     @yield('content')
 </div>
 
+@include('web.layouts._inc.footer')
+
 @include('web.layouts._inc.script')
 @yield('script')
 </body>

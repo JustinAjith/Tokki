@@ -1,8 +1,9 @@
 @extends('user.layouts.master')
 @section('style')
     <style>
-        ol{padding-left: 1.5rem;}
         .dropdown-menu li{padding: 0px 12px;}
+        .selectCategoryItems small{cursor: pointer; display: block;}
+        .selectCategoryItems small:hover{color: #ff970c;}
     </style>
 @endsection
 @section('content')

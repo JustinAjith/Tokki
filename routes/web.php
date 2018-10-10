@@ -11,9 +11,23 @@ Route::group(['namespace'=>'Web'], function($routes){
         $routes->get('/', 'HomeController@index')->name('welcome');
     });
 
+    $routes->group(['namespace'=>'Category'], function($routes){
+        $routes->get('/category/{ref_id}', 'CategoryController@index')->name('web.category.product');
+        $routes->get('/category/{ref_id}/{sort}/{filter}', 'CategoryController@filter')->name('web.category.product.filter');
+
+        $routes->get('/best-sell', 'CategoryController@bestSell')->name('web.best.sell');
+        $routes->get('/popular-categories', 'CategoryController@popularCategories')->name('web.popular.categories');
+        $routes->get('/special-offers', 'CategoryController@specialOffers')->name('web.special.offers');
+    });
+
     $routes->group(['namespace'=>'Order'], function($routes){
         $routes->get('/item/{category}/{product}', 'OrderController@show')->name('single.product.show');
         $routes->post('/item/order/{product}', 'OrderController@store')->name('new.product.order');
+    });
+
+    $routes->group(['namespace' => 'Contact'], function($routes){
+        $routes->get('/contact-us', 'ContactController@index')->name('web.contact.us');
+        $routes->post('/contact-us/submit', 'ContactController@store')->name('web.contact.us');
     });
 });
 
@@ -53,6 +67,9 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->get('/show/{order}', 'OrderController@show')->name('user.order.show');
         $routes->post('status/{status}/{order}', 'OrderController@orderStatus')->name('user.order.reject.status');
         $routes->post('accept/status/{status}/{order}', 'OrderController@orderStatus')->name('user.order.accept.status');
+
+        $routes->get('/product/{product}', 'OrderController@productOrder')->name('user.product.order');
+        $routes->post('/product/{product}', 'OrderController@productOrder')->name('user.product.order.all');
     });
     // user Bid Related Routes
     $routes->group(['namespace'=>'Bid'], function($routes){
@@ -97,11 +114,18 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/', 'ProductController@index')->name('admin.product');
         $routes->get('/show/{product}', 'ProductController@show')->name('admin.product.show');
         $routes->patch('/status/{status}/{product}', 'ProductController@status')->name('admin.product.status');
+
+        $routes->get('/categories', 'CategoryController@index')->name('admin.category');
+        $routes->post('/categories', 'CategoryController@store')->name('admin.category.store');
+        $routes->post('/sub-category', 'CategoryController@storeSubCategory')->name('admin.sub.category.store');
     });
-    // Admin Product Related Routes
+    // Admin Order Related Routes
     $routes->group(['prefix'=>'/order', 'namespace'=>'Order'], function($routes){
         $routes->get('/', 'OrderController@index')->name('admin.order');
         $routes->get('/show/{order}', 'OrderController@show')->name('admin.order.show');
+
+        $routes->get('/product/{product}', 'OrderController@productOrder')->name('admin.product.order');
+        $routes->post('/product/{product}', 'OrderController@productOrder')->name('admin.product.order.all');
     });
     // Admin Bid Related Routes
     $routes->group(['prefix'=>'/bid', 'namespace'=>'Bid'], function($routes){
@@ -126,5 +150,12 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->post('/store', 'UserController@store')->name('admin.user.store');
         $routes->get('/show/{user}', 'UserController@show')->name('admin.user.show');
         $routes->post('/reset-password', 'UserController@resetPassword')->name('admin.user.reset.password');
+    });
+
+    // Admin Settings Related Routes
+    $routes->group(['prefix'=>'setting', 'namespace'=>'Setting'], function($routes){
+        $routes->get('/slider', 'SliderController@index')->name('admin.slider.index');
+        $routes->post('/slider', 'SliderController@store')->name('admin.slider.store');
+        $routes->post('/slider/{slider}', 'SliderController@delete')->name('admin.slider.delete');
     });
 });

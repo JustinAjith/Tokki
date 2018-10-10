@@ -23,6 +23,7 @@
                                 <thead>
                                 <tr>
                                     <th>Receipt Id</th>
+                                    <th>Amount</th>
                                     <th>Bid</th>
                                     <th>Date</th>
                                     <th>Status</th>
@@ -52,6 +53,7 @@
             },
             "columns": [
                 {"data": "receipt_id"},
+                {"data": "amount"},
                 {"data": "bid"},
                 {"data": "date"},
                 {"data": "status"},

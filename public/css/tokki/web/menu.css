@@ -18,8 +18,10 @@
 }
 
 /* Main menu style */
-.main .cbp-hssubmenu h6 {
+.main .cbp-hssubmenu h5 {
     margin-top: 15px;
+    padding: 0 10px;
+    font-size: 17px;
 }
 
 .cbp-hsmenu-wrapper .cbp-hsmenu {
@@ -40,19 +42,20 @@
 
 /* Main menu link style */
 .cbp-hsmenu > li > a {
-    /*color: #fff;*/
-    font-size: 1.2em;
+    font-size: 17px;
     line-height: 2.5em;
     display: inline-block;
     position: relative;
     z-index: 10000;
     outline: none;
+    text-decoration: none;
+    color: #444;
 }
 
 .no-touch .cbp-hsmenu > li > a:hover,
 .no-touch .cbp-hsmenu > li > a:focus,
 .cbp-hsmenu > li.cbp-hsitem-open > a {
-    color: #02639d;
+    color: #ff970c;
 }
 
 .cbp-hssubmenu {
@@ -83,7 +86,7 @@
     top: 100%;
     width: 100%;
     z-index: 0;
-    text-align: center; /* for aligning the sub items */
+    /* text-align: center;*/ /* for aligning the sub items */
     visibility: hidden;
 }
 
@@ -101,21 +104,32 @@
     width: 16.2%;
     display: inline-block;
     vertical-align: top;
-    box-shadow: -28px 0 0 -27px #ddd, 0 -28px 0 -27px #ddd;
+    /*box-shadow: -28px 0 0 -27px #ddd, 0 -28px 0 -27px #ddd;*/
     opacity: 0;
     -webkit-transition: opacity 0.1s 0s;
     -moz-transition: opacity 0.1s 0s;
     transition: opacity 0.1s 0s;
 }
 
+.cbp-hssubmenu li hr
+{
+    margin: 5px;
+}
+
+.cbp-hssubmenu .productCategoryItems li a:hover
+{
+    cursor: pointer;
+    color: #ff970c;
+}
+
 /* First 6 items don't have upper box shadow */
 .cbp-hssubmenu > li:nth-child(-n+6) {
-    box-shadow: -28px 0 0 -27px #ddd;
+    /*box-shadow: -28px 0 0 -27px #ddd;*/
 }
 
 /* Every 7th item does not have a left box shadow */
 .cbp-hssubmenu > li:nth-child(6n+1) {
-    box-shadow:  0 -28px 0 -27px #ddd;
+    /*box-shadow:  0 -28px 0 -27px #ddd;*/
 }
 
 /* The first one does not have any box shadow */
@@ -125,15 +139,18 @@
 
 .cbp-hssubmenu > li a {
     display: block;
-    text-align: center;
-    color: #a2a2a2;
-    outline: none;
-    padding: 2em 1em 1em 1em;
+    /*text-align: center;*/
+    color: #6d6d6d;
+    text-decoration: none;
+    padding: 2px 0;
+    font-size: 13px;
+    /*outline: none;*/
+    /*padding: 2em 1em 1em 1em;*/
 }
 
 .no-touch .cbp-hssubmenu > li a:hover,
 .no-touch .cbp-hssubmenu > li a:focus {
-    color: #888;
+    /*color: #888;*/
 }
 
 .cbp-hssubmenu > li a span {

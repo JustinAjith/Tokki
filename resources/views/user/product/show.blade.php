@@ -80,6 +80,7 @@
                                     <hr>
                                     <div class="row ml-0">
                                         <div class="dropdown mr-2">
+                                            <a href="{{ route('user.product.order', $product) }}" class="btn btn-sm btn-secondary"><i class="fa fa-shopping-cart"></i> Orders</a>
                                             <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown"><i class="fa fa-pencil"></i> Edit</button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ route('user.product.edit', ['general-details', $product]) }}">General Details</a>

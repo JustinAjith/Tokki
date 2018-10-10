@@ -44,6 +44,12 @@
                                         <input type="text" value="{{ old('receipt_id') }}" name="receipt_id" class="form-control" placeholder="enter receipt number">
                                     </div>
                                 </div>
+                                <div class="form-group {{ $errors->has('amount') ? 'is-invalid' : '' }}">
+                                    <label class="col-sm-12 control-label">Amount</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="{{ old('amount') }}" name="amount" class="form-control" placeholder="enter payment amount">
+                                    </div>
+                                </div>
                                 <div class="form-group {{ $errors->has('receipt_file') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Receipt</label>
                                     <div class="col-sm-10">

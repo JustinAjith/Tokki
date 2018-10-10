@@ -15,7 +15,7 @@ class Bid extends Model implements Auditable
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'user_id', 'bid', 'receipt_id', 'receipt', 'date', 'status',
+        'user_id', 'bid', 'receipt_id', 'amount', 'receipt', 'date', 'status',
     ];
 
     public function user()

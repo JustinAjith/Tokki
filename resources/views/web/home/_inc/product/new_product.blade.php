@@ -1,7 +1,7 @@
 <div class="row">
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12">
                 <h2 class="productCollectionHeading">New Products</h2>
             </div>
         </div>
@@ -16,7 +16,7 @@
                                     <img ng-src="{{ asset('storage/display_image') }}/@{{ newProduct.image }}" class="productListImage">
                                 </div>
                                 <div class="row justify-content-center">
-                                    <span><small>@{{ newProduct.qty }} Pieces Available</small></span>
+                                    <small>@{{ newProduct.qty }} Pieces Available</small>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
@@ -35,7 +35,10 @@
                             </div>
                         </a>
                         <div class="text-center">
-                            <span ng-if="newProduct.name === null" class="productListEmptyProduct">No product to show</span>
+                            {{--<span ng-if="newProduct.name === null" class="productListEmptyProduct">No product to show</span>--}}
+                            <div ng-if="newProduct.name === null" class="emptyProductListDiv">
+                                <img src="{{ asset('images/general/empty.jpg') }}" class="productListImage">
+                            </div>
                         </div>
                     </div>
                 </div>
