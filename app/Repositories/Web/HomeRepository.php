@@ -19,13 +19,17 @@ class HomeRepository
 
     public function selectProducts()
     {
-        $products = DB::table('products')->select('products.*')->join('users', 'users.bid', '>=', 'products.bid_value')->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC');
+        $products = DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
         return $products;
     }
 
     public function newProduct()
     {
-        $products = $this->selectProducts()->limit(4)->get();
+        $products = $this->selectProducts()->orderBy('products.id', 'DESC')->limit(6)->get();
         $newProduct = ProductResourceCollection::collection($products);
         return $newProduct;
     }
@@ -33,5 +37,12 @@ class HomeRepository
     public  function lastDeal()
     {
 
+    }
+
+    public  function loveProduct()
+    {
+        $products = $this->selectProducts()->where('products.category_id', 1)->orderBy('products.id', 'DESC')->limit(6)->get();
+        $loveProduct = ProductResourceCollection::collection($products);
+        return $loveProduct;
     }
 }

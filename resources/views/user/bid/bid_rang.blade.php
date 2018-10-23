@@ -22,7 +22,7 @@
                             <table id="appDataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Rang</th>
+                                    <th>Rang <small>(Rs)</small></th>
                                     <th>Bid</th>
                                 </tr>
                                 </thead>

@@ -4,8 +4,10 @@ namespace App\Repositories\Admin;
 use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Mail\NewAccount;
 use App\Mail\PasswordReset;
+use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -102,6 +104,23 @@ class UserRepository
         $user = $this->user->find($request->user_id);
         $user->update(['password'=>Hash::make($request->password)]);
         Mail::send(new PasswordReset($request, $user));
+        return ['success'=>true];
+    }
+
+    public function offerBid(Request $request)
+    {
+        $user = $this->user->find($request->user_id);
+        $finalBid = $user->bid + $request->bid;
+        $user->update(['bid'=>$finalBid, 'total_bid'=>$finalBid]);
+
+        $notification = new Notification();
+        $notification->message = 'Congratulations! You have received a Loyalty bonus of '.$request->bid.' Bid.';
+        $notification->title = 'Offer Bid.';
+        $notification->user_id = $request->user_id;
+        $notification->admin_id = Auth::user()->id;
+        $notification->admin_status = 0;
+        $notification->save();
+
         return ['success'=>true];
     }
 }

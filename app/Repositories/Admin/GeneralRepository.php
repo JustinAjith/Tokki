@@ -1,15 +1,18 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Message;
 use App\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class GeneralRepository
 {
     protected $notification;
-    public function __construct(Notification $notification = null)
+    protected $message;
+    public function __construct(Notification $notification = null, Message $message = null)
     {
         $this->notification = $notification ?? new Notification();
+        $this->message = $message ?? new Message();
     }
 
     public function getNotification()
@@ -26,10 +29,20 @@ class GeneralRepository
 
     public function readNotification()
     {
-        $notifications = $this->notification->where(['admin_id'=>null, 'admin_status'=>1])->get();
-        foreach($notifications as $notification){
-            $notification->update(['admin_status'=>0]);
-        }
+        $this->notification->where(['admin_id'=>null, 'admin_status'=>1])->update(['admin_status'=>0]);
+        return ['success'=>true];
+    }
+
+    public function getMessage()
+    {
+        $messages = $this->message::with('user')->where('admin_id', '!=', null)->limit(3)->orderBy('id', 'DESC')->get();
+        $unread = $this->message->where('admin_status', 1)->where( 'admin_id', '!=', null)->count();
+        return response()->json(['messages'=>$messages, 'unread'=>$unread]);
+    }
+
+    public function readMessage()
+    {
+        $this->message::where('admin_status', 1)->where( 'admin_id', '!=', null)->update(['admin_status'=>0]);
         return ['success'=>true];
     }
 }

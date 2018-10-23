@@ -104,7 +104,7 @@
                                             $productDetailsDescription= json_decode($product->description);
                                             ?>
                                             @foreach($productDetailsTitle as $key => $title)
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-2">
                                                     {{ $title }} : {{ array_get($productDetailsDescription, $key) }}
                                                 </div>
                                             @endforeach

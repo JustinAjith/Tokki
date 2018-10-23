@@ -73,6 +73,112 @@ class SubCategoryTableSeeder extends Seeder
                 'name' => 'Other',
                 'ref_id' => '98543216212'
             ],
+            [ // 13
+                'category_id' => '3',
+                'name' => 'Baby Dresses',
+                'ref_id' => '91847543313'
+            ],
+            [ // 14
+                'category_id' => '3',
+                'name' => 'Boy\'s T-Shirts',
+                'ref_id' => '929895465314'
+            ],
+            [ // 15
+                'category_id' => '3',
+                'name' => 'Boy\'s Jeans',
+                'ref_id' => '959837465315'
+            ],
+            [ // 16
+                'category_id' => '3',
+                'name' => 'Tops & Tees (Girls)',
+                'ref_id' => '027284465316'
+            ],
+            [ // 17
+                'category_id' => '3',
+                'name' => 'Boy\'s Shoes',
+                'ref_id' => '229795367317'
+            ],
+            [ // 18
+                'category_id' => '3',
+                'name' => 'Girl\'s Shoes',
+                'ref_id' => '33969442318'
+            ],
+            [ // 19
+                'category_id' => '3',
+                'name' => 'Toys',
+                'ref_id' => '59997465319'
+            ],
+            [ // 20
+                'category_id' => '4',
+                'name' => 'Kids & Baby\'s Bags',
+                'ref_id' => rand(00000000, 99999999).'420'
+            ],
+            [ // 21
+                'category_id' => '4',
+                'name' => 'Men\'s Shoes',
+                'ref_id' => rand(00000000, 99999999).'421'
+            ],
+            [ // 22
+                'category_id' => '4',
+                'name' => 'Women\'s Shoes',
+                'ref_id' => rand(00000000, 99999999).'422'
+            ],
+            [ // 23
+                'category_id' => '4',
+                'name' => 'Men\'s Sandals & Slippers',
+                'ref_id' => rand(00000000, 99999999).'423'
+            ],
+            [ // 24
+                'category_id' => '4',
+                'name' => 'Women\'s Sandals & Slippers',
+                'ref_id' => rand(00000000, 99999999).'424'
+            ],
+            [ // 25
+                'category_id' => '4',
+                'name' => 'Handbags',
+                'ref_id' => rand(00000000, 99999999).'425'
+            ],
+            [ // 26
+                'category_id' => '4',
+                'name' => 'Other',
+                'ref_id' => rand(00000000, 99999999).'426'
+            ],
+
+            [ // 27
+                'category_id' => '5',
+                'name' => 'Men\'s Bracelets & Bangles',
+                'ref_id' => rand(00000000, 99999999).'527'
+            ],
+            [ // 28
+                'category_id' => '5',
+                'name' => 'Women\'s Bracelets & Bangles',
+                'ref_id' => rand(00000000, 99999999).'528'
+            ],
+            [ // 29
+                'category_id' => '5',
+                'name' => 'Men\'s Rings',
+                'ref_id' => rand(00000000, 99999999).'529'
+            ],
+            [ // 30
+                'category_id' => '5',
+                'name' => 'Women\'s Rings',
+                'ref_id' => rand(00000000, 99999999).'530'
+            ],
+            [ // 31
+                'category_id' => '5',
+                'name' => 'Men\'s Chains & Pendants',
+                'ref_id' => rand(00000000, 99999999).'531'
+            ],
+            [ // 32
+                'category_id' => '5',
+                'name' => 'Women\'s Chains & Pendants',
+                'ref_id' => rand(00000000, 99999999).'532'
+            ],
+            [ // 33
+                'category_id' => '5',
+                'name' => 'Other',
+                'ref_id' => rand(00000000, 99999999).'533'
+            ],
         ];
 
         DB::table('sub_categories')->insert($data);

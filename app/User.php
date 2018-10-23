@@ -45,7 +45,7 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
-    public function message()
+    public function messages()
     {
         return $this->hasMany(Message::class);
     }
@@ -53,5 +53,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

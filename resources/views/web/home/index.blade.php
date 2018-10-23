@@ -1,6 +1,9 @@
 @extends('web.layouts.master')
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/tokki/web/menu.css') }}">
+    <style>
+        .productListCard .productListDiscountBadge {font-size: 16px;}
+    </style>
 @endsection
 @section('content')
     <div ng-controller="homeController" ng-cloak>
@@ -8,6 +11,7 @@
         @include('web.home._inc.header.top_slider')
         <div class="productCollectionList">
             @include('web.home._inc.product.new_product')
+            @include('web.home._inc.product.more_to_love')
         </div>
     </div>
 @endsection

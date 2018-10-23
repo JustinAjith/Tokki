@@ -6,6 +6,7 @@ use App\Bid;
 use App\BidRang;
 use App\Http\Requests\Admin\Bid\BidRangRequest;
 use App\Notification;
+use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +108,14 @@ class BidRepository
             $notification->admin_id = Auth::user()->id;
             $notification->admin_status = 0;
             $notification->save();
+            // Add User Payment
+            $payment = new Payment();
+            $payment->user_id = $bid->user_id;
+            $payment->description = 'Bid buy';
+            $payment->outgoing = $bid->amount;
+            $payment->date = $bid->date;
+            $payment->save();
+
             return ['success'=>'success'];
         } else {
             return ['error'=>'error'];

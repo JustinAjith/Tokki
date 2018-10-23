@@ -3,6 +3,7 @@ namespace App\Repositories\User;
 
 use App\Bid;
 use App\Order;
+use App\Payment;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
@@ -27,6 +28,19 @@ class OrderRepository
             $product = Product::find($order->product_id);
             $product->update(['qty'=>$product->qty + $order->qty]);
         }
+        if($status == 'Complete') {
+            if($order->discount_type == 'LKR') {
+                $amount = ($order->price * $order->qty) - ($order->discount * $order->qty);
+            } elseif($order->discount_type == '%') {
+                $amount = ((1 - $order->discount/100) * $order->price) * $order->qty;
+            }
+            $payment = new Payment();
+            $payment->user_id = Auth::user()->id;
+            $payment->description = 'Sell order';
+            $payment->income = $amount;
+            $payment->date = date('Y-m-d');
+            $payment->save();
+        }
         return ['success'=>true];
     }
 
@@ -48,9 +62,9 @@ class OrderRepository
             1 => 'street',
             2 => 'city',
             3 => 'mobile',
-            4 => 'telephone',
-            5 => 'delivery_places',
-            6 => 'status',
+            4 => 'date',
+            5 => 'status',
+            6 => 'action',
         );
         $totalDatas = $this->order::where(['product_id'=>$product, 'user_id'=>$user])->count();
         $limit = $request->input('length');
@@ -76,8 +90,7 @@ class OrderRepository
                     ->orWhere('street', 'like', "%{$search}%")
                     ->orWhere('city', 'like', "%{$search}%")
                     ->orWhere('mobile', 'like', "%{$search}%")
-                    ->orWhere('telephone', 'like', "%{$search}%")
-                    ->orWhere('delivery_places', 'like', "%{$search}%")
+                    ->orWhere('date', 'like', "%{$search}%")
                     ->orWhere('status', 'like', "%{$search}%");
             });
 
@@ -93,9 +106,11 @@ class OrderRepository
                 $nestedData['street'] = $r->street;
                 $nestedData['city'] = $r->city;
                 $nestedData['mobile'] = $r->mobile;
-                $nestedData['telephone'] = $r->telephone;
-                $nestedData['delivery_places'] = $r->delivery_places;
+                $nestedData['date'] = $r->date;
                 $nestedData['status'] = $r->status == "Complete" ? "<span class=\"badge badge-primary\">Complete</span>" : ($r->status == "Accept" ? "<span class=\"badge badge-success\">Accept</span>" : ($r->status == "Pending" ? "<span class=\"badge badge-secondary\">Pending</span>" : ($r->status == "Reject" ? "<span class=\"badge badge-danger\">Reject</span>" : "")));
+                $nestedData['action'] = '
+                    <a href="/orders/show/' . $r->id . '" class="btn btn-sm btn-outline-success"><i class="fa fa-eye"></i> View</a>
+                ';
                 $data[] = $nestedData;
             }
         }

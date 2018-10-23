@@ -40,31 +40,46 @@ class CategoryController extends Controller
 
     public function productGet($sub_category)
     {
-        return DB::table('products')->select('products.*')->join('users', 'users.bid', '>=', 'products.bid_value')->where('sub_category_id', $sub_category->id)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
+        return DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('sub_category_id', $sub_category->id)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
     }
 
     public function bestSell()
     {
-        $products = DB::table('orders')->select('products.*')
-                    ->join('products', 'products.id', '=', 'orders.product_id')
-                    ->join('users', 'users.bid', '>=', 'products.bid_value')
-                    ->where('orders.status', '=', 'Complete')
-                    ->where('orders.deleted_at', '=', null)
-                    ->orderBy('orders.id', 'DESC')->paginate(40);
+        $products = DB::table('orders')->select('products.*', 'users.bid')->join('products', 'products.id', '=', 'orders.product_id')
+            ->join('users', function($user){
+                $user->on('users.id', '=', 'orders.user_id');
+                $user->on('users.bid', '>=', 'products.bid_value');
+            })->where('orders.status', '=', 'Complete')
+            ->where('orders.deleted_at', '=', null)
+            ->orderBy('orders.id', 'DESC')
+            ->groupBy('orders.product_id')->paginate(40);
+
         $heading = 'Best Sell';
         return view('web.category.product', compact('products', 'heading'));
     }
 
     public function popularCategories()
     {
-        $products = DB::table('products')->select('products.*')->join('users', 'users.bid', '>=', 'products.bid_value')->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orWhere('category_id', [1, 2])->orderBy('products.id', 'DESC')->paginate(40);
+        $products = DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('products.status', '=', 'Accept')->where('products.category_id', 1)->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC')->paginate(40);
         $heading = 'Popular Categories';
         return view('web.category.product', compact('products', 'heading'));
     }
 
     public function specialOffers()
     {
-        $products = DB::table('products')->select('products.*')->join('users', 'users.bid', '>=', 'products.bid_value')->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->where('products.discount', '>', 0)->orderBy('products.id', 'DESC')->paginate(40);
+        $products = DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('products.discount', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orderBy('products.updated_at', 'DESC')->paginate(40);
         $heading = 'Special Offers';
         return view('web.category.product', compact('products', 'heading'));
     }

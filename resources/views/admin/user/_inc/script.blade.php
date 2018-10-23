@@ -28,6 +28,20 @@
                 $scope.userPasswordReset = true;
                 $scope.aboutCompany = false;
             }, 300);
-        }
+        };
+        $scope.closeResetPaswordForm= function() {
+            $scope.aboutCompany = true;
+            $scope.userPasswordReset = false;
+        };
+        $scope.bidShow = true;
+        $scope.bidOfferFormShow = false;
+        $scope.addOfferBid = function() {
+            $scope.bidShow = false;
+            $scope.bidOfferFormShow = true;
+        };
+        $scope.closeOfferBidForm = function() {
+            $scope.bidShow = true;
+            $scope.bidOfferFormShow = false;
+        };
     });
 </script>

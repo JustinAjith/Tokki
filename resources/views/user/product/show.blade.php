@@ -76,6 +76,14 @@
                                         $places = json_decode($product->delivery_places);
                                         ?>
                                         <li>Delivery Places : @foreach($places as $place) {{ $place }} , @endforeach</li>
+                                        <li>
+                                            Bid Value : {{ $product->bid_value }}
+                                            @if(Auth::user()->bid >= $product->bid_value)
+                                                <span class="float-right badge badge-success"><small>Active</small></span>
+                                            @else
+                                                <span class="float-right badge badge-danger"><small>Inactive</small></span>
+                                            @endif
+                                        </li>
                                     </ul>
                                     <hr>
                                     <div class="row ml-0">

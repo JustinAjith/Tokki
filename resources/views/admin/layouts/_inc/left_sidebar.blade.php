@@ -37,11 +37,10 @@
                         <li><a href="{{ route('admin.bid.rang') }}">Bid Rang</a></li>
                     </ul>
                 </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
+                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Message</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">Compose</a></li>
-                        <li><a href="#">Read</a></li>
-                        <li><a href="#">Inbox</a></li>
+                        <li><a href="{{ route('admin.message.index') }}">Inbox</a></li>
+                        <li><a href="{{ route('admin.message.send') }}">Send</a></li>
                     </ul>
                 </li>
 

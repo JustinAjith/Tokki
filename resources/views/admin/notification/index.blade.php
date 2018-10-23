@@ -35,7 +35,7 @@
                                                     {{ $notification->message }}<br>
                                                     <small>{{ $notification->created_at }}</small>
                                                 </td>
-                                                <td><center><button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></center></td>
+                                                <td><center><button class="btn btn-sm btn-danger removeNotification" value="{{ $notification->id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button></center></td>
                                             </tr>
                                         @endforeach
                                         @if(count($notifications) == 0)
@@ -63,5 +63,42 @@
 @endsection
 
 @section('script')
-
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.removeNotification').on('click', function(){
+                var removeRow = $(this).closest('tr');
+                var id = $(this).val();
+                var routeUrl = "{{ route('admin.remove.notification', ['id'=>'ID']) }}";
+                routeUrl = routeUrl.replace('ID', id);
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you want to change status to Reject?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        $.ajax({
+                            method: 'POST',
+                            url: routeUrl,
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                            success: function (response) {
+                                $.jnoty("Your action was successfully completed!", {
+                                    header: 'Success',
+                                    theme: 'jnoty-success',
+                                    icon: 'fa fa-check-circle-o'
+                                });
+                                removeRow.remove();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

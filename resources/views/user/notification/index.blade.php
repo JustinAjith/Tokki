@@ -35,7 +35,7 @@
                                                     {{ $notification->message }}<br>
                                                     <small>{{ $notification->created_at }}</small>
                                                 </td>
-                                                <td><center><button class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></center></td>
+                                                <td><center><button class="btn btn-sm btn-danger removeNotification" value="{{ $notification->id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button></center></td>
                                             </tr>
                                         @endforeach
                                         @if(count($notifications) == 0)

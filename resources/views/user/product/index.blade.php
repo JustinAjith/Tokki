@@ -7,6 +7,7 @@
         .productPrice {font-weight: 700;font-size: 16px;color: #ff970c;}
         .emptyProductList {background: #f1f1f1;}
         .emptyProductList img{width: 95px;opacity: 0.8;}
+        .productListCard .productStatusBadge {position: absolute;top: 10px;padding: 2px 5px;font-size: 12px;}
     </style>
 @endsection
 @section('content')
@@ -32,6 +33,9 @@
                                 <div class="col-3 mb-3">
                                     <a href="{{ route('user.product.show', $product->id) }}">
                                         <div class="productListCard p-3">
+                                            <div class="productStatusBadge badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">
+                                                <span>{{ $product->status }}</span>
+                                            </div>
                                             <div class="row justify-content-center" style="padding: 0 20px;">
                                                 <img src="{{ asset('storage/display_image') }}/{{ $product->display_image }}" class="productListImage">
                                             </div>
@@ -55,9 +59,9 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="row justify-content-center mb-2">
-                                                <small class="float-right badge @if($product->status == 'Accept') badge-success @elseif($product->status == 'Pending') badge-warning @elseif($product->status == 'Reject') badge-danger @endif">{{ $product->status }}</small>
-                                            </div>
+                                            {{--<div class="row justify-content-center mb-2">--}}
+                                                {{--<small class="float-right">{{ $product->status }}</small>--}}
+                                            {{--</div>--}}
                                         </div>
                                     </a>
                                 </div>

@@ -97,11 +97,11 @@
                                     </div>
                                 @endif
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         Order Qty<br>
                                         {{ $order->qty }}
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         Total Price<br>
                                         @if($order->discount > 0)
                                             @if($order->discount_type == 'LKR')
@@ -118,6 +118,12 @@
                                         @else
                                             LKR {{ number_format($order->price * $order->qty, 2) }} | <small> ( {{ number_format($order->price, 2) }} * {{ $order->qty }} ) </small>
                                         @endif
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Order Date<br>
+                                        {{ $order->date }}
                                     </div>
                                 </div>
                                 <hr>

@@ -41,7 +41,7 @@
                                         <td><span>{{ $order->qty }} pcs</span></td>
                                         <td><span>{{ $order->bid_value }}</span></td>
                                         <td>
-                                            <span class="float-right badge @if($order->status == 'Accept') badge-success @elseif($order->status == 'Complete') badge-primary @elseif($order->status == 'Pending') badge-warning @elseif($order->status == 'Reject') badge-danger @endif">{{ $order->status }}</span>
+                                            <span class="float-right badge mt-2 @if($order->status == 'Accept') badge-success @elseif($order->status == 'Complete') badge-primary @elseif($order->status == 'Pending') badge-warning @elseif($order->status == 'Reject') badge-danger @endif">{{ $order->status }}</span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -123,12 +123,12 @@
             $( function () {
                 var data = [
                     {
-                        label: "Warning",
+                        label: "Used",
                         data: 100 - value,
                         color: "#DC3545"
                     },
                     {
-                        label: "Primary",
+                        label: "Remaining",
                         data: value,
                         color: "#8fc9fb"
                     }

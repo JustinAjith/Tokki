@@ -27,13 +27,6 @@
                         <li><a href="{{ route('user.order.status') }}">Order Status</a></li>
                     </ul>
                 </li>
-                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">Compose</a></li>
-                        <li><a href="#">Read</a></li>
-                        <li><a href="#">Inbox</a></li>
-                    </ul>
-                </li>
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Bid</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('user.bid') }}">Bid List</a></li>
@@ -41,7 +34,19 @@
                         <li><a href="{{ route('user.bid.rang') }}">Bid Rang</a></li>
                     </ul>
                 </li>
-
+                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-money"></i><span class="hide-menu">Payment</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('user.payment.statement') }}">P/L Statement</a></li>
+                        <li><a href="{{ route('user.payment.create') }}">Add Payment</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Message</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('user.message.compose') }}">Compose</a></li>
+                        <li><a href="{{ route('user.message.index') }}">Inbox</a></li>
+                        <li><a href="{{ route('user.message.send') }}">Send</a></li>
+                    </ul>
+                </li>
 
 
                 <li class="nav-label">Settings</li>

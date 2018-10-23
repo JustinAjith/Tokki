@@ -82,7 +82,7 @@
                                 <a href="{{ route('single.product.show', [str_replace(' ', '-', $product->heading), $product->id]) }}">
                                     <div class="productListCard">
                                         @if($product->discount > 0)
-                                            <span class="productListDiscountBadge badge badge-danger">
+                                            <span class="productListDiscountBadge badge-danger">
                                                 @if($product->discount_type == 'LKR')
                                                     {{ number_format($product->discount, 2) }} {{ $product->discount_type }}
                                                 @else

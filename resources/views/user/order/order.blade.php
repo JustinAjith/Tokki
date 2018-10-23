@@ -27,9 +27,9 @@
                                     <th>Address</th>
                                     <th>City</th>
                                     <th>Mobile</th>
-                                    <th>T-No</th>
-                                    <th>Delivery Places</th>
+                                    <th>Date</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -58,10 +58,10 @@
                 {"data": "street"},
                 {"data": "city"},
                 {"data": "mobile"},
-                {"data": "telephone"},
-                {"data": "delivery_places"},
-                {"data": "status"}
-            ]
+                {"data": "date"},
+                {"data": "status"},
+                {"data": "action", "orderable": false}
+            ],
         } );
     </script>
 @endsection

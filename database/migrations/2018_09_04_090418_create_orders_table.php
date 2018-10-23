@@ -32,6 +32,7 @@ class CreateOrdersTable extends Migration
             $table->smallInteger('bid_value');
             $table->text('comment')->nullable();
             $table->enum('status', ['Complete', 'Accept', 'Pending', 'Reject'])->default('Pending');
+            $table->date('date');
             $table->timestamps();
             $table->softDeletes();
 

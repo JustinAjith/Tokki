@@ -20,10 +20,12 @@
                 <div class="card">
                     <div class="card-header mb-1">
                         <div class="float-left">{{ $userBid->user->name }}</div>
-                        <div class="float-right" id="bidActions">
-                            <button class="btn btn-sm btn-success" id="bidAccept">Accept</button>
-                            <button class="btn btn-sm btn-danger" id="bidReject">Reject</button>
-                        </div>
+                        @if($userBid->status == 'Pending')
+                            <div class="float-right" id="bidActions">
+                                <button class="btn btn-sm btn-success" id="bidAccept">Accept</button>
+                                <button class="btn btn-sm btn-danger" id="bidReject">Reject</button>
+                            </div>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">

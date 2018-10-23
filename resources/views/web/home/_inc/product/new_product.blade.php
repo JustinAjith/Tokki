@@ -6,12 +6,16 @@
             </div>
         </div>
 
-        <div class="row mt-3">
+        <div class="row">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-3 productListCardMain" ng-repeat="newProduct in newProducts">
+                    <div class="col-md-2 productListCardMain" ng-repeat="newProduct in newProducts">
                         <a ng-href="@{{ newProduct.link }}" ng-if="newProduct.name !== null">
                             <div class="productListCard">
+                                <div class="productListDiscountBadge badge-danger p-0" ng-if="newProduct.discount !== 0">
+                                    <span ng-if="newProduct.discount_type === 'LKR'" class="badge badge-danger">@{{ newProduct.discount | currency : "" }} @{{ newProduct.discount_type }}</span>
+                                    <span ng-if="newProduct.discount_type === '%'" class="badge badge-danger">@{{ newProduct.discount }} @{{ newProduct.discount_type }}</span>
+                                </div>
                                 <div class="row justify-content-center" style="padding: 1rem 1rem 0 1rem">
                                     <img ng-src="{{ asset('storage/display_image') }}/@{{ newProduct.image }}" class="productListImage">
                                 </div>
@@ -25,11 +29,7 @@
                                 </div>
                                 <div class="row pb-2">
                                     <div class="col-12">
-                                        <span class="productListPrice">LKR @{{ newProduct.price }} </span> <small>/ piece</small>
-                                        <span class="productListDiscountPrice" ng-if="newProduct.discount !== 0"> |
-                                            <span ng-if="newProduct.discount_type === 'LKR'" class="badge badge-danger">@{{ newProduct.discount | currency : "" }} @{{ newProduct.discount_type }}</span>
-                                            <span ng-if="newProduct.discount_type === '%'" class="badge badge-danger">@{{ newProduct.discount }} @{{ newProduct.discount_type }}</span>
-                                        </span>
+                                        <span class="productListPrice">LKR @{{ newProduct.price }} </span>
                                     </div>
                                 </div>
                             </div>

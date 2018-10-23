@@ -13,15 +13,15 @@ class Message extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'message', 'sender', 'receiver', 'receiver_status'
+        'message', 'user_id', 'admin_id', 'user_status', 'admin_status'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function admins()
+    public function admin()
     {
         return $this->belongsTo(Admin::class);
     }

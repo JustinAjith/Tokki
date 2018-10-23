@@ -34,4 +34,10 @@ class HomeController extends Controller
         $lastDeal = $this->home->lastDeal();
         return response()->json($lastDeal);
     }
+
+    public function loveProduct()
+    {
+        $loveProduct = $this->home->loveProduct();
+        return response()->json($loveProduct);
+    }
 }

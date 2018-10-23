@@ -14,7 +14,7 @@ class Order extends Model implements Auditable
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['user_id', 'product_id', 'name', 'street', 'city', 'mobile', 'telephone', 'discount_type', 'discount', 'price', 'qty', 'delivery_places', 'features', 'features_description', 'bid_value', 'comment', 'status'];
+    protected $fillable = ['user_id', 'product_id', 'name', 'street', 'city', 'mobile', 'telephone', 'discount_type', 'discount', 'price', 'qty', 'delivery_places', 'features', 'features_description', 'bid_value', 'comment', 'status', 'date'];
 
     public function user()
     {

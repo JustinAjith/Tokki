@@ -40,10 +40,11 @@ class OrderRepository
         $order->delivery_places = $request->delivery_places;
         $order->features = json_encode($request->features);
         $order->features_description = json_encode($request->features_description);
-        $order->bid_value = $product->bid_value;
+        $order->bid_value = $product->bid_value; // In future we have to change variable like this : $product->bid_value * $request->qty
+        $order->date = date('Y-m-d');
         $order->save();
         $this->productQty($product, $request->qty);
-        $this->userBid($product);
+        $this->userBid($product); // Here also we have to change bid value : $product->bid_value * $request->qty
         $this->orderNotification($product);
         return ['success'=>true];
     }

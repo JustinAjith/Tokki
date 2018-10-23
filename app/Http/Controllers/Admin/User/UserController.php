@@ -50,4 +50,13 @@ class UserController extends Controller
         $this->user->resetPassword($request);
         return redirect()->back()->with('success', 'success');
     }
+
+    public function offerBid(Request $request)
+    {
+        $this->validate($request, [
+            'bid'=>'required'
+        ]);
+        $this->user->offerBid($request);
+        return redirect()->back()->with('success', 'success');
+    }
 }

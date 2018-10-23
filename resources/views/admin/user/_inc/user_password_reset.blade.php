@@ -16,6 +16,7 @@
         <input type="hidden" value="{{ $user->id }}" name="user_id">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-dark btn-sm" ng-click="closeResetPaswordForm()">Close</button>
                 <button type="submit" class="btn btn-success btn-sm">Submit</button>
             </div>
         </div>

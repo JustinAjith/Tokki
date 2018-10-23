@@ -23,11 +23,12 @@ Route::group(['namespace'=>'Web'], function($routes){
     $routes->group(['namespace'=>'Order'], function($routes){
         $routes->get('/item/{category}/{product}', 'OrderController@show')->name('single.product.show');
         $routes->post('/item/order/{product}', 'OrderController@store')->name('new.product.order');
+        $routes->get('/order/complete', 'OrderController@success')->name('web.order.complete');
     });
 
     $routes->group(['namespace' => 'Contact'], function($routes){
         $routes->get('/contact-us', 'ContactController@index')->name('web.contact.us');
-        $routes->post('/contact-us/submit', 'ContactController@store')->name('web.contact.us');
+        $routes->post('/contact-us/submit', 'ContactController@store')->name('web.contact.store');
     });
 });
 
@@ -39,6 +40,10 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
     $routes->get('/get-notification', 'GeneralController@getNotification')->name('user.get.notification');
     $routes->get('/all-notification', 'GeneralController@getAllNotification')->name('user.get.all.notification');
     $routes->get('/read-notification', 'GeneralController@readNotification')->name('user.read.notification');
+    $routes->post('/remove-notification/{notification}', 'GeneralController@removeNotification')->name('user.remove.notification');
+    $routes->get('/get-message', 'GeneralController@getMessage')->name('user.get.message');
+    $routes->get('/read-message', 'GeneralController@readMessage')->name('user.read.message');
+//    $routes->post('/remove-message/{message}', 'GeneralController@removeMessage')->name('user.remove.message');
     // User Dashboard Related Routes
     $routes->group(['namespace'=>'Dashboard'], function($routes){
         $routes->get('/home', 'DashboardController@index')->name('home');
@@ -82,6 +87,20 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->post('/bid/bid-rang/data', 'BidController@bidRang')->name('user.bid.rang.data');
         $routes->patch('/bid/update/{bid}', 'BidController@update')->name('user.bid.update');
     });
+    // User Payments Related Routes
+    $routes->group(['prefix'=>'payment','namespace'=>'Payment'], function($routes){
+        $routes->get('/statement', 'PaymentController@statement')->name('user.payment.statement');
+        $routes->get('/store', 'PaymentController@create')->name('user.payment.create');
+        $routes->post('/submit', 'PaymentController@store')->name('user.payment.store');
+        $routes->post('/statement/result', 'PaymentController@statementResult')->name('user.payment.statement.result');
+    });
+    // User Message Related Routes
+    $routes->group(['namespace'=>'Message'], function($routes){
+        $routes->get('/message', 'MessageController@index')->name('user.message.index');
+        $routes->get('/message/compose', 'MessageController@compose')->name('user.message.compose');
+        $routes->get('/message/send', 'MessageController@send')->name('user.message.send');
+        $routes->post('/message/store', 'MessageController@store')->name('user.message.store');
+    });
     // User Settings Related Routes
     $routes->group(['namespace'=>'Setting'], function($routes){
         $routes->get('/edit-profile', 'SettingController@editProfile')->name('user.edit.profile');
@@ -105,6 +124,10 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
     $routes->get('/get-notification', 'GeneralController@getNotification')->name('admin.get.notification');
     $routes->get('/all-notification', 'GeneralController@getAllNotification')->name('admin.get.all.notification');
     $routes->get('/read-notification', 'GeneralController@readNotification')->name('admin.read.notification');
+    $routes->post('/remove-notification/{notification}', 'GeneralController@removeNotification')->name('admin.remove.notification');
+    $routes->get('/get-message', 'GeneralController@getMessage')->name('admin.get.message');
+    $routes->get('/read-message', 'GeneralController@readMessage')->name('admin.read.message');
+//    $routes->post('/remove-message/{message}', 'GeneralController@removeMessage')->name('admin.remove.message');
 
     $routes->group(['namespace'=>'Dashboard'], function($routes){
         $routes->get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
@@ -150,8 +173,17 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->post('/store', 'UserController@store')->name('admin.user.store');
         $routes->get('/show/{user}', 'UserController@show')->name('admin.user.show');
         $routes->post('/reset-password', 'UserController@resetPassword')->name('admin.user.reset.password');
+        $routes->post('/offer-bid', 'UserController@offerBid')->name('admin.user.offer.bid');
     });
-
+    // Admin Message Related Routes
+    $routes->group(['namespace'=>'Message'], function($routes){
+        $routes->get('/message', 'MessageController@index')->name('admin.message.index');
+        $routes->get('/message/send', 'MessageController@send')->name('admin.message.send');
+        $routes->post('/message/store', 'MessageController@store')->name('admin.message.store');
+        $routes->get('/message/{user}', 'MessageController@userMessage')->name('admin.message.index.user');
+        $routes->get('/message/send/{user}', 'MessageController@userSend')->name('admin.message.send.user');
+        $routes->get('/message/compose/{user}', 'MessageController@compose')->name('admin.message.compose');
+    });
     // Admin Settings Related Routes
     $routes->group(['prefix'=>'setting', 'namespace'=>'Setting'], function($routes){
         $routes->get('/slider', 'SliderController@index')->name('admin.slider.index');

@@ -21,9 +21,11 @@ class OrderController extends Controller
 
     public function show($category, Product $product): View
     {
-        $product = DB::table('products')->select('products.*')->where('products.id', $product->id)
-                    ->join('users', 'users.bid', '>=', 'products.bid_value')
-                    ->where('products.status', '=', 'Accept')->first();
+        $product = DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('products.id', $product->id)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->first();
         if($product) {
             return view('web.order.show', compact('product'));
         } else {
@@ -35,5 +37,10 @@ class OrderController extends Controller
     {
         $this->order->store($request, $product);
         return ['success'=>true];
+    }
+
+    public function success()
+    {
+        return view('web.order.success');
     }
 }

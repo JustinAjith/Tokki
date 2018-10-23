@@ -47,5 +47,25 @@
             })
         };
 
+        var getMessage = "{{ route('admin.get.message') }}";
+        $http.get(getMessage).then(function(response){
+            $scope.unReadMessage = response.data.unread;
+            $scope.messages = response.data.messages;
+            if($scope.unReadMessage > 0){
+                $scope.messagealert = true;
+            } else{
+                $scope.messagealert = false;
+            }
+        });
+
+        $scope.readMessage = function() {
+            var readMessage = "{{ route('admin.read.message') }}";
+            $http.get(readMessage).then(function() {
+                $timeout(function() {
+                    $scope.readMessage = false;
+                }, 800);
+            })
+        };
+
     });
 </script>

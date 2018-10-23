@@ -33,10 +33,22 @@ class GeneralRepository
     public function readNotification()
     {
         $userId = Auth::user()->id;
-        $notifications = $this->notification->where(['user_id'=>$userId, 'user_status'=>1])->get();
-        foreach($notifications as $notification){
-            $notification->update(['user_status'=>0]);
-        }
+        $this->notification->where(['user_id'=>$userId, 'user_status'=>1])->update(['user_status'=>0]);
+        return ['success'=>true];
+    }
+
+    public function getMessage()
+    {
+        $userId = Auth::user()->id;
+        $messages = $this->message->where(['user_id'=>$userId, 'admin_id'=>null])->limit(3)->orderBy('id', 'DESC')->get();
+        $unread = $this->message->where(['user_id'=>$userId, 'user_status'=>1, 'admin_id'=>null])->count();
+        return response()->json(['messages'=>$messages, 'unread'=>$unread]);
+    }
+
+    public function readMessage()
+    {
+        $userId = Auth::user()->id;
+        $this->message->where(['user_id'=>$userId, 'user_status'=>1, 'admin_id'=>null])->update(['user_status'=>0]);
         return ['success'=>true];
     }
 }

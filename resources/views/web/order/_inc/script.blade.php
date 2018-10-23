@@ -50,6 +50,7 @@
                     theme: 'jnoty-success',
                     icon: 'fa fa-check-circle-o'
                 });
+                window.location.href = "{{ route('web.order.complete') }}";
             },function(response){
                 $.jnoty("Please try again!", {
                     header: 'Error',

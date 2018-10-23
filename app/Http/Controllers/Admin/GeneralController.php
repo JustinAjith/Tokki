@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Message;
+use App\Notification;
 use App\Repositories\Admin\GeneralRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -30,5 +32,27 @@ class GeneralController extends Controller
     public function readNotification()
     {
         return $this->user->readNotification();
+    }
+
+    public function removeNotification(Notification $notification)
+    {
+        $notification->delete();
+        return ['success'=>true];
+    }
+
+    public function getMessage(): JsonResponse
+    {
+        return $this->user->getMessage();
+    }
+
+    public function readMessage()
+    {
+        return $this->user->readMessage();
+    }
+
+    public function removeMessage(Message $message)
+    {
+        $message->delete();
+        return ['success'=>true];
     }
 }

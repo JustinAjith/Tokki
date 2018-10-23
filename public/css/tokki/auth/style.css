@@ -6662,7 +6662,8 @@ label {
   float: left;
   margin-top: 18px;
   font-size: 16px;
-  margin-left: 5px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 .message-list li .col-mail-1 .checkbox-wrapper-mail {
   display: block;
