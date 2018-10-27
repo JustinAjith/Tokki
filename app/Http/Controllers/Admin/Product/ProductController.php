@@ -23,7 +23,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('admin.product.show', compact('product'));
+        $user = $product->user;
+        return view('admin.product.show', compact('product', 'user'));
     }
 
     public function status($status, Product $product)

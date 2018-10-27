@@ -26,7 +26,7 @@
                             </div>
                         </div>
 
-                        <div class="inbox-rightbar">
+                        <div class="inbox-rightbar" ng-cloak>
                             <div class="">
                                 <div class="mt-2">
                                     <div ng-show="messageList">
@@ -37,7 +37,7 @@
                                                         <p class="title">Tokki</p>
                                                         <span class="star-toggle fa fa-star-o"></span>
                                                     </div>
-                                                    <a href="#" ng-click="readMessageFun({{ $message }})">
+                                                    <a href="" ng-click="readMessageFun({{ $message }})">
                                                         <div class="col-mail col-mail-2">
                                                             <div class="subject">
                                                                 <span class="teaser">{{ $message->message }}</span>
@@ -47,7 +47,19 @@
                                                     </a>
                                                 </li>
                                             @endforeach
+                                            @if(count($messages) == 0)
+                                                <li class="text-center">
+                                                    <span>No message to show</span>
+                                                </li>
+                                             @endif
                                         </ul>
+                                        <div class="row mt-2">
+                                            <div class="col-md-12">
+                                                <div class="float-right">
+                                                    {{ $messages->links() }}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div ng-show="messageRead">
                                         @include('user.message._inc.read')

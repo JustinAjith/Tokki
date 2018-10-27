@@ -33,11 +33,12 @@
                                 <div class="mail-list mt-4">
                                     <a href="{{ route('admin.message.index') }}" class="list-group-item border-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i>Inbox @if($unread > 0) <span class="label label-danger float-right ml-2">{{ $unread }}</span> @endif</a>
                                     <a href="{{ route('admin.message.send') }}" class="list-group-item border-0 text-danger"><i class="fa fa-send font-18 align-middle mr-2"></i>Sent Message</a>
+                                    <a href="{{ route('admin.contact.message') }}" class="list-group-item border-0"><i class="fa fa-phone font-18 align-middle mr-2"></i>Contact</a>
                                 </div>
                             @endif
                         </div>
 
-                        <div class="inbox-rightbar">
+                        <div class="inbox-rightbar" ng-cloak>
                             <div class="">
                                 <div class="mt-2">
                                     <div ng-show="messageList">
@@ -48,7 +49,7 @@
                                                         <p class="title">{{ $message->user->name }}</p>
                                                         <span class="star-toggle fa fa-star-o"></span>
                                                     </div>
-                                                    <a href="#" ng-click="readMessageFun({{ $message }})">
+                                                    <a href="" ng-click="readMessageFun({{ $message }})">
                                                         <div class="col-mail col-mail-2">
                                                             <div class="subject">
                                                                 <span class="teaser">{{ $message->message }}</span>
@@ -58,7 +59,19 @@
                                                     </a>
                                                 </li>
                                             @endforeach
+                                                @if(count($messages) == 0)
+                                                    <li class="text-center">
+                                                        <span>No message to show</span>
+                                                    </li>
+                                                @endif
                                         </ul>
+                                        <div class="row mt-2">
+                                            <div class="col-md-12">
+                                                <div class="float-right">
+                                                    {{ $messages->links() }}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div ng-show="messageRead">
                                         @include('admin.message._inc.read')

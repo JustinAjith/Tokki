@@ -103,12 +103,6 @@
                 <div class="singleProductOrderForm mt-2" ng-show="singleProductOrderForm">
                     <form id="newProductOrder" ng-submit="newProductOrderSubmit()">
                         @include('web.order._inc.form')
-                        <div class="row">
-                            <div class="col-12 mt-1">
-                                <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Close</button>
-                                <button type="submit" class="btn btn-sm tokkiAccessButton">Submit</button>
-                            </div>
-                        </div>
                     </form>
                 </div>
 

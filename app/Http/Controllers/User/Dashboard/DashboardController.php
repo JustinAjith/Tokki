@@ -19,11 +19,15 @@ class DashboardController extends Controller
 
     public function index(): View
     {
-        return view('user.dashboard.index');
+        $recentOrders = $this->user->recentOrders();
+        $recentBids = $this->user->recentBid();
+        return view('user.dashboard.index', compact('recentOrders', 'recentBids'));
     }
 
-    public function getOrders(): JsonResponse
+    public function recentMessage()
     {
-        return $this->user->getOrders();
+        $messages = $this->user->recentMessage();
+        return response()->json(['messages'=>$messages]);
+
     }
 }

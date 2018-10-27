@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Message;
 
+use App\Contact;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class MessageController extends Controller
     public function index()
     {
         $unread = $this->unReadMessage();
-        $messages = Message::with('user')->where('admin_id', '!=', null)->orderBy('id', 'DESC')->get();
+        $messages = Message::with('user')->where('admin_id', '!=', null)->orderBy('id', 'DESC')->paginate(15);
         return view('admin.message.index', compact('unread', 'messages'));
     }
 
@@ -41,21 +42,28 @@ class MessageController extends Controller
     public function send()
     {
         $unread = $this->unReadMessage();
-        $messages = Message::where('admin_id', null)->orderBy('id', 'DESC')->get();
+        $messages = Message::where('admin_id', null)->orderBy('id', 'DESC')->paginate(15);
         return view('admin.message.send', compact('unread', 'messages'));
     }
 
     public function userMessage(User $user)
     {
         $unread = $this->unReadMessage();
-        $messages = Message::with('user')->where('admin_id', '!=', null)->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
+        $messages = Message::with('user')->where('admin_id', '!=', null)->where('user_id', $user->id)->orderBy('id', 'DESC')->paginate(15);
         return view('admin.message.index', compact('unread', 'messages', 'user'));
     }
 
     public function userSend(User $user)
     {
         $unread = $this->unReadMessage();
-        $messages = Message::where(['admin_id'=>null, 'user_id'=>$user->id])->orderBy('id', 'DESC')->get();
+        $messages = Message::where(['admin_id'=>null, 'user_id'=>$user->id])->orderBy('id', 'DESC')->paginate(15);
         return view('admin.message.send', compact('unread', 'messages', 'user'));
+    }
+
+    public function contact()
+    {
+        $unread = $this->unReadMessage();
+        $contacts = Contact::paginate(15);
+        return view('admin.message.contact', compact('unread', 'contacts'));
     }
 }

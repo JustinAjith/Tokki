@@ -129,9 +129,9 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-12">
-                                        {{--<div class="float-right">--}}
-                                            {{--<button class="btn btn-sm btn-danger" ng-click="deleteOrder()">Delete</button>--}}
-                                        {{--</div>--}}
+                                        <div class="float-right">
+                                            <button class="btn btn-sm btn-danger" ng-click="deleteOrder()"><i class="fa fa-trash-o" aria-hidden="true"></i> Remove</button>
+                                        </div>
                                         @if($order->status == 'Pending')
                                             <div ng-show="pendingStatus">
                                                 <button type="button" class="btn btn-sm btn-success" ng-click="orderAccept('Accept')">Accept</button>

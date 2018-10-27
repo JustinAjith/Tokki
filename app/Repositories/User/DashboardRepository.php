@@ -2,6 +2,8 @@
 
 namespace App\Repositories\User;
 
+use App\Bid;
+use App\Message;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,9 +16,18 @@ class DashboardRepository
         $this->order = $order ?? new Order();
     }
 
-    public function getOrders()
+    public function recentOrders()
     {
-        $orders = $this->order->product()->where('user_id', Auth::user()->id)->limit(5)->orderBy('id', 'DESC')->get();
-        return true;
+        return $this->order->with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])->orderBy('id', 'DESC')->take(5)->get();
+    }
+
+    public function recentBid()
+    {
+        return Bid::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->take(5)->get();
+    }
+
+    public function recentMessage()
+    {
+        return Message::where(['user_id'=>Auth::user()->id, 'admin_id'=>null])->orderBy('id', 'DESC')->take(5)->get();
     }
 }

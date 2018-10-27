@@ -18,7 +18,7 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('user.product') }}">Product List</a></li>
                         <li><a href="{{ route('user.product.create') }}">Add Product</a></li>
-                        <li><a href="#">Categories</a></li>
+                        {{--<li><a href="#">Categories</a></li>--}}
                     </ul>
                 </li>
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>

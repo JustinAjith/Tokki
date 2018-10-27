@@ -34,9 +34,11 @@ class HomeRepository
         return $newProduct;
     }
 
-    public  function lastDeal()
+    public  function recentOffer()
     {
-
+        $products = $this->selectProducts()->where('discount', '>', 0)->orderBy('products.updated_at', 'DESC')->limit(6)->get();
+        $newProduct = ProductResourceCollection::collection($products);
+        return $newProduct;
     }
 
     public  function loveProduct()

@@ -2,46 +2,45 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="productCollectionHeading">New Products</h2>
+                <h2 class="productCollectionHeading">Recent Offer</h2>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-2 productListCardMain" ng-repeat="newProduct in newProducts" ng-show="newProductDiv">
-                        <a ng-href="@{{ newProduct.link }}" ng-if="newProduct.name !== null">
+                    <div class="col-md-2 productListCardMain" ng-repeat="recentOffer in recentOffers" ng-show="recentOfferDiv">
+                        <a ng-href="@{{ recentOffer.link }}" ng-if="recentOffer.name !== null">
                             <div class="productListCard">
-                                <div class="productListDiscountBadge badge-danger p-0" ng-if="newProduct.discount !== 0">
-                                    <span ng-if="newProduct.discount_type === 'LKR'" class="badge badge-danger">@{{ newProduct.discount | currency : "" }} @{{ newProduct.discount_type }}</span>
-                                    <span ng-if="newProduct.discount_type === '%'" class="badge badge-danger">@{{ newProduct.discount }} @{{ newProduct.discount_type }}</span>
+                                <div class="productListDiscountBadge badge-danger p-0" ng-if="recentOffer.discount !== 0">
+                                    <span ng-if="recentOffer.discount_type === 'LKR'" class="badge badge-danger">@{{ recentOffer.discount | currency : "" }} @{{ recentOffer.discount_type }}</span>
+                                    <span ng-if="recentOffer.discount_type === '%'" class="badge badge-danger">@{{ recentOffer.discount }} @{{ recentOffer.discount_type }}</span>
                                 </div>
                                 <div class="row justify-content-center" style="padding: 1rem 1rem 0 1rem">
-                                    <img ng-src="{{ asset('storage/display_image') }}/@{{ newProduct.image }}" class="productListImage">
+                                    <img ng-src="{{ asset('storage/display_image') }}/@{{ recentOffer.image }}" class="productListImage">
                                 </div>
                                 <div class="row justify-content-center">
-                                    <small>@{{ newProduct.qty }} Pieces Available</small>
+                                    <small>@{{ recentOffer.qty }} Pieces Available</small>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <h2 class="productListHeading"><small>@{{ newProduct.name }}</small></h2>
+                                        <h2 class="productListHeading"><small>@{{ recentOffer.name }}</small></h2>
                                     </div>
                                 </div>
                                 <div class="row pb-2">
                                     <div class="col-12">
-                                        <span class="productListPrice">LKR @{{ newProduct.price }} </span>
+                                        <span class="productListPrice">LKR @{{ recentOffer.price }} </span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <div class="text-center">
-                            {{--<span ng-if="newProduct.name === null" class="productListEmptyProduct">No product to show</span>--}}
-                            <div ng-if="newProduct.name === null" class="emptyProductListDiv">
+                            <div ng-if="recentOffer.name === null" class="emptyProductListDiv">
                                 <img src="{{ asset('images/general/empty.jpg') }}" class="productListImage">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12" ng-show="newProductLoading">
+                    <div class="col-md-12" ng-show="recentOfferLoading">
                         <div class="text-center mt-5 mb-5">
                             <img src="{{ asset('images/general/loading.gif') }}" class="tokkiLoading">
                         </div>

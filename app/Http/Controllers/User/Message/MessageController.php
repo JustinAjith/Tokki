@@ -12,7 +12,7 @@ class MessageController extends Controller
     public function index()
     {
         $unread = $this->unReadMessage();
-        $messages = Message::where(['user_id'=>Auth::user()->id, 'admin_id'=>null])->orderBy('id', 'DESC')->get();
+        $messages = Message::where(['user_id'=>Auth::user()->id, 'admin_id'=>null])->orderBy('id', 'DESC')->paginate(15);
         return view('user.message.index', compact('unread', 'messages'));
     }
 
@@ -42,7 +42,7 @@ class MessageController extends Controller
     public function send()
     {
         $unread = $this->unReadMessage();
-        $messages = Message::where('user_id', Auth::user()->id)->where('admin_id', '!=', null)->orderBy('id', 'DESC')->get();
+        $messages = Message::where('user_id', Auth::user()->id)->where('admin_id', '!=', null)->orderBy('id', 'DESC')->paginate(15);
         return view('user.message.send', compact('unread', 'messages'));
     }
 }

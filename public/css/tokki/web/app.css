@@ -6,6 +6,8 @@ body {
     display: none !important;
 }
 
+.tokkiLoading {width: 85px;}
+
 .tokkiBackground {
     background-color: #ff970c;
     color: #fff;

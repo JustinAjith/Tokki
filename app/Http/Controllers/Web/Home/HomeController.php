@@ -29,9 +29,9 @@ class HomeController extends Controller
         return response()->json($newProduct);
     }
 
-    public function lastDeal()
+    public function recentOffer()
     {
-        $lastDeal = $this->home->lastDeal();
+        $lastDeal = $this->home->recentOffer();
         return response()->json($lastDeal);
     }
 

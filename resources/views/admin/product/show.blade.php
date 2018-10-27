@@ -75,8 +75,17 @@
                                     $places = json_decode($product->delivery_places);
                                     ?>
                                     <li>Delivery Places : @foreach($places as $place) {{ $place }} , @endforeach</li>
+                                    <li>
+                                        Bid Value : {{ $product->bid_value }}
+                                        @if($user->bid >= $product->bid_value)
+                                            <span class="float-right badge badge-success"><small>Active</small></span>
+                                        @else
+                                            <span class="float-right badge badge-danger"><small>Inactive</small></span>
+                                        @endif
+                                    </li>
                                 </ul>
                                 <hr>
+                                <a href="{{ route('admin.user.show', $user) }}" class="btn btn-sm btn-dark"><i class="fa fa-user"></i> User</a>
                                 <a href="{{ route('admin.product.order', $product) }}" class="btn btn-sm btn-secondary"><i class="fa fa-shopping-cart"></i> Orders</a>
                                 @if($product->status == 'Accept')
                                     <button class="btn btn-sm btn-danger changeProductStatus" value="Reject">Reject</button>

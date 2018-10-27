@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-2 productListCardMain" ng-repeat="loveProduct in loveProducts">
+                    <div class="col-md-2 productListCardMain" ng-repeat="loveProduct in loveProducts" ng-show="moreToLoveProducts">
                         <a ng-href="@{{ loveProduct.link }}" ng-if="loveProduct.name !== null">
                             <div class="productListCard">
                                 <div class="productListDiscountBadge badge-danger p-0" ng-if="loveProduct.discount !== 0">
@@ -38,6 +38,11 @@
                             <div ng-if="loveProduct.name === null" class="emptyProductListDiv">
                                 <img src="{{ asset('images/general/empty.jpg') }}" class="productListImage">
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" ng-show="moreToLoveLoading">
+                        <div class="text-center mt-5 mb-5">
+                            <img src="{{ asset('images/general/loading.gif') }}" class="tokkiLoading">
                         </div>
                     </div>
                 </div>

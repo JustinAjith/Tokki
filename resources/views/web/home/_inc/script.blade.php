@@ -2,6 +2,8 @@
     app.controller('homeController', function($http, $scope){
         $scope.baseUrl = '{{ URL::to('api/web-home') }}';
         // Web New Products
+        $scope.newProductDiv = false;
+        $scope.newProductLoading = true;
         $http.get($scope.baseUrl + '/new-products').then(function(response){
             $scope.newProducts = [];
             if(response.data.length !== 6) {
@@ -15,8 +17,12 @@
             } else {
                 $scope.newProducts = response.data;
             }
+            $scope.newProductDiv = true;
+            $scope.newProductLoading = false;
         });
         // Web More To Love Products
+        $scope.moreToLoveProducts = false;
+        $scope.moreToLoveLoading = true;
         $http.get($scope.baseUrl + '/more-to-love').then(function(response){
             $scope.loveProducts = [];
             if(response.data.length !== 6) {
@@ -30,6 +36,28 @@
             } else {
                 $scope.loveProducts = response.data;
             }
+            $scope.moreToLoveProducts = true;
+            $scope.moreToLoveLoading = false;
+        });
+
+        // Recent Offer To Love Products
+        $scope.recentOfferDiv = false;
+        $scope.recentOfferLoading = true;
+        $http.get($scope.baseUrl + '/recent-offer').then(function(response){
+            $scope.recentOffers = [];
+            if(response.data.length !== 6) {
+                for(var i=0; i < 6; i++) {
+                    if(response.data[i]) {
+                        $scope.recentOffers.push(response.data[i]);
+                    } else {
+                        $scope.recentOffers.push({name: null});
+                    }
+                }
+            } else {
+                $scope.recentOffers = response.data;
+            }
+            $scope.recentOfferDiv = true;
+            $scope.recentOfferLoading = false;
         });
     });
 </script>

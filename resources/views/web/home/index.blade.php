@@ -12,6 +12,7 @@
         <div class="productCollectionList">
             @include('web.home._inc.product.new_product')
             @include('web.home._inc.product.more_to_love')
+            @include('web.home._inc.product.recent_offer_product')
         </div>
     </div>
 @endsection

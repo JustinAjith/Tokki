@@ -41,6 +41,7 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('admin.message.index') }}">Inbox</a></li>
                         <li><a href="{{ route('admin.message.send') }}">Send</a></li>
+                        <li><a href="{{ route('admin.contact.message') }}">Contact</a></li>
                     </ul>
                 </li>
 

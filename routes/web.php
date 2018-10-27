@@ -47,6 +47,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
     // User Dashboard Related Routes
     $routes->group(['namespace'=>'Dashboard'], function($routes){
         $routes->get('/home', 'DashboardController@index')->name('home');
+        $routes->get('/recent-message', 'DashboardController@recentMessage')->name('user.get.dashboard.message');
         $routes->get('/profile', 'ProfileController@index')->name('user.profile');
     });
     // User Product Related Routes
@@ -180,6 +181,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/message', 'MessageController@index')->name('admin.message.index');
         $routes->get('/message/send', 'MessageController@send')->name('admin.message.send');
         $routes->post('/message/store', 'MessageController@store')->name('admin.message.store');
+        $routes->get('/message/contact', 'MessageController@contact')->name('admin.contact.message');
         $routes->get('/message/{user}', 'MessageController@userMessage')->name('admin.message.index.user');
         $routes->get('/message/send/{user}', 'MessageController@userSend')->name('admin.message.send.user');
         $routes->get('/message/compose/{user}', 'MessageController@compose')->name('admin.message.compose');

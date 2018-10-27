@@ -20,13 +20,13 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::with('product')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->paginate(20);
+        $orders = Order::with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])->orderBy('id', 'DESC')->paginate(20);
         return view('user.order.index', compact('orders'));
     }
 
     public function show($order)
     {
-        $order = Order::with('product')->where('id', $order)->first();
+        $order = Order::with('product')->where(['id'=>$order, 'delete_status'=>0])->first();
         if($order->user_id == Auth::user()->id) {
             return view('user.order.show', compact('order'));
         } else {
@@ -48,7 +48,7 @@ class OrderController extends Controller
 
     public function delete(Order $order)
     {
-        $order->delete();
+        $order->update(['delete_status'=>1]);
         return ['success'=>true];
     }
 

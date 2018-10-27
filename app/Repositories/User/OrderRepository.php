@@ -46,7 +46,7 @@ class OrderRepository
 
     public function recentOrders()
     {
-        return $this->order->with('product')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->take(5)->get();
+        return $this->order->with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])->orderBy('id', 'DESC')->take(5)->get();
     }
 
     public function recentBid()
@@ -66,14 +66,14 @@ class OrderRepository
             5 => 'status',
             6 => 'action',
         );
-        $totalDatas = $this->order::where(['product_id'=>$product, 'user_id'=>$user])->count();
+        $totalDatas = $this->order::where(['product_id'=>$product, 'user_id'=>$user, 'delete_status'=>0])->count();
         $limit = $request->input('length');
         $start = $request->input('start');
         $order = $columns[$request->input('order.0.column')];
         $dir = $request->input('order.0.dir');
 
         if(empty($request->input('search.value'))) {
-            $posts = $this->order::where(['product_id'=>$product, 'user_id'=>$user])
+            $posts = $this->order::where(['product_id'=>$product, 'user_id'=>$user, 'delete_status'=>0])
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
@@ -84,7 +84,7 @@ class OrderRepository
             $search = $request->input('search.value');
 
             $filteredData = $this->order::where(function($q) use ($user, $product) {
-                $q->where(['product_id'=>$product, 'user_id'=>$user]);
+                $q->where(['product_id'=>$product, 'user_id'=>$user, 'delete_status'=>0]);
             })->where(function($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('street', 'like', "%{$search}%")
@@ -103,9 +103,9 @@ class OrderRepository
         if($posts){
             foreach($posts as $r) {
                 $nestedData['name'] = $r->name;
-                $nestedData['street'] = $r->street;
+                $nestedData['street'] = $r->status == "Complete" ? $r->street : '<center> - </center>';;
                 $nestedData['city'] = $r->city;
-                $nestedData['mobile'] = $r->mobile;
+                $nestedData['mobile'] = $r->status == "Complete" ? $r->mobile : '<center> - </center>';
                 $nestedData['date'] = $r->date;
                 $nestedData['status'] = $r->status == "Complete" ? "<span class=\"badge badge-primary\">Complete</span>" : ($r->status == "Accept" ? "<span class=\"badge badge-success\">Accept</span>" : ($r->status == "Pending" ? "<span class=\"badge badge-secondary\">Pending</span>" : ($r->status == "Reject" ? "<span class=\"badge badge-danger\">Reject</span>" : "")));
                 $nestedData['action'] = '

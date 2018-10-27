@@ -46,6 +46,9 @@
                         @endforeach
                     @else
                         @foreach(city() as $place)
+                            @if($place == 'All Srilanka')
+                                @continue
+                            @endif
                             <option value="{{ $place }}">{{ $place }}</option>
                         @endforeach
                     @endif
@@ -81,6 +84,13 @@
             <div class="form-group col-md-6 col-sm-6">
                 <label class="mb-1">Telephone Number</label>
                 <input type="text" name="telephone" class="form-control" placeholder="enter telephone number">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mt-1">
+                <button type="button" class="btn btn-sm btn-dark" ng-click="showSingleProductDetailsList()">Close</button>
+                <button type="submit" class="btn btn-sm tokkiAccessButton">Submit</button>
             </div>
         </div>
     </div>

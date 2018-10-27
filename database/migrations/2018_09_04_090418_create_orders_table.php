@@ -33,6 +33,7 @@ class CreateOrdersTable extends Migration
             $table->text('comment')->nullable();
             $table->enum('status', ['Complete', 'Accept', 'Pending', 'Reject'])->default('Pending');
             $table->date('date');
+            $table->boolean('delete_status')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
