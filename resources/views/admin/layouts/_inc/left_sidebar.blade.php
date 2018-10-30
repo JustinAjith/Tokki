@@ -51,7 +51,12 @@
                         <li><a href="{{ route('admin.slider.index') }}">Top Slider</a></li>
                     </ul>
                 </li>
-
+                <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Edit App</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('admin.reset.password.index') }}">Change Password</a></li>
+                        <li><a href="{{ route('admin.site.variable.index') }}">Site Variables</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

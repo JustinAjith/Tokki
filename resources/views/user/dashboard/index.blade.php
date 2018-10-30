@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('style')
     <style>
-        .messageTable{position: absolute;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 57%;border-top: 0;}
+        .messageTable{position: absolute;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 52%;border-top: 0;}
     </style>
 @endsection
 @section('content')

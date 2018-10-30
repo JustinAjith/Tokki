@@ -46,6 +46,7 @@ class UserRepository
             $search = $request->input('search.value');
 
             $filteredData = $this->user::where('name', 'like', "%{$search}%")
+                ->orWhere('code', 'like', "%{$search}%")
                 ->orWhere('email', 'like', "%{$search}%")
                 ->orWhere('mobile', 'like', "%{$search}%")
                 ->orWhere('land_line', 'like', "%{$search}%");

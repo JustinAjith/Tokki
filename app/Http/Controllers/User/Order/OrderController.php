@@ -59,4 +59,9 @@ class OrderController extends Controller
         }
         return view('user.order.order', compact('product'));
     }
+
+    public function customerReview(Order $order)
+    {
+        return $this->order->customerReview($order);
+    }
 }

@@ -20,4 +20,9 @@ class ContactController extends Controller
         $contact->save();
         return ['success'=>true];
     }
+
+    public function aboutUs()
+    {
+        return view('web.contact.about_us');
+    }
 }

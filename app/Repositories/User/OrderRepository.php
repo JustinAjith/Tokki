@@ -122,4 +122,10 @@ class OrderRepository
         );
         echo json_encode($json_data);
     }
+
+    public function customerReview(Order $order)
+    {
+        $customer = $this->order->where(['mobile'=>$order->mobile, 'telephone'=>$order->telephone, 'status'=>'Complete'])->count();
+        return response()->json($customer);
+    }
 }

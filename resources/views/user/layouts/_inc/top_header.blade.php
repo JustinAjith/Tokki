@@ -74,7 +74,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                <a class="nav-link text-center" href="{{ route('user.message.index') }}"> <strong>See all Messages</strong> <i class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
                     </div>
@@ -85,10 +85,10 @@
                     <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('storage/user_profile') }}/{{ Auth::user()->profile }}" alt="Company Logo" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                         <ul class="dropdown-user">
-                            <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                            <li><a href="{{ route('user.profile') }}"><i class="ti-user"></i> Profile</a></li>
+                            <li><a href="{{ route('user.payment.statement') }}"><i class="ti-wallet"></i> Balance</a></li>
+                            <li><a href="{{ route('user.message.index') }}"><i class="ti-email"></i> Inbox</a></li>
+                            <li><a href="{{ route('user.edit.profile') }}"><i class="ti-settings"></i> Setting</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

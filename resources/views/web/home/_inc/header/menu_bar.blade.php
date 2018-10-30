@@ -33,6 +33,9 @@
                             <li>
                                 <a href="{{ route('web.contact.us') }}">Contact Us</a>
                             </li>
+                            <li>
+                                <a href="{{ route('web.about.us') }}">About Us</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

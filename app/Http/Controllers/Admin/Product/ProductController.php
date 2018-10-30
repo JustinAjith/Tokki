@@ -32,4 +32,10 @@ class ProductController extends Controller
         $this->product->status($product, $status);
         return ['success'=>true];
     }
+
+    public function userProduct($user)
+    {
+        $products = Product::where('user_id', $user)->orderBy('id', 'DESC')->paginate(20);
+        return view('admin.product.index', compact('products'));
+    }
 }

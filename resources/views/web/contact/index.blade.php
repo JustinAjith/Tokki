@@ -2,7 +2,7 @@
 @section('style')
     <style>
         .smallHeading small{font-size: 16px;font-weight: bold;color: #444;}
-        input {border-radius: 0 !important;height: 34px !important;}
+        #contactForm input {border-radius: 0 !important;height: 34px !important;}
     </style>
 @endsection
 @section('content')

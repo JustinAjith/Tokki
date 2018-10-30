@@ -18,6 +18,7 @@ Route::group(['namespace'=>'Web'], function($routes){
         $routes->get('/best-sell', 'CategoryController@bestSell')->name('web.best.sell');
         $routes->get('/popular-categories', 'CategoryController@popularCategories')->name('web.popular.categories');
         $routes->get('/special-offers', 'CategoryController@specialOffers')->name('web.special.offers');
+        $routes->get('/search', 'CategoryController@search')->name('web.search');
     });
 
     $routes->group(['namespace'=>'Order'], function($routes){
@@ -29,6 +30,7 @@ Route::group(['namespace'=>'Web'], function($routes){
     $routes->group(['namespace' => 'Contact'], function($routes){
         $routes->get('/contact-us', 'ContactController@index')->name('web.contact.us');
         $routes->post('/contact-us/submit', 'ContactController@store')->name('web.contact.store');
+        $routes->get('/about-us', 'ContactController@aboutUs')->name('web.about.us');
     });
 });
 
@@ -73,7 +75,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
         $routes->get('/show/{order}', 'OrderController@show')->name('user.order.show');
         $routes->post('status/{status}/{order}', 'OrderController@orderStatus')->name('user.order.reject.status');
         $routes->post('accept/status/{status}/{order}', 'OrderController@orderStatus')->name('user.order.accept.status');
-
+        $routes->get('/customer-review/{order}', 'OrderController@customerReview')->name('user.order.customer.review');
         $routes->get('/product/{product}', 'OrderController@productOrder')->name('user.product.order');
         $routes->post('/product/{product}', 'OrderController@productOrder')->name('user.product.order.all');
     });
@@ -138,7 +140,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/', 'ProductController@index')->name('admin.product');
         $routes->get('/show/{product}', 'ProductController@show')->name('admin.product.show');
         $routes->patch('/status/{status}/{product}', 'ProductController@status')->name('admin.product.status');
-
+        $routes->get('/user/{user}', 'ProductController@userProduct')->name('admin.user.product');
         $routes->get('/categories', 'CategoryController@index')->name('admin.category');
         $routes->post('/categories', 'CategoryController@store')->name('admin.category.store');
         $routes->post('/sub-category', 'CategoryController@storeSubCategory')->name('admin.sub.category.store');
@@ -191,5 +193,9 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/slider', 'SliderController@index')->name('admin.slider.index');
         $routes->post('/slider', 'SliderController@store')->name('admin.slider.store');
         $routes->post('/slider/{slider}', 'SliderController@delete')->name('admin.slider.delete');
+
+        $routes->get('/reset-password', 'EditAppController@resetPassword')->name('admin.reset.password.index');
+        $routes->post('/reset-password/submit', 'EditAppController@resetPasswordSubmit')->name('admin.change.password.submit');
+        $routes->get('/site-variable', 'EditAppController@siteVariable')->name('admin.site.variable.index');
     });
 });

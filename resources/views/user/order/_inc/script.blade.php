@@ -16,6 +16,15 @@
             $scope.pendingStatus = true;
             $scope.rejectForm = false;
         };
+
+        $scope.customerReviewShow = false;
+        var getCustomerRiview = "{{ route('user.order.customer.review', ['id'=>'ID']) }}";
+        getCustomerRiview = getCustomerRiview.replace('ID', id);
+        $http.get(getCustomerRiview).then(function(response){
+            $scope.customerReview = response.data;
+            $scope.customerReviewShow = true;
+        });
+
         $scope.orderRejectSubmit = function() {
             var routeUrl = '{{ route('user.order.reject.status', ['status'=>'Reject','id'=>'ID']) }}';
             routeUrl = routeUrl.replace('ID', id);

@@ -52,7 +52,10 @@
                                     </div>
                                     <h5 class="mt-3">
                                         <small><a href="" ng-click="showPasswordForm()"><i class="fa fa-pencil" aria-hidden="true"></i> Password Reset</a></small>
-                                        <small class="pull-right"><a href="{{ route('admin.message.index.user', $user->id) }}"><i class="fa fa-envelope" aria-hidden="true"></i></a></small>
+                                        <small class="pull-right">
+                                            <a href="{{ route('admin.message.index.user', $user->id) }}"><i class="fa fa-envelope" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                            <a href="{{ route('admin.user.product', $user->id) }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                        </small>
                                     </h5>
                                 </div>
                                 <div ng-show="bidOfferFormShow">

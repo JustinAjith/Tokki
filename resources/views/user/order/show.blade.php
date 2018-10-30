@@ -125,6 +125,10 @@
                                         Order Date<br>
                                         {{ $order->date }}
                                     </div>
+                                    <div class="col-md-6" ng-cloak>
+                                        <br>
+                                        <small ng-show="customerReviewShow">Customer Review : @{{ customerReview }}</small>
+                                    </div>
                                 </div>
                                 <hr>
                                 <div class="row">

@@ -31,18 +31,18 @@
 <div class="topMiddleBar">
     <div class="container">
         <div class="row topMiddleBarContents">
-            <div class="col-md-3 col-sm-2 d-none d-md-block pl-2">
+            <div class="col-md-2 col-sm-2 d-none d-md-block pl-2">
                 <a href="{{ route('welcome') }}"><img src="{{ asset('images/tokki/logo-text.png') }}" class="logo"></a>
             </div>
-            <div class="col-md-7 col-sm-10 col-xs-12">
-                <form action="">
+            <div class="col-md-8 col-sm-10 col-xs-12">
+                <form action="{{ route('web.search') }}" method="get">
                     <div class="row">
                         <div class="col-7 mt-3 p-0">
-                            <input type="text" class="form-control searchTextInput" placeholder="I'm shopping for...">
+                            <input type="text" name="search" class="form-control searchTextInput" placeholder="I'm shopping for...">
                         </div>
                         <div class="col-5 mt-3 p-0">
                             <div class="input-group">
-                                <select class="form-control searchSelectInput" style="height: 35px;">
+                                <select class="form-control searchSelectInput" name="category" style="height: 35px;">
                                     <option value="">All Categories</option>
                                     @foreach(categories() as $key=>$value)
                                         <option value="{{ $value->name }}">{{ $value->name }}</option>

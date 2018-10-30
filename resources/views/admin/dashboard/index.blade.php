@@ -16,9 +16,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body"> This is some text within a card block. </div>
-                </div>
+                @include('admin.dashboard._inc.recent_order')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @include('admin.dashboard._inc.recent_bid')
             </div>
         </div>
     </div>

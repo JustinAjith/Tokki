@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-2 productListCardMain" ng-repeat="loveProduct in loveProducts" ng-show="moreToLoveProducts">
+                    <div class="col-md-2 col-sm-4 productListCardMain" ng-repeat="loveProduct in loveProducts" ng-show="moreToLoveProducts">
                         <a ng-href="@{{ loveProduct.link }}" ng-if="loveProduct.name !== null">
                             <div class="productListCard">
                                 <div class="productListDiscountBadge badge-danger p-0" ng-if="loveProduct.discount !== 0">

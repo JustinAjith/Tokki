@@ -50,12 +50,12 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     @if($product->discount_type == 'LKR')
-                                                        <span class="productPrice">LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small></span>
+                                                        <span class="productPrice">LKR {{ number_format($product->price - $product->discount, 2) }}</span> <small> / piece</small>
                                                     @else
                                                         <?php
                                                         $discountPrice = (1 - $product->discount/100) * $product->price;
                                                         ?>
-                                                        <span class="productPrice">LRK {{ number_format($discountPrice, 2) }} <small> / piece</small></span>
+                                                        <span class="productPrice">LRK {{ number_format($discountPrice, 2) }}</span> <small> / piece</small>
                                                     @endif
                                                 </div>
                                             </div>
