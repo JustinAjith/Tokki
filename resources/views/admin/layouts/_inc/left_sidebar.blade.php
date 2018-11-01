@@ -7,7 +7,6 @@
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard </a></li>
-                        <li><a href="#">Profile </a></li>
                     </ul>
                 </li>
 
@@ -22,7 +21,6 @@
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('admin.order') }}">Order List</a></li>
-                        <li><a href="#">Order Status</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">User</span></a>

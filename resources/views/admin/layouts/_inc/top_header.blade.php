@@ -86,9 +86,9 @@
                     <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('images/tokki/tokki.png') }}" alt="user" class="profile-pic" /></a>
                     <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                         <ul class="dropdown-user">
-                            <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+                            <li><a href="{{ route('admin.message.index') }}"><i class="ti-email"></i> Inbox</a></li>
+                            <li><a href="{{ route('admin.reset.password.index') }}"><i class="ti-settings"></i> Setting</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

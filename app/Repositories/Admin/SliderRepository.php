@@ -22,4 +22,16 @@ class SliderRepository
         $slider->setAttribute('image', $name);
         $slider->save();
     }
+
+    public function status(Slider $slider)
+    {
+        $data = $this->slider->find($slider->id);
+        if($slider->status == 'yes') {
+            $data->update(['status'=>'no']);
+        }
+        if($slider->status == 'no') {
+            $data->update(['status'=>'yes']);
+        }
+        return ['success'=>true];
+    }
 }

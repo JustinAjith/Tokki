@@ -35,4 +35,10 @@ class SliderController extends Controller
         $slider->delete();
         return ['success'=>true];
     }
+
+    public function status(Slider $slider)
+    {
+        $this->slider->status($slider);
+        return ['success'=>true];
+    }
 }

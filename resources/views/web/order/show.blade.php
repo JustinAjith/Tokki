@@ -3,6 +3,7 @@
     <style>
         .input-group-prepend{padding: 0;}
         .singleProductOrderForm form .orderFormHeading{border-bottom: 2px solid #ff970c; }
+        #totalPriceInOrderSummery{color: #ff970c;}
     </style>
 @endsection
 @section('content')
@@ -32,10 +33,14 @@
                         <hr>
                         <div class="singleProductDetailsList">
                             <ul class="list-unstyled">
-                                <li>Price : LRK @if($product->discount > 0) <strike>{{ number_format($product->price, 2) }}</strike> @else {{ number_format($product->price, 2) }} @endif <small> / piece</small>
+                                <?php
+                                $discountPrice = $product->price;
+                                ?>
+                                <li>Price : LRK @if($product->discount > 0) <strike>{{ number_format($discountPrice, 2) }}</strike> @else {{ number_format($discountPrice, 2) }} @endif <small> / piece</small>
                                 @if($product->discount > 0)
                                     @if($product->discount_type == 'LKR')
-                                        <li>Discount Price : LKR {{ number_format($product->price - $product->discount, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ number_format($product->discount, 2) }} LKR</span></li>
+                                        <?php $discountPrice = $product->price - $product->discount; ?>
+                                        <li>Discount Price : LKR {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ number_format($product->discount, 2) }} LKR</span></li>
                                     @else
                                         <?php
                                         $discountPrice = (1 - $product->discount/100) * $product->price;

@@ -193,6 +193,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/slider', 'SliderController@index')->name('admin.slider.index');
         $routes->post('/slider', 'SliderController@store')->name('admin.slider.store');
         $routes->post('/slider/{slider}', 'SliderController@delete')->name('admin.slider.delete');
+        $routes->post('/slider/status/{slider}', 'SliderController@status')->name('admin.slider.status');
 
         $routes->get('/reset-password', 'EditAppController@resetPassword')->name('admin.reset.password.index');
         $routes->post('/reset-password/submit', 'EditAppController@resetPasswordSubmit')->name('admin.change.password.submit');

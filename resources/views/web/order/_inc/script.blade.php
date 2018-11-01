@@ -1,13 +1,17 @@
 <script>
     $(document).ready(function(){
+        $('#totalQtyValueInOrderSummery').html(1);
         $('#qty_input').prop('readonly', true);
         $('#plus-btn').click(function(){
             $('#qty_input').val(parseInt($('#qty_input').val()) + 1 );
+            $('#totalQtyValueInOrderSummery').html(parseInt($('#qty_input').val()));
         });
         $('#minus-btn').click(function(){
             $('#qty_input').val(parseInt($('#qty_input').val()) - 1 );
+            $('#totalQtyValueInOrderSummery').html(parseInt($('#qty_input').val()));
             if ($('#qty_input').val() == 0) {
                 $('#qty_input').val(1);
+                $('#totalQtyValueInOrderSummery').html(1);
             }
         });
 
@@ -58,6 +62,20 @@
                     icon: 'fa fa-exclamation-circle'
                 });
             });
-        }
+        };
+        $scope.singleProduct = "{{ $discountPrice }}";
+        $scope.totalPrice = $scope.singleProduct;
+        $scope.productQtyPlus = function() {
+            var totalQty = parseInt($('#qty_input').val()) + 1;
+            $scope.totalPrice = $scope.singleProduct * totalQty;
+        };
+
+        $scope.productQtyMinus = function() {
+            var totalQty = parseInt($('#qty_input').val()) - 1;
+            if(totalQty === 0) {
+                totalQty = 1;
+            }
+            $scope.totalPrice = $scope.singleProduct * totalQty;
+        };
     });
 </script>
