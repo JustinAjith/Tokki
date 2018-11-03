@@ -47,7 +47,7 @@ class CategoryController extends Controller
                 $join->on('users.id', '=', 'products.user_id');
                 $join->on('users.bid', '>=', 'products.bid_value');
             })->where(function($query) use ($sub_category) {
-                $query->where('sub_category_id', $sub_category->id)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
+                $query->where('sub_category_id', $sub_category->id)->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
             });
     }
 
@@ -59,6 +59,8 @@ class CategoryController extends Controller
                 $user->on('users.bid', '>=', 'products.bid_value');
             })->where('orders.status', '=', 'Complete')
             ->where('orders.deleted_at', '=', null)
+            ->where('products.qty', '>', 0)
+            ->where('products.deleted_at', '=', null)
             ->orderBy('orders.id', 'DESC')
             ->groupBy('orders.product_id')->paginate(40);
 
@@ -72,7 +74,7 @@ class CategoryController extends Controller
             ->join('users', function($join){
                 $join->on('users.id', '=', 'products.user_id');
                 $join->on('users.bid', '>=', 'products.bid_value');
-            })->where('products.status', '=', 'Accept')->where('products.category_id', 1)->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC')->paginate(40);
+            })->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.category_id', 1)->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC')->paginate(40);
         $heading = 'Popular Categories';
         return view('web.category.product', compact('products', 'heading'));
     }
@@ -83,7 +85,7 @@ class CategoryController extends Controller
             ->join('users', function($join){
                 $join->on('users.id', '=', 'products.user_id');
                 $join->on('users.bid', '>=', 'products.bid_value');
-            })->where('products.discount', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orderBy('products.updated_at', 'DESC')->paginate(40);
+            })->where('products.discount', '>', 0)->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->orderBy('products.updated_at', 'DESC')->paginate(40);
         $heading = 'Special Offers';
         return view('web.category.product', compact('products', 'heading'));
     }
@@ -97,7 +99,7 @@ class CategoryController extends Controller
                 $join->on('users.bid', '>=', 'products.bid_value');
             })->where(function($query) use ($request) {
                 $query->where('heading', 'like', '%'.$request->search.'%')->orWhere('key_word', 'like', '%'.$request->search.'%');
-            })->where('products.status', '=', 'Accept')
+            })->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')
             ->where('products.deleted_at', '=', null);
         $heading = 'Search';
         if($category) {

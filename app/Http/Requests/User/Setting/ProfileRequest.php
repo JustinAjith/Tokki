@@ -24,10 +24,10 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'address'=>'required',
-            'mobile'=>'required',
-            'land_line'=>'required'
+            'name'=>'required|string',
+            'address'=>'required|string',
+            'mobile'=>'required|numeric',
+            'land_line'=>'required|numeric'
         ];
     }
 }

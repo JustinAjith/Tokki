@@ -23,7 +23,7 @@ class HomeRepository
             ->join('users', function($join){
                 $join->on('users.id', '=', 'products.user_id');
                 $join->on('users.bid', '>=', 'products.bid_value');
-            })->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
+            })->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null);
         return $products;
     }
 

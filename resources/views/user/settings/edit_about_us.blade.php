@@ -1,9 +1,8 @@
 @extends('user.layouts.master')
 @section('style')
     <style>
-        .ck-file-dialog-button {
-            display: none;
-        }
+        .ck-file-dialog-button {display: none;}
+        .ck-content{height: 250px;}
     </style>
 @endsection
 @section('content')

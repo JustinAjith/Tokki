@@ -20,14 +20,20 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])->orderBy('id', 'DESC')->paginate(20);
+        $orders = Order::with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])
+                ->whereHas('product', function($q){
+                    $q->where('deleted_at', null);
+                })->orderBy('id', 'DESC')->paginate(20);
         return view('user.order.index', compact('orders'));
     }
 
     public function show($order)
     {
-        $order = Order::with('product')->where(['id'=>$order, 'delete_status'=>0])->first();
-        if($order->user_id == Auth::user()->id) {
+        $order = Order::with('product')->where(['id'=>$order, 'delete_status'=>0])
+                ->whereHas('product', function($q){
+                    $q->where('deleted_at', null);
+                })->first();
+        if($order && $order->user_id == Auth::user()->id) {
             return view('user.order.show', compact('order'));
         } else {
             return redirect()->back()->with('autherror', 'autherror');

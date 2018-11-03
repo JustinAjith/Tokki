@@ -87,12 +87,17 @@
                                 <hr>
                                 <a href="{{ route('admin.user.show', $user) }}" class="btn btn-sm btn-dark"><i class="fa fa-user"></i> User</a>
                                 <a href="{{ route('admin.product.order', $product) }}" class="btn btn-sm btn-secondary"><i class="fa fa-shopping-cart"></i> Orders</a>
-                                @if($product->status == 'Accept')
-                                    <button class="btn btn-sm btn-danger changeProductStatus" value="Reject">Reject</button>
-                                @elseif($product->status == 'Pending')
-                                    <button class="btn btn-sm btn-success changeProductStatus" value="Accept">Accept</button> <button class="btn btn-sm btn-danger changeProductStatus" value="Reject">Reject</button>
-                                @elseif($product->status == 'Reject')
-                                    <button class="btn btn-sm btn-success changeProductStatus" value="Accept">Accept</button>
+                                @if($product->deleted_at == null)
+                                    @if($product->status == 'Accept')
+                                        <button class="btn btn-sm btn-danger changeProductStatus" value="Reject">Reject</button>
+                                    @elseif($product->status == 'Pending')
+                                        <button class="btn btn-sm btn-success changeProductStatus" value="Accept">Accept</button> <button class="btn btn-sm btn-danger changeProductStatus" value="Reject">Reject</button>
+                                    @elseif($product->status == 'Reject')
+                                        <button class="btn btn-sm btn-success changeProductStatus" value="Accept">Accept</button>
+                                    @endif
+                                @else
+                                    <button class="btn btn-sm btn-danger deleteSingleProduct">Delete</button>
+                                    <h6 class="text-danger mt-2">This product deleted at {{ $product->deleted_at }}.</h6>
                                 @endif
                             </div>
                         </div>
@@ -143,7 +148,7 @@
             $scope.viewBigImage = $scope.images[0];
             $scope.showImage = function($image) {
                 $scope.viewBigImage = $image;
-            }
+            };
         });
     </script>
 @endsection

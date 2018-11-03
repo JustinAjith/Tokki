@@ -36,30 +36,35 @@
                                     <label class="col-sm-12 control-label">Bid</label>
                                     <div class="col-sm-10">
                                         <input type="text" value="{{ old('bid') }}" name="bid" class="form-control" placeholder="enter bid">
+                                        <span class="error_response">{{ $errors->first('bid') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group {{ $errors->has('receipt_id') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Receipt Number</label>
                                     <div class="col-sm-10">
                                         <input type="text" value="{{ old('receipt_id') }}" name="receipt_id" class="form-control" placeholder="enter receipt number">
+                                        <span class="error_response">{{ $errors->first('receipt_id') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group {{ $errors->has('amount') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Amount</label>
                                     <div class="col-sm-10">
                                         <input type="text" value="{{ old('amount') }}" name="amount" class="form-control" placeholder="enter payment amount">
+                                        <span class="error_response">{{ $errors->first('amount') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group {{ $errors->has('receipt_file') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Receipt</label>
                                     <div class="col-sm-10">
                                         <input type="file" name="receipt_file" class="form-control" placeholder="choose receipt">
+                                        <span class="error_response">{{ $errors->first('receipt_file') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group {{ $errors->has('date') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Payment date</label>
                                     <div class="col-sm-10">
                                         <input type="text" value="{{ old('date') }}" name="date" class="form-control appDatePicker" placeholder="enter payment date">
+                                        <span class="error_response">{{ $errors->first('date') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -141,6 +141,10 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
         $routes->get('/show/{product}', 'ProductController@show')->name('admin.product.show');
         $routes->patch('/status/{status}/{product}', 'ProductController@status')->name('admin.product.status');
         $routes->get('/user/{user}', 'ProductController@userProduct')->name('admin.user.product');
+        $routes->get('/delete', 'ProductController@deleteProduct')->name('admin.delete.products');
+        $routes->get('/show/delete/{product}', 'ProductController@deleteShow')->name('admin.delete.product.show');
+        $routes->delete('/delete/{product}', 'ProductController@delete')->name('admin.product.delete');
+
         $routes->get('/categories', 'CategoryController@index')->name('admin.category');
         $routes->post('/categories', 'CategoryController@store')->name('admin.category.store');
         $routes->post('/sub-category', 'CategoryController@storeSubCategory')->name('admin.sub.category.store');
@@ -149,9 +153,11 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth:admin', 'prevent-back
     $routes->group(['prefix'=>'/order', 'namespace'=>'Order'], function($routes){
         $routes->get('/', 'OrderController@index')->name('admin.order');
         $routes->get('/show/{order}', 'OrderController@show')->name('admin.order.show');
-
         $routes->get('/product/{product}', 'OrderController@productOrder')->name('admin.product.order');
         $routes->post('/product/{product}', 'OrderController@productOrder')->name('admin.product.order.all');
+
+        $routes->get('delete', 'OrderController@deleteShow')->name('admin.delete.order');
+        $routes->delete('delete/{order}', 'OrderController@delete')->name('admin.order.delete');
     });
     // Admin Bid Related Routes
     $routes->group(['prefix'=>'/bid', 'namespace'=>'Bid'], function($routes){

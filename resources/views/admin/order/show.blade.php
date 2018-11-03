@@ -123,6 +123,11 @@
                                         @if($order->status == 'Reject')
                                             <span><small>{{ $order->comment }}</small></span>
                                         @endif
+
+                                        @if($order->delete_status == 1)
+                                            <button class="float-right btn btn-sm btn-danger" ng-click="deleteOrder()">Delete</button>
+                                            <h6 class="text-danger">This order was deleted.</h6>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -137,11 +142,37 @@
 
 @section('script')
     <script>
-        app.controller('orderController', function($scope) {
+        app.controller('orderController', function($scope, $http) {
             $scope.images = @json($productImage);
             $scope.viewBigImage = $scope.images[0];
             $scope.showImage = function($image) {
                 $scope.viewBigImage = $image;
+            };
+
+            $scope.deleteOrder = function() {
+                var id = "{{ $order->id }}";
+                var routeUrl = '{{ route('admin.order.delete', ['id'=>'ID']) }}';
+                routeUrl = routeUrl.replace('ID', id);
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you want delete this order?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        $http({
+                            method: 'DELETE',
+                            url: routeUrl,
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                        }).then(function(response){
+                            swal("Your action was successfully completed!", {icon: "success",});
+                            window.location.href = '{{ route('admin.delete.order') }}';
+                        },function(error) {
+
+                        });
+                    }
+                });
             };
         });
     </script>

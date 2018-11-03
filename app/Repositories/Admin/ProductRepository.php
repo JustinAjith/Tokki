@@ -5,6 +5,7 @@ namespace App\Repositories\Admin;
 use App\Notification;
 use App\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProductRepository
 {
@@ -28,5 +29,17 @@ class ProductRepository
         $notification->admin_status = 0;
         $notification->save();
         return ['success'=>true];
+    }
+
+    public function delete($product)
+    {
+        $product = $this->product->onlyTrashed('id', $product)->first();
+        $path = public_path('storage/product/');
+        $images = json_decode($product->image);
+        foreach($images as $image) {
+            File::delete($path.$image);
+        }
+        File::delete(public_path('storage/display_image/').$product->display_image);
+        $product->forceDelete();
     }
 }

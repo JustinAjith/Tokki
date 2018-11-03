@@ -38,4 +38,23 @@ class ProductController extends Controller
         $products = Product::where('user_id', $user)->orderBy('id', 'DESC')->paginate(20);
         return view('admin.product.index', compact('products'));
     }
+
+    public function deleteProduct()
+    {
+        $products = Product::onlyTrashed()->paginate(20);
+        return view('admin.product.delete_products', compact('products'));
+    }
+
+    public function deleteShow($product)
+    {
+        $product = Product::onlyTrashed()->where('id', $product)->first();
+        $user = $product->user;
+        return view('admin.product.show', compact('product', 'user'));
+    }
+
+    public function delete($product)
+    {
+        $this->product->delete($product);
+        return ['success'=>true];
+    }
 }

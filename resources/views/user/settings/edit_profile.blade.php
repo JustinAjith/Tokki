@@ -24,28 +24,32 @@
                         <div class="horizontal-form">
                             <form class="form-horizontal" method="POST" action="{{ route('user.edit.profile.submit') }}">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('name') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Company Name</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="name" value="@if($errors->any()){{ old('name') }}@else{{ Auth::user()->name }}@endif" class="form-control" placeholder="enter company name">
+                                        <span class="error_response">{{ $errors->first('name') }}</span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('address') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Company Address</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="address" value="@if($errors->any()){{ old('address') }}@else{{ Auth::user()->address }}@endif" class="form-control" placeholder="enter company address">
+                                        <span class="error_response">{{ $errors->first('address') }}</span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('mobile') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Mobile Number</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="mobile" value="@if($errors->any()){{ old('mobile') }}@else{{ Auth::user()->mobile }}@endif" class="form-control" placeholder="enter mobile number">
+                                        <span class="error_response">{{ $errors->first('mobile') }}</span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('land_line') ? 'is-invalid' : '' }}">
                                     <label class="col-sm-12 control-label">Land Number</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="land_line" value="@if($errors->any()){{ old('land_line') }}@else{{ Auth::user()->land_line }}@endif" class="form-control" placeholder="enter land number">
+                                        <span class="error_response">{{ $errors->first('land_line') }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">

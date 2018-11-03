@@ -18,12 +18,17 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::with('product')->orderBy('id', 'DESC')->paginate(20);
-        return view('admin/order/index', compact('orders'));
+        $orders = $this->order->index();
+        return view('admin.order.index', compact('orders'));
     }
-    public function show(Order $order)
+    public function show($order)
     {
-        return view('admin/order/show', compact('order'));
+        $order = $this->order->show($order);
+        if($order) {
+            return view('admin.order.show', compact('order'));
+        } else {
+            return redirect()->back()->with('autherror', 'autherror');
+        }
     }
 
     public function productOrder(Request $request, $product)
@@ -32,5 +37,17 @@ class OrderController extends Controller
             return $this->order->userOrder($request, $product);
         }
         return view('admin.order.order', compact('product'));
+    }
+
+    public function deleteShow()
+    {
+        $orders = $this->order->deleteShow();
+        return view('admin.order.index', compact('orders'));
+    }
+
+    public function delete($order)
+    {
+        $this->order->delete($order);
+        return ['success'=>true];
     }
 }

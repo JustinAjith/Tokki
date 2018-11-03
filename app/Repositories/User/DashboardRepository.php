@@ -18,7 +18,9 @@ class DashboardRepository
 
     public function recentOrders()
     {
-        return $this->order->with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])->orderBy('id', 'DESC')->take(5)->get();
+        return $this->order->with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])->whereHas('product', function($q){
+                    $q->where('deleted_at', null);
+                })->orderBy('id', 'DESC')->take(5)->get();
     }
 
     public function recentBid()

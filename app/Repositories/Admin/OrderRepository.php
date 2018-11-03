@@ -12,6 +12,28 @@ class OrderRepository
         $this->order = $order ?? new Order();
     }
 
+    public function index()
+    {
+        return $this->getOrder()->where('delete_status', 0)->orderBy('id', 'DESC')->paginate(20);
+    }
+
+    public function show($order)
+    {
+        return $this->getOrder()->where('id', $order)->first();
+    }
+
+    public function deleteShow()
+    {
+        return $this->getOrder()->where('delete_status', 1)->orderBy('id', 'DESC')->paginate(20);
+    }
+
+    public function getOrder()
+    {
+        return $this->order::with('product')->whereHas('product', function($q){
+            $q->where('deleted_at', null);
+        });
+    }
+
     public function userOrder(Request $request, $product)
     {
         $columns = array(
@@ -78,5 +100,12 @@ class OrderRepository
             "data" => $data
         );
         echo json_encode($json_data);
+    }
+
+    public function delete($order)
+    {
+        $order = $this->order->find($order);
+        $order->forceDelete();
+        return ['success'=>true];
     }
 }

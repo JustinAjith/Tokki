@@ -19,17 +19,22 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function show($category, Product $product): View
+    public function show($category, $product)
     {
         $product = DB::table('products')->select('products.*', 'users.bid')
             ->join('users', function($join){
                 $join->on('users.id', '=', 'products.user_id');
                 $join->on('users.bid', '>=', 'products.bid_value');
-            })->where('products.id', $product->id)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->first();
-        if($product) {
+            })->where('products.id', $product)->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->first();
+        if(isset($product)) {
             return view('web.order.show', compact('product'));
         } else {
-            return view('web.order.error');
+            $products = DB::table('products')->select('products.*', 'users.bid')
+                ->join('users', function($join){
+                    $join->on('users.id', '=', 'products.user_id');
+                    $join->on('users.bid', '>=', 'products.bid_value');
+                })->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->inRandomOrder()->take(6)->get();
+            return view('web.order.error', compact('products'));
         }
     }
 
