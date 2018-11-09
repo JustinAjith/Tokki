@@ -35,7 +35,7 @@
                             </div>
                         </a>
                         <div class="text-center">
-                            <div ng-if="recentOffer.name === null" class="emptyProductListDiv">
+                            <div ng-if="recentOffer.name === null" class="emptyProductListDiv d-none d-sm-block">
                                 <img src="{{ asset('images/general/empty.jpg') }}" class="productListImage">
                             </div>
                         </div>

@@ -24,6 +24,7 @@
                 <li> <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{ route('user.order') }}">Order List</a></li>
+                        <li><a href="{{ route('user.awaiting.delivery.order') }}">Awaiting delivery</a></li>
                         <li><a href="{{ route('user.order.status') }}">Order Status</a></li>
                     </ul>
                 </li>

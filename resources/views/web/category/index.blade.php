@@ -78,7 +78,7 @@
                 @else
                     <div class="row">
                         @foreach($products as $product)
-                            <div class="col-md-3 productListCardMain">
+                            <div class="col-lg-3 col-md-4 col-sm-6 productListCardMain">
                                 <a href="{{ route('single.product.show', [str_replace(' ', '-', $product->heading), $product->id]) }}">
                                     <div class="productListCard">
                                         @if($product->discount > 0)

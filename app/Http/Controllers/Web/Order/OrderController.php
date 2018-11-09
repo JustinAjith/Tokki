@@ -21,7 +21,7 @@ class OrderController extends Controller
 
     public function show($category, $product)
     {
-        $product = DB::table('products')->select('products.*', 'users.bid')
+        $product = DB::table('products')->select('products.*', 'users.bid', 'users.name')
             ->join('users', function($join){
                 $join->on('users.id', '=', 'products.user_id');
                 $join->on('users.bid', '>=', 'products.bid_value');

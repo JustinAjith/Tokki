@@ -20,11 +20,14 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])
-                ->whereHas('product', function($q){
-                    $q->where('deleted_at', null);
-                })->orderBy('id', 'DESC')->paginate(20);
+        $orders = $this->order->index();
         return view('user.order.index', compact('orders'));
+    }
+
+    public function awaitingDelivery()
+    {
+        $orders = $this->order->awaitingDelivery();
+        return view('user.order.awaiting_delivery', compact('orders'));
     }
 
     public function show($order)

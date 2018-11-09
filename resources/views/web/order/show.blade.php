@@ -4,6 +4,7 @@
         .input-group-prepend{padding: 0;}
         .singleProductOrderForm form .orderFormHeading{border-bottom: 2px solid #ff970c; }
         #totalPriceInOrderSummery{color: #ff970c;}
+        .productDetailTitle{color: #455a64;;font-size: 15px;}
     </style>
 @endsection
 @section('content')
@@ -36,16 +37,16 @@
                                 <?php
                                 $discountPrice = $product->price;
                                 ?>
-                                <li>Price : LRK @if($product->discount > 0) <strike>{{ number_format($discountPrice, 2) }}</strike> @else {{ number_format($discountPrice, 2) }} @endif <small> / piece</small>
+                                <li><span class="productDetailTitle">Price :</span> LRK @if($product->discount > 0) <strike>{{ number_format($discountPrice, 2) }}</strike> @else {{ number_format($discountPrice, 2) }} @endif <small> / piece</small>
                                 @if($product->discount > 0)
                                     @if($product->discount_type == 'LKR')
                                         <?php $discountPrice = $product->price - $product->discount; ?>
-                                        <li>Discount Price : LKR {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ number_format($product->discount, 2) }} LKR</span></li>
+                                        <li><span class="productDetailTitle">Discount Price :</span> LKR {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ number_format($product->discount, 2) }} LKR</span></li>
                                     @else
                                         <?php
                                         $discountPrice = (1 - $product->discount/100) * $product->price;
                                         ?>
-                                        <li>Discount Price : LRK {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ $product->discount }} %</span></li>
+                                        <li><span class="productDetailTitle">Discount Price :</span> LRK {{ number_format($discountPrice, 2) }} <small> / piece</small> <span class="badge badge-danger">{{ $product->discount }} %</span></li>
                                     @endif
                                 @endif
                                 @if($product->features != null)
@@ -56,15 +57,17 @@
                                     @foreach($features as $key => $feature)
                                             <?php $feature_descriptions = explode(",", array_get($features_description, $key)); ?>
                                         <li>
-                                            {{ $feature }} : @foreach($feature_descriptions as $feature_description)<span class="singleProductFeatures">{{ $feature_description }}</span>@endforeach
+                                            <span class="productDetailTitle">{{ $feature }} :</span> @foreach($feature_descriptions as $feature_description)<span class="singleProductFeatures">{{ $feature_description }}</span>@endforeach
                                         </li>
                                     @endforeach
                                 @endif
-                                <li>Available Qty : {{ $product->qty }}</li>
+                                <li><span class="productDetailTitle">Available Qty :</span> {{ $product->qty }}</li>
                                 <?php
                                 $places = json_decode($product->delivery_places);
                                 ?>
-                                <li>Delivery Places : @foreach($places as $place)<span class="singleProductFeatures">{{ $place }}</span>@endforeach</li>
+                                <li><span class="productDetailTitle">Delivery Places :</span> @foreach($places as $place)<span class="singleProductFeatures">{{ $place }}</span>@endforeach</li>
+                                <li><span class="productDetailTitle">Delivery :</span> {{ $product->delivery_duration }}</li>
+                                <li><span class="productDetailTitle">Seller :</span> <a href="{{ route('seller.product.show', [str_replace(' ', '-', $product->name), $product->user_id]) }}">{{ $product->name }}</a></li>
                             </ul>
                             <hr>
                             <button class="btn btn-sm tokkiAccessButton" ng-click="showProductOrderForm()">Buy Now</button>

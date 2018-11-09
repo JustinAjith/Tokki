@@ -14,7 +14,7 @@ Route::group(['namespace'=>'Web'], function($routes){
     $routes->group(['namespace'=>'Category'], function($routes){
         $routes->get('/category/{ref_id}', 'CategoryController@index')->name('web.category.product');
         $routes->get('/category/{ref_id}/{sort}/{filter}', 'CategoryController@filter')->name('web.category.product.filter');
-
+        $routes->get('/seller/{name}/{seller}', 'CategoryController@seller')->name('seller.product.show');
         $routes->get('/best-sell', 'CategoryController@bestSell')->name('web.best.sell');
         $routes->get('/popular-categories', 'CategoryController@popularCategories')->name('web.popular.categories');
         $routes->get('/special-offers', 'CategoryController@specialOffers')->name('web.special.offers');
@@ -70,6 +70,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
     // User Order Related Routes
     $routes->group(['prefix'=>'/orders', 'namespace'=>'Order'], function($routes){
         $routes->get('/', 'OrderController@index')->name('user.order');
+        $routes->get('/awaiting-delivery', 'OrderController@awaitingDelivery')->name('user.awaiting.delivery.order');
         $routes->get('/status', 'OrderController@status')->name('user.order.status');
         $routes->delete('/delete/{order}', 'OrderController@delete')->name('user.order.delete');
         $routes->get('/show/{order}', 'OrderController@show')->name('user.order.show');

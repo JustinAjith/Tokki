@@ -29,7 +29,7 @@ class BidController extends Controller
 
     public function show(Bid $bid): View
     {
-        $userBid = $bid::with('user')->first();
+        $userBid = $bid;
         return view('admin.bid.show', compact('userBid'));
     }
 

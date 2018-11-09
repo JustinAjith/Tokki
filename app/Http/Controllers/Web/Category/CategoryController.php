@@ -110,4 +110,15 @@ class CategoryController extends Controller
         }
         return view('web.category.product', compact('products', 'heading'));
     }
+
+    public function seller($name, $seller)
+    {
+        $products = DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.user_id', $seller)->where('products.deleted_at', '=', null)->orderBy('products.id', 'DESC')->paginate(40);
+        $heading = 'Items for sale from '.str_replace('-', ' ', $name);
+        return view('web.category.product', compact('products', 'heading'));
+    }
 }

@@ -17,6 +17,24 @@ class OrderRepository
         $this->order = $order ?? new Order();
     }
 
+    public function index()
+    {
+        return $this->selectOrder()->orderBy('id', 'DESC')->paginate(20);
+    }
+
+    public function awaitingDelivery()
+    {
+        return $this->selectOrder()->where('status', 'Accept')->orderBy('id', 'DESC')->paginate(20);
+    }
+
+    public function selectOrder()
+    {
+        return $this->order::with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])
+            ->whereHas('product', function($q){
+                $q->where('deleted_at', null);
+            });
+    }
+
     public function orderStatus(Request $request, $status, Order $order)
     {
         $comment = $request->comment ? $request->comment : null;
@@ -46,10 +64,7 @@ class OrderRepository
 
     public function recentOrders()
     {
-        return $this->order->with('product')->where(['user_id'=>Auth::user()->id, 'delete_status'=>0])
-                ->whereHas('product', function($q){
-                    $q->where('deleted_at', null);
-                })->orderBy('id', 'DESC')->take(5)->get();
+        return $this->selectOrder()->orderBy('id', 'DESC')->take(5)->get();
     }
 
     public function recentBid()
