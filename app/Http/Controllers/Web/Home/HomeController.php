@@ -40,4 +40,10 @@ class HomeController extends Controller
         $loveProduct = $this->home->loveProduct();
         return response()->json($loveProduct);
     }
+
+    public function moreProduct()
+    {
+        $moreProduct = $this->home->moreProduct();
+        return response()->json($moreProduct);
+    }
 }

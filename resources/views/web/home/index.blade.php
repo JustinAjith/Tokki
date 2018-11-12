@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/tokki/web/menu.css') }}">
     <style>
         .productListCard .productListDiscountBadge {font-size: 16px;}
+        .productCollectionHeading {background: #e4e4e4;padding: 6px 5px;}
     </style>
 @endsection
 @section('content')
@@ -13,6 +14,7 @@
             @include('web.home._inc.product.new_product')
             @include('web.home._inc.product.more_to_love')
             @include('web.home._inc.product.recent_offer_product')
+            @include('web.home._inc.product.more_product')
         </div>
     </div>
 @endsection

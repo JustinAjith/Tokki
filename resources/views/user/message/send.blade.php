@@ -42,7 +42,7 @@
                                                             <div class="subject">
                                                                 <span class="teaser">{{ $message->message }}</span>
                                                             </div>
-                                                            <div class="date">11:49 am</div>
+                                                            <div class="date">{{ $message->created_at->toDateString() }}</div>
                                                         </div>
                                                     </a>
                                                 </li>

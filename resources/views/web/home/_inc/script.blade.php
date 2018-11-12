@@ -59,5 +59,25 @@
             $scope.recentOfferDiv = true;
             $scope.recentOfferLoading = false;
         });
+
+        // more Products
+        $scope.moreProductsDiv = false;
+        $scope.moreProductLoading = true;
+        $http.get($scope.baseUrl + '/more-products').then(function(response){
+            $scope.moreProducts = [];
+            if(response.data.length !== 12) {
+                for(var i=0; i < 12; i++) {
+                    if(response.data[i]) {
+                        $scope.moreProducts.push(response.data[i]);
+                    } else {
+                        $scope.moreProducts.push({name: null});
+                    }
+                }
+            } else {
+                $scope.moreProducts = response.data;
+            }
+            $scope.moreProductsDiv = true;
+            $scope.moreProductLoading = false;
+        });
     });
 </script>

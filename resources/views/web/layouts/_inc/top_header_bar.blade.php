@@ -56,7 +56,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-2 col-sm-2 d-none d-sm-block pr-0">AADASSFSDS</div>
+            <div class="col-md-2 col-sm-2 d-none d-sm-block pr-0">
+                <img src="{{ asset('images/general/top_welcome.png') }}" alt="">
+            </div>
         </div>
     </div>
 </div>

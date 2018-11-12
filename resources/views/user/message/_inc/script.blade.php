@@ -6,6 +6,7 @@
             $scope.messageList = false;
             $scope.messageRead = true;
             $scope.readMessageText = message.message;
+            $scope.readMessageDate = message.created_at;
         };
         $scope.closeReadMessage = function() {
             $scope.messageList = true;

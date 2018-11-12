@@ -47,4 +47,11 @@ class HomeRepository
         $loveProduct = ProductResourceCollection::collection($products);
         return $loveProduct;
     }
+
+    public  function moreProduct()
+    {
+        $products = $this->selectProducts()->get();
+        $moreProduct = ProductResourceCollection::collection($products);
+        return $moreProduct;
+    }
 }

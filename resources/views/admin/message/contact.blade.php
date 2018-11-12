@@ -54,7 +54,7 @@
                                                             <div class="subject">
                                                                 <span class="teaser">{{ $contact->message }}</span>
                                                             </div>
-                                                            <div class="date">11:49 am</div>
+                                                            <div class="date">{{ $contact->created_at->toDateString() }}</div>
                                                         </div>
                                                     </a>
                                                 </li>
@@ -77,7 +77,7 @@
                                         <div class="media mb-4">
                                             <img class="d-flex mr-3 rounded-circle thumb-sm" src="{{ asset('images/tokki/tokki.png') }}" alt="Tokki Logo">
                                             <div class="media-body">
-                                                <span class="pull-right">07:23 AM</span>
+                                                <span class="pull-right">@{{ readMessageDate }}</span>
                                                 <h6 class="m-0"><small class="text-muted">From: </small>@{{ messageUser }}</h6>
                                                 <small class="text-muted">Email: @{{ messageUserEmail }}</small>
                                             </div>
@@ -112,6 +112,7 @@
                 $scope.messageUser = contact.name;
                 $scope.messageUserEmail = contact.email;
                 $scope.readMessageText = contact.message;
+                $scope.readMessageDate = contact.created_at;
             };
             $scope.closeReadMessage = function() {
                 $scope.contactList = true;
