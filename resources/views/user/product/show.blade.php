@@ -66,9 +66,11 @@
                                             $features_description = json_decode($product->features_description);
                                             ?>
                                             @foreach($features as $key => $feature)
-                                                <li>
-                                                    {{ $feature }} : {{ array_get($features_description, $key) }}
-                                                </li>
+                                                @if($feature != null)
+                                                    <li>
+                                                        {{ $feature }} : {{ array_get($features_description, $key) }}
+                                                    </li>
+                                                @endif
                                             @endforeach
                                         @endif
                                         <li>Available Qty : {{ $product->qty }}</li>

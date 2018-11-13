@@ -55,10 +55,12 @@
                                     $features_description = json_decode($product->features_description);
                                     ?>
                                     @foreach($features as $key => $feature)
+                                        @if($feature != null)
                                             <?php $feature_descriptions = explode(",", array_get($features_description, $key)); ?>
-                                        <li>
-                                            <span class="productDetailTitle">{{ $feature }} :</span> @foreach($feature_descriptions as $feature_description)<span class="singleProductFeatures">{{ $feature_description }}</span>@endforeach
-                                        </li>
+                                            <li>
+                                                <span class="productDetailTitle">{{ $feature }} :</span> @foreach($feature_descriptions as $feature_description)<span class="singleProductFeatures">{{ $feature_description }}</span>@endforeach
+                                            </li>
+                                        @endif
                                     @endforeach
                                 @endif
                                 <li><span class="productDetailTitle">Available Qty :</span> {{ $product->qty }}</li>

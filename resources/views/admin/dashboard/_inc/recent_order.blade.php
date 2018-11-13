@@ -30,7 +30,7 @@
                 @endforeach
                 @if(count($recentOrders) == 0)
                     <tr>
-                        <td colspan="5" style="background-color: rgba(0,0,0,.05);">No data available in table</td>
+                        <td colspan="6" style="background-color: rgba(0,0,0,.05);">No data available in table</td>
                     </tr>
                 @endif
                 </tbody>

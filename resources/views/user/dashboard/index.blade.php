@@ -20,6 +20,10 @@
 
     <div class="container-fluid" ng-controller="dashboardController">
         <div class="row">
+            @include('user.dashboard._inc.top_meida')
+        </div>
+
+        <div class="row">
             <div class="col-md-12">
                 @include('user.dashboard._inc.recent_orders')
             </div>
@@ -101,6 +105,16 @@
             var getMessage = "{{ route('user.get.dashboard.message') }}";
             $http.get(getMessage).then(function(response){
                 $scope.messages = response.data.messages;
+            });
+
+            var getMeida = "{{ route('user.get.top.meida.count') }}";
+            $scope.totalSales = 0;
+            $scope.totalProducts = 0;
+            $scope.salesRevenue = 0;
+            $http.get(getMeida).then(function(response){
+                $scope.totalSales = response.data.sales;
+                $scope.totalProducts = response.data.products;
+                $scope.salesRevenue = response.data.salesRevenue;
             });
         });
     </script>

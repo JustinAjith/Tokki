@@ -1,18 +1,13 @@
 @extends('web.layouts.master')
 @section('style')
     <style>
-
+        .aboutUsBanner{width: 100%;}
     </style>
 @endsection
 @section('content')
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-8">
-
-            </div>
-            <div class="col-md-4">
-                <span>as</span>
-            </div>
+    <div class="row">
+        <div class="col-12 p-0">
+            <img src="{{ asset('images/general/about_us.png') }}" class="aboutUsBanner">
         </div>
     </div>
 @endsection

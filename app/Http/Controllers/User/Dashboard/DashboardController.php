@@ -28,6 +28,13 @@ class DashboardController extends Controller
     {
         $messages = $this->user->recentMessage();
         return response()->json(['messages'=>$messages]);
+    }
 
+    public function meidaCount()
+    {
+        $sales = $this->user->sales();
+        $products = $this->user->products();
+        $salesRevenue = $this->user->salesRevenue();
+        return response()->json(['sales'=>$sales, 'products'=>$products, 'salesRevenue'=>$salesRevenue]);
     }
 }

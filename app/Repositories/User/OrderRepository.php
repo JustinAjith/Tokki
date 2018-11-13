@@ -22,6 +22,65 @@ class OrderRepository
         return $this->selectOrder()->orderBy('id', 'DESC')->paginate(20);
     }
 
+    public function orderList(Request $request)
+    {
+        $columns = array(
+            0 => 'name',
+            1 => 'date',
+            2 => 'qty',
+            3 => 'status',
+            4 => 'action',
+        );
+        $totalDatas = $this->selectOrder()->count();
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        if(empty($request->input('search.value'))) {
+            $posts = $this->selectOrder()
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = $totalDatas;
+        } else {
+            $search = $request->input('search.value');
+
+            $filteredData = $this->selectOrder()
+                ->where(function($q) use ($search) {
+                $q->where('date', 'like', "%{$search}%")
+                    ->orWhere('qty', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%");
+                });
+
+            $posts = $filteredData->offset($start)->limit($limit)->orderBy($order, $dir)->get();
+            $totalFiltered = $filteredData->count();
+        }
+
+        $data = array();
+        if($posts){
+            foreach($posts as $r) {
+                $nestedData['name'] = '<center><img src="/storage/display_image/'.$r->product->display_image.'" class="orderListImage"></center>';
+                $nestedData['date'] = $r->date;
+                $nestedData['qty'] = $r->qty;
+                $nestedData['status'] = $r->status == "Complete" ? "<span class=\"badge badge-primary\">Complete</span>" : ($r->status == "Accept" ? "<span class=\"badge badge-success\">Accept</span>" : ($r->status == "Pending" ? "<span class=\"badge badge-secondary\">Pending</span>" : ($r->status == "Reject" ? "<span class=\"badge badge-danger\">Reject</span>" : "")));
+                $nestedData['action'] = '
+                    <a href="/orders/show/' . $r->id . '" class="btn btn-sm btn-outline-success"><i class="fa fa-eye"></i> View</a>
+                ';
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalDatas),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data
+        );
+        echo json_encode($json_data);
+    }
+
     public function awaitingDelivery()
     {
         return $this->selectOrder()->where('status', 'Accept')->orderBy('id', 'DESC')->paginate(20);

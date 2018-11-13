@@ -50,6 +50,7 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
     $routes->group(['namespace'=>'Dashboard'], function($routes){
         $routes->get('/home', 'DashboardController@index')->name('home');
         $routes->get('/recent-message', 'DashboardController@recentMessage')->name('user.get.dashboard.message');
+        $routes->get('/meida-count', 'DashboardController@meidaCount')->name('user.get.top.meida.count');
         $routes->get('/profile', 'ProfileController@index')->name('user.profile');
     });
     // User Product Related Routes
@@ -70,6 +71,8 @@ Route::group(['middleware'=>['auth', 'prevent-back-history'], 'namespace'=>'User
     // User Order Related Routes
     $routes->group(['prefix'=>'/orders', 'namespace'=>'Order'], function($routes){
         $routes->get('/', 'OrderController@index')->name('user.order');
+        $routes->get('/list', 'OrderController@orderList')->name('user.order.list');
+        $routes->post('/list', 'OrderController@orderList')->name('user.order.list.table');
         $routes->get('/awaiting-delivery', 'OrderController@awaitingDelivery')->name('user.awaiting.delivery.order');
         $routes->get('/status', 'OrderController@status')->name('user.order.status');
         $routes->delete('/delete/{order}', 'OrderController@delete')->name('user.order.delete');

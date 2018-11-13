@@ -24,6 +24,14 @@ class OrderController extends Controller
         return view('user.order.index', compact('orders'));
     }
 
+    public function orderList(Request $request)
+    {
+        if(\request()->ajax()) {
+            return $this->order->orderList($request);
+        }
+        return view('user.order.order_list');
+    }
+
     public function awaitingDelivery()
     {
         $orders = $this->order->awaitingDelivery();

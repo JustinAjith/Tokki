@@ -9,18 +9,20 @@
         @if(isset($features))
             <div class="row">
                 @foreach($features as $key=>$feature)
-                    <?php $feature_descriptions = explode(",", array_get($features_description, $key)); ?>
-                    <div class="form-group col-md-6 col-sm-6">
-                        <label class="mb-1">{{ $feature }}</label>
-                        <input type="hidden" value="{{ $feature }}" name="features[]">
-                        <select class="form-control" name="features_description[]">
-                            <option value="">Choose one</option>
-                            @foreach($feature_descriptions as $feature_description)
-                                <option value="{{ $feature_description }}">{{ $feature_description }}</option>
-                            @endforeach
-                        </select>
-                        <small>@{{ errors[0].features_description }}</small>
-                    </div>
+                    @if($feature != null)
+                        <?php $feature_descriptions = explode(",", array_get($features_description, $key)); ?>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="mb-1">{{ $feature }}</label>
+                            <input type="hidden" value="{{ $feature }}" name="features[]">
+                            <select class="form-control" name="features_description[]">
+                                <option value="">Choose one</option>
+                                @foreach($feature_descriptions as $feature_description)
+                                    <option value="{{ $feature_description }}">{{ $feature_description }}</option>
+                                @endforeach
+                            </select>
+                            <small>@{{ errors[0].features_description }}</small>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         @endif
