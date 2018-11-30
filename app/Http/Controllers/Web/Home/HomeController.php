@@ -19,8 +19,8 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Slider::where('status', 'yes')->get();
-        $categories = Category::with('subCategory')->get();
-        return view('web.home.index', compact('sliders', 'categories'));
+//        $categories = Category::with('subCategory')->get();
+        return view('web.home.index', compact('sliders'));
     }
 
     public function newProduct()

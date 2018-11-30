@@ -8,7 +8,7 @@
 @section('content')
     <div class="container mt-4" ng-controller="controllerController" ng-cloak>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 mb-3">
                 <h5 class="smallHeading"><small>Contact us</small></h5>
                 <form id="contactForm" ng-submit="contactFormSubmit()">
                     <div class="form-group row mb-2">
@@ -37,7 +37,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <span><small><i class="fa fa-map-marker"></i> Address</small></span>
@@ -69,6 +69,15 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row mt-2">
+            <div class="col-12">
+                <a href="http://avexza.com/" target="_blank">
+                    <img src="{{ asset('images/add/avexza-long.jpg') }}" class="longAddImage">
+                </a>
+            </div>
+        </div>
+        
     </div>
 @endsection
 @section('script')

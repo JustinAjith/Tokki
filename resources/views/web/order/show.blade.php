@@ -5,6 +5,8 @@
         .singleProductOrderForm form .orderFormHeading{border-bottom: 2px solid #ff970c; }
         #totalPriceInOrderSummery{color: #ff970c;}
         .productDetailTitle{color: #455a64;;font-size: 15px;}
+        #orderHistory .table .thead-light tr th{padding: 6px .75rem}
+        .productCollectionHeading {background: #e4e4e4;padding: 6px 5px;}
     </style>
 @endsection
 @section('content')
@@ -82,8 +84,7 @@
 
                         <ul class="nav nav-tabs customtab" role="tablist">
                             <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#productDetailsTab" role="tab">Product Details</a></li>
-                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#feedBackTab" role="tab">Feedback</a></li>
-                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#chartTab" role="tab">Chart</a></li>
+                            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#orderHistory" role="tab">History</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -100,11 +101,31 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="tab-pane  p-20" id="feedBackTab" role="tabpanel">
-                                Feed Back
-                            </div>
-                            <div class="tab-pane p-20" id="chartTab" role="tabpanel">
-                                Chart
+                            <div class="tab-pane  p-20" id="orderHistory" role="tabpanel" ng-cloak>
+                                <div class="text-center">
+                                    <img src="{{ asset('images/general/loading.gif') }}" class="tokkiLoading" ng-show="orderHistoryLoading">
+                                </div>
+                                <table class="table mt-2" ng-show="orderHistoryShow">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th>Buyer</th>
+                                        <th>Place</th>
+                                        <th>Qty</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="order in orderHistory">
+                                        <td>@{{ order.name }}</td>
+                                        <td>@{{ order.delivery_places }}</td>
+                                        <td>@{{ order.qty }} piece</td>
+                                        <td>@{{ order.date }}</td>
+                                    </tr>
+                                    <tr ng-if="orderHistory.length === 0">
+                                        <td colspan="4"><center>No order to show</center></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -114,6 +135,55 @@
                     <form id="newProductOrder" ng-submit="newProductOrderSubmit()">
                         @include('web.order._inc.form')
                     </form>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h2 class="productCollectionHeading">Related Products</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-4 col-xs-2 productListCardMain" ng-repeat="relatedProduct in relatedProducts" ng-show="relatedProductDiv">
+                                <a ng-href="@{{ relatedProduct.link }}" ng-if="relatedProduct.name !== null">
+                                    <div class="productListCard">
+                                        <div class="productListDiscountBadge badge-danger p-0" ng-if="relatedProduct.discount !== 0">
+                                            <span ng-if="relatedProduct.discount_type === 'LKR'" class="badge badge-danger">@{{ relatedProduct.discount | currency : "" }} @{{ relatedProduct.discount_type }}</span>
+                                            <span ng-if="relatedProduct.discount_type === '%'" class="badge badge-danger">@{{ relatedProduct.discount }} @{{ relatedProduct.discount_type }}</span>
+                                        </div>
+                                        <div class="row justify-content-center" style="padding: 1rem 1rem 0 1rem">
+                                            <img ng-src="{{ asset('storage/display_image') }}/@{{ relatedProduct.image }}" class="productListImage">
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <small>@{{ relatedProduct.qty }} Pieces Available</small>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h2 class="productListHeading"><small>@{{ relatedProduct.name }}</small></h2>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-2">
+                                            <div class="col-12">
+                                                <span class="productListPrice">LKR @{{ relatedProduct.price }} </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="text-center">
+                                    <div ng-if="relatedProduct.name === null" class="emptyProductListDiv d-none d-sm-block">
+                                        <img src="{{ asset('images/general/empty.jpg') }}" class="productListImage">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" ng-show="relatedProductLoading">
+                                <div class="text-center mt-5 mb-5">
+                                    <img src="{{ asset('images/general/loading.gif') }}" class="tokkiLoading">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

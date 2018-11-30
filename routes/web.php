@@ -13,6 +13,7 @@ Route::group(['namespace'=>'Web'], function($routes){
 
     $routes->group(['namespace'=>'Category'], function($routes){
         $routes->get('/category/{ref_id}', 'CategoryController@index')->name('web.category.product');
+        $routes->get('/categories', 'CategoryController@categories')->name('web.categories');
         $routes->get('/category/{ref_id}/{sort}/{filter}', 'CategoryController@filter')->name('web.category.product.filter');
         $routes->get('/seller/{name}/{seller}', 'CategoryController@seller')->name('seller.product.show');
         $routes->get('/best-sell', 'CategoryController@bestSell')->name('web.best.sell');
@@ -25,6 +26,7 @@ Route::group(['namespace'=>'Web'], function($routes){
         $routes->get('/item/{category}/{product}', 'OrderController@show')->name('single.product.show');
         $routes->post('/item/order/{product}', 'OrderController@store')->name('new.product.order');
         $routes->get('/order/complete', 'OrderController@success')->name('web.order.complete');
+        $routes->get('/order/history/{product}', 'OrderController@orderHistory')->name('product.order.history');
     });
 
     $routes->group(['namespace' => 'Contact'], function($routes){

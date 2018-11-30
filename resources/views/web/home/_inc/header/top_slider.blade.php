@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-12">
             <div id="tokkiHomeTopSlider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     @foreach($sliders as $key=>$slider)

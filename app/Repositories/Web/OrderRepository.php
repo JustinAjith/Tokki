@@ -3,11 +3,13 @@
 namespace App\Repositories\Web;
 
 use App\Http\Requests\Web\OrderRequest;
+use App\Http\Resources\Product\ProductResourceCollection;
 use App\Notification;
 use App\Order;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderRepository
 {
@@ -78,5 +80,21 @@ class OrderRepository
         $notification->admin_status = 1;
         $notification->save();
         return ['success'=>true];
+    }
+
+    public function orderHistory($product)
+    {
+        return $this->order::where(['status'=>'Complete', 'product_id'=>$product])->orwhere('status', 'Accept')->orderBy('date', 'DESC')->get();
+    }
+
+    public function relatedProduct($subCategory)
+    {
+        $products = DB::table('products')->select('products.*', 'users.bid')
+            ->join('users', function($join){
+                $join->on('users.id', '=', 'products.user_id');
+                $join->on('users.bid', '>=', 'products.bid_value');
+            })->where('products.sub_category_id', '=', $subCategory)->where('products.qty', '>', 0)->where('products.status', '=', 'Accept')->where('products.deleted_at', '=', null)->limit(6)->get();
+        $newProduct = ProductResourceCollection::collection($products);
+        return $newProduct;
     }
 }

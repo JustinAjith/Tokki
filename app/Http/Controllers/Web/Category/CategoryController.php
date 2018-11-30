@@ -18,6 +18,12 @@ class CategoryController extends Controller
         return view('web.category.index', compact('products', 'categories', 'sub_category'));
     }
 
+    public function categories()
+    {
+        $categories = Category::with('subCategory')->get();
+        return view('web.category.categories', compact('categories'));
+    }
+
     public function filter($ref_id, $sort, $filter)
     {
         $sub_category = SubCategory::where('ref_id', $ref_id)->first();

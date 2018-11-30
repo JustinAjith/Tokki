@@ -50,7 +50,7 @@ class HomeRepository
 
     public  function moreProduct()
     {
-        $products = $this->selectProducts()->get();
+        $products = $this->selectProducts()->limit(12)->get();
         $moreProduct = ProductResourceCollection::collection($products);
         return $moreProduct;
     }

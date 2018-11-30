@@ -31,6 +31,7 @@ class ProductRepository
         return ['success'=>true];
     }
 
+    // Admin permanently delete product
     public function delete($product)
     {
         $product = $this->product->onlyTrashed('id', $product)->first();

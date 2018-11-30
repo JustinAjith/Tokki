@@ -9,6 +9,7 @@ Route::group(['namespace'=>'Web'], function($routes){
         $routes->get('/recent-offer', 'HomeController@recentOffer');
         $routes->get('/more-products', 'HomeController@moreProduct');
     });
+    $routes->get('/order/related-products/{subCategory}', 'Order\OrderController@relatedProduct');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

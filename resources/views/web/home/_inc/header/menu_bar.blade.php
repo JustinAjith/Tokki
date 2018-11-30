@@ -1,25 +1,28 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="main d-none d-md-block">
+            <div class="main">
                 <nav class="cbp-hsmenu-wrapper" id="cbp-hsmenu-wrapper">
                     <div class="cbp-hsinner">
                         <ul class="cbp-hsmenu">
+                            {{--<li>--}}
+                                {{--<a href="#">Categories</a>--}}
+                                {{--<ul class="cbp-hssubmenu">--}}
+                                    {{--@foreach($categories as $category)--}}
+                                        {{--<li>--}}
+                                            {{--<h5><small>{{ $category->name }}</small></h5>--}}
+                                            {{--<hr>--}}
+                                            {{--<ul class="mb-2 productCategoryItems">--}}
+                                                {{--@foreach($category->subCategory as $sub)--}}
+                                                    {{--<li><small><a href="{{ route('web.category.product', $sub->ref_id) }}">{{ $sub->name }}</a></small></li>--}}
+                                                {{--@endforeach--}}
+                                            {{--</ul>--}}
+                                        {{--</li>--}}
+                                    {{--@endforeach--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
                             <li>
-                                <a href="#">Categories</a>
-                                <ul class="cbp-hssubmenu">
-                                    @foreach($categories as $category)
-                                        <li>
-                                            <h5><small>{{ $category->name }}</small></h5>
-                                            <hr>
-                                            <ul class="mb-2 productCategoryItems">
-                                                @foreach($category->subCategory as $sub)
-                                                    <li><small><a href="{{ route('web.category.product', $sub->ref_id) }}">{{ $sub->name }}</a></small></li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                <a href="{{ route('web.categories') }}">Categories</a>
                             </li>
                             <li>
                                 <a href="{{ route('web.best.sell') }}">Best Sell</a>

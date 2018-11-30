@@ -77,5 +77,34 @@
             }
             $scope.totalPrice = $scope.singleProduct * totalQty;
         };
+
+        var orderHistoryRoute = "{{ route('product.order.history', $product->id) }}";
+        $scope.orderHistoryLoading = true;
+        $scope.orderHistoryShow = false;
+        $http.get(orderHistoryRoute).then(function(response){
+            $scope.orderHistory = response.data.orders;
+            $scope.orderHistoryLoading = false;
+            $scope.orderHistoryShow = true;
+        });
+
+        $scope.baseUrl = '{{ URL::to('api/order/related-products') }}';
+        $scope.relatedProductDiv = false;
+        $scope.relatedProductLoading = true;
+        $http.get($scope.baseUrl + '/' + '{{ $product->sub_category_id }}').then(function(response){
+            $scope.relatedProducts = [];
+            if(response.data.length !== 6) {
+                for(var i=0; i < 6; i++) {
+                    if(response.data[i]) {
+                        $scope.relatedProducts.push(response.data[i]);
+                    } else {
+                        $scope.relatedProducts.push({name: null});
+                    }
+                }
+            } else {
+                $scope.relatedProducts = response.data;
+            }
+            $scope.relatedProductDiv = true;
+            $scope.relatedProductLoading = false;
+        });
     });
 </script>

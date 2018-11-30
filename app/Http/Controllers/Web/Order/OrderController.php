@@ -48,4 +48,16 @@ class OrderController extends Controller
     {
         return view('web.order.success');
     }
+
+    public function orderHistory($product)
+    {
+        $orders = $this->order->orderHistory($product);
+        return response()->json(['orders'=>$orders]);
+    }
+
+    public function relatedProduct($subCategory)
+    {
+        $relatedProduct = $this->order->relatedProduct($subCategory);
+        return response()->json($relatedProduct);
+    }
 }

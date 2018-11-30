@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-sm-12">
-                <div class="float-right" style="margin-top: 6px;">
+                <div class="float-right" style="margin-top: 2px;">
                     <div class="productFilterOptionsDiv">
                         <span>Sort by:</span>
                     </div>

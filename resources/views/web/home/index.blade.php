@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/tokki/web/menu.css') }}">
     <style>
         .productListCard .productListDiscountBadge {font-size: 16px;}
-        .productCollectionHeading {background: #e4e4e4;padding: 6px 5px;}
+        .productCollectionHeading {border-bottom: none;}
     </style>
 @endsection
 @section('content')
@@ -21,9 +21,9 @@
 
 @section('script')
     @include('web.home._inc.script')
-    <script src="{{ asset('js/tokki/web/menuPlu.js') }}"></script>
-    <script src="{{ asset('js/tokki/web/menu.js') }}"></script>
-    <script>
-        var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );
-    </script>
+    {{--<script src="{{ asset('js/tokki/web/menuPlu.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/tokki/web/menu.js') }}"></script>--}}
+    {{--<script>--}}
+        {{--var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );--}}
+    {{--</script>--}}
 @endsection
